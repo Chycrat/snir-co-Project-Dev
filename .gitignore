@@ -1,7 +1,7 @@
 
-snir-co-project-dev/.idea/
+Back/.idea/
 
-snir-co-project-dev/vendor/
+Back/vendor/
 
 # compiled output
 Front/dist
