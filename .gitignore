@@ -24,7 +24,7 @@ Madera/.classpath
 Madera/.c9/
 Madera/*.launch
 Madera/.settings/
-Madera/*.sublime-workspace
+Madera/*.sublime-Front
 
 # IDE - VSCode
 Madera/.vscode/*
