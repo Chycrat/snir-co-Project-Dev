@@ -4,46 +4,46 @@ snir-co-project-dev/.idea/
 snir-co-project-dev/vendor/
 
 # compiled output
-Madera/dist
-Madera/tmp
-Madera/out-tsc
+Front/dist
+Front/tmp
+Front/out-tsc
 # Only exists if Bazel was run
-Madera/bazel-out
+Front/bazel-out
 
 # dependencies
-Madera/node_modules
+Front/node_modules
 
 # profiling files
 chrome-profiler-events*.json
 speed-measure-plugin*.json
 
 # IDEs and editors
-Madera/.idea
-Madera/.project
-Madera/.classpath
-Madera/.c9/
-Madera/*.launch
-Madera/.settings/
-Madera/*.sublime-Front
+Front/.idea
+Front/.project
+Front/.classpath
+Front/.c9/
+Front/*.launch
+Front/.settings/
+Front/*.sublime-Front
 
 # IDE - VSCode
-Madera/.vscode/*
-Madera/!.vscode/settings.json
-Madera/!.vscode/tasks.json
-Madera/!.vscode/launch.json
-Madera/!.vscode/extensions.json
-Madera/.history/*
+Front/.vscode/*
+Front/!.vscode/settings.json
+Front/!.vscode/tasks.json
+Front/!.vscode/launch.json
+Front/!.vscode/extensions.json
+Front/.history/*
 
 # misc
-Madera/.sass-cache
-Madera/connect.lock
-Madera/coverage
-Madera/libpeerconnection.log
-Madera/npm-debug.log
-Madera/yarn-error.log
-Madera/testem.log
-Madera/typings
+Front/.sass-cache
+Front/connect.lock
+Front/coverage
+Front/libpeerconnection.log
+Front/npm-debug.log
+Front/yarn-error.log
+Front/testem.log
+Front/typings
 
 # System Files
-Madera/.DS_Store
-Madera/Thumbs.db
+Front/.DS_Store
+Front/Thumbs.db
