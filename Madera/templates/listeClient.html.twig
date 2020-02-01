@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Liste des clients!{% endblock %}</title>
+        {% block stylesheets %} 
+            <link rel="canonical" href="https://getbootstrap.com/docs/4.0/components/scrollspy/">
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">  
+        {% endblock %}
+        <!-- <link href="page.css" rel="stylesheet"/> -->
+    </head>
+    <body>
+        {% block body %} 
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                <img src = "http://madera-construction.fr/images/site/logo.png" alt="Madera LOGO" width = "10%">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                        <a class="nav-link active" href="#">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                            Acceuil 
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/listeClient">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                            Clients
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+                            Orders
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+       
+
+        <main class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content" role="main">
+            <div class="row">
+                    <h4 class="highlighter-rouge">Clients <button type="button" class="btn btn-success" onclick="document.location.href='/ajoutClient';">Nouveau client</button></h4> 
+            </div>
+        </main>
+
+        <div class="container-fluid">
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nom</th>
+                    <th scope="col">Prenom</th>
+                    <th scope="col">Projets</th>
+                    <th scope="col">Informations</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                    <th scope="row">1</th>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td><button type="button" class="btn btn-success" onclick="document.location.href='/listeProjet';">Projets</button></td>
+                    <td><button type="button" class="btn btn-success" onclick="document.location.href='{{ "/infoClient" ~ '1'}}';">Informations</button></td>
+                    </tr>
+                    <tr>
+                    <th scope="row">2</th>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td><button type="button" class="btn btn-success" onclick="document.location.href='{{ "/listeProjet" ~ '2'}}';">Projets</button></td>
+                    <td><button type="button" class="btn btn-success" onclick="document.location.href='{{ "/infoClient" ~ '2'}}';" >Informations</button></td>
+                    </tr>
+                    <tr>
+                    <th scope="row">3</th>  
+                    <td>Larry</td>
+                    <td>the Bird</td>
+                    <td><button type="button" class="btn btn-success" onclick="document.location.href='{{ "/listeProjet" ~ '3'}}';">Projets</button></td>
+                    <td><button type="button" class="btn btn-success" onclick="document.location.href='{{ "/infoClient" ~ '3'}}';">Informations</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        {% endblock %}
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>
