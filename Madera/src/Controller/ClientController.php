@@ -25,7 +25,7 @@ class ClientController extends AbstractController
      */
     public function addClient()
     {
-        return $this->render('client/ajoutClient.html.twig');
+        return $this->render('client/addClient.html.twig');
     }
 
     /**
