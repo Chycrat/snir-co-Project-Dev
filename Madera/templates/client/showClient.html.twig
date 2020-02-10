@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Liste des clients!{% endblock %}</title>
+        <title>{% block title %}Client!{% endblock %}</title>
         {% block stylesheets %} 
             <link rel="canonical" href="https://getbootstrap.com/docs/4.0/components/scrollspy/">
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">  
@@ -25,7 +25,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/listeClient">
+                            <a class="nav-link" href="/client/liste">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
                             Clients
                             </a>
@@ -44,7 +44,7 @@
 
         <main class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content" role="main">
             <div class="row">
-                    <h4 class="highlighter-rouge">Clients <button type="button" class="btn btn-success" onclick="document.location.href='/ajoutClient';">Nouveau client</button></h4> 
+                    <h4 class="highlighter-rouge">Clients <button type="button" class="btn btn-success" onclick="document.location.href='/client/add';">Nouveau client</button></h4> 
             </div>
         </main>
 
@@ -64,22 +64,22 @@
                     <th scope="row">1</th>
                     <td>Mark</td>
                     <td>Otto</td>
-                    <td><button type="button" class="btn btn-success" onclick="document.location.href='/listeProjet';">Projets</button></td>
-                    <td><button type="button" class="btn btn-success" onclick="document.location.href='{{ "/infoClient" ~ '1'}}';">Informations</button></td>
+                    <td><button type="button" class="btn btn-success" onclick="document.location.href='/projet/liste';">Projets</button></td>
+                    <td><button type="button" class="btn btn-success" onclick="document.location.href='{{ "/client/" ~ '1' ~ '/show'}}';">Informations</button></td>
                     </tr>
                     <tr>
                     <th scope="row">2</th>
                     <td>Jacob</td>
                     <td>Thornton</td>
-                    <td><button type="button" class="btn btn-success" onclick="document.location.href='{{ "/listeProjet" ~ '2'}}';">Projets</button></td>
-                    <td><button type="button" class="btn btn-success" onclick="document.location.href='{{ "/infoClient" ~ '2'}}';" >Informations</button></td>
+                    <td><button type="button" class="btn btn-success" onclick="document.location.href='/projet/liste;">Projets</button></td>
+                    <td><button type="button" class="btn btn-success" onclick="document.location.href='{{ "/infoClient" ~ '2'  ~ '/show'}}';" >Informations</button></td>
                     </tr>
                     <tr>
                     <th scope="row">3</th>  
                     <td>Larry</td>
                     <td>the Bird</td>
-                    <td><button type="button" class="btn btn-success" onclick="document.location.href='{{ "/listeProjet" ~ '3'}}';">Projets</button></td>
-                    <td><button type="button" class="btn btn-success" onclick="document.location.href='{{ "/infoClient" ~ '3'}}';">Informations</button></td>
+                    <td><button type="button" class="btn btn-success" onclick="document.location.href='/projet/liste';">Projets</button></td>
+                    <td><button type="button" class="btn btn-success" onclick="document.location.href='{{ "/infoClient" ~ '3'  ~ '/show'}}';">Informations</button></td>
                     </tr>
                 </tbody>
             </table>

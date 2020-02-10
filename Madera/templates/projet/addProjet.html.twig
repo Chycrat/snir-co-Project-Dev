@@ -1,11 +1,14 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Ajout d'un client{% endblock %}
-{% block stylesheets %}
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">  
+{% block title %}Ajout projet!{% endblock %}
+
+{% block stylesheets %} 
+            <link rel="canonical" href="https://getbootstrap.com/docs/4.0/components/scrollspy/">
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">  
 {% endblock %}
+
 {% block body %}
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <img src = "http://madera-construction.fr/images/site/logo.png" alt="Madera LOGO" width = "10%">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -19,7 +22,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/listeClient">
+                    <a class="nav-link" href="/client/liste">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
                     Clients
                     </a>
@@ -41,20 +44,6 @@
                 <label for="inputNom4">Nom</label>
                 <input type="text" class="form-control" id="inputNom4" placeholder="Nom">
                 </div>
-                <div class="form-group col-md-6">
-                <label for="inputPrenom4">Prenom</label>
-                <input type="text" class="form-control" id="inputPrenom4" placeholder="Prenom">
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                <label for="inputEmail4">Email</label>
-                <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
-                </div>
-                <div class="form-group col-md-6">
-                <label for="inputPassword4">Password</label>
-                <input type="password" class="form-control" id="inputPassword4" placeholder="Password">
-                </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
@@ -69,4 +58,5 @@
             <button type="submit" class="btn btn-success">Ajout</button>
         </form>
     </div>
+
 {% endblock %}

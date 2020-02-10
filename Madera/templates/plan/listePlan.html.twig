@@ -22,7 +22,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/listeClient">
+                    <a class="nav-link" href="/client/liste">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
                     Clients
                     </a>
@@ -39,7 +39,7 @@
 
     <main class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content" role="main">
             <div class="row">
-                    <h4 class="highlighter-rouge">Plans <button type="button" class="btn btn-success" onclick="document.location.href='/ajoutPlan';">Nouveau plan</button></h4> 
+                    <h4 class="highlighter-rouge">Plans <button type="button" class="btn btn-success" onclick="document.location.href='/plan/add';">Nouveau plan</button></h4> 
             </div>
         </main>
 
@@ -62,7 +62,7 @@
                     <td>100</td>
                     <td>123</td>
                     <td>02/02/2020</td>
-                    <td><button type="button" class="btn btn-success" onclick="document.location.href='{{ "/infoPlan/" ~ '1'}}';">Informations</button></td>
+                    <td><button type="button" class="btn btn-success" onclick="document.location.href='{{ "/plan/" ~ '1' ~ '/show'}}';">Informations</button></td>
                     </tr>
                     <tr>
                     <th scope="row">2</th>
@@ -70,7 +70,7 @@
                     <td>100</td>
                     <td>123</td>
                     <td>02/02/2020</td>
-                    <td><button type="button" class="btn btn-success" onclick="document.location.href='{{ "/infoPlan/" ~ '2'}}';" >Informations</button></td>
+                    <td><button type="button" class="btn btn-success" onclick="document.location.href='{{ "/infoPlan/" ~ '2' ~ '/show'}}';" >Informations</button></td>
                     </tr>
                     <tr>
                     <th scope="row">3</th>  
@@ -78,7 +78,7 @@
                     <td>100</td>
                     <td>123</td>
                     <td>02/02/2020</td>
-                    <td><button type="button" class="btn btn-success" onclick="document.location.href='{{ "/infoPlan/" ~ '3'}}';">Informations</button></td>
+                    <td><button type="button" class="btn btn-success" onclick="document.location.href='{{ "/infoPlan/" ~ '3' ~ '/show'}}';">Informations</button></td>
                     </tr>
                 </tbody>
             </table>
