@@ -5,15 +5,15 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
-class AjoutClientController extends AbstractController
+class PlanController extends AbstractController
 {
     /**
-     * @Route("/ajoutClient", name="ajout_client")
+     * @Route("/listePlan", name="liste_plan")
      */
     public function index()
     {
-        return $this->render('ajoutClient.html.twig', [
-            'controller_name' => 'AjoutClientController',
+        return $this->render('listePlan.html.twig', [
+            'controller_name' => 'PlanController',
         ]);
     }
 }
