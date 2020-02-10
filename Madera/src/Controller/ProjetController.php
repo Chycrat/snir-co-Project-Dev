@@ -5,15 +5,16 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
+/**
+ * @Route("/projet")
+ */
 class ProjetController extends AbstractController
 {
     /**
-     * @Route("/listeProjet", name="liste_projet")
+     * @Route("/liste", name="liste_projet")
      */
     public function index()
     {
-        return $this->render('listeProjet.html.twig', [
-            'controller_name' => 'ProjetController',
-        ]);
+        return $this->render('projet/listeProjet.html.twig');
     }
 }

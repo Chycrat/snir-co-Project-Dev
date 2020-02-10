@@ -13,38 +13,41 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class ClientController extends AbstractController
 {
     /**
-    * @Route("/liste")
+    * @Route("/liste", name="liste_client")
     */
     public function index()
     {
-        return $this->render('listeClient.html.twig');
-    }
-    /**
-     * @Route("/add" name="add_client")
-     */
-    public function addClient($id)
-    {
-        return $this->render('ajoutClient.html.twig');
-    }
-    /**
-     * @Route("/{id}/show" name="show_client")
-     */
-    public function showClient($id)
-    {
-        return $this->render('showClient.html.twig');
-    }
-    /**
-     * @Route("/{id}/delete" name="delete_client")
-     */
-    public function deleteClient($id)
-    {
-        return $this->render('listeClient.html.twig');
+        return $this->render('client/listeClient.html.twig');
     }
 
     /**
-     * @Route("/{id}/update" name="update_client")
+     * @Route("/add", name="add_client")
+     */
+    public function addClient()
+    {
+        return $this->render('client/ajoutClient.html.twig');
+    }
+
+    /**
+     * @Route("/{id}/show", name="show_client")
+     */
+    public function showClient($id)
+    {
+        return $this->render('client/showClient.html.twig');
+    }
+
+    /**
+     * @Route("/{id}/delete", name="delete_client")
+     */
+    public function deleteClient($id)
+    {
+        return $this->render('client/listeClient.html.twig');
+    }
+
+    /**
+     * @Route("/{id}/update", name="update_client")
      */
     public function updateClient($id){
-        return $this->render('showClient.html.twig');
+        return $this->render('client/showClient.html.twig');
     }
 }
