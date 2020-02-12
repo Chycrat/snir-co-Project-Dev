@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Client!{% endblock %}</title>
+        <title>{% block title %}Plans!{% endblock %}</title>
         {% block stylesheets %} 
             <link rel="canonical" href="https://getbootstrap.com/docs/4.0/components/scrollspy/">
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">  
@@ -33,57 +33,60 @@
                         <li class="nav-item">
                             <a class="nav-link" href="#">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
-                            Orders
+                            Stocks
                             </a>
                         </li>
                     </ul>
                 </div>
             </nav>
 
-       
+            <div class="container mt-5" margin-top="15dp">
+                <form>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                        <label for="inputNom4">Nom</label>
+                        <input type="text" class="form-control" id="inputNom4" placeholder="Nom">
+                        </div>
+                        <div class="form-group col-md-6">
+                        <label for="inputGamme4">Gamme</label>
+                        <input type="text" class="form-control" id="inputGamme4" placeholder="Gamme">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                        <label for="inputCoupe4">Coupe</label>
+                        <input type="text" class="form-control" id="inputCoupe4" placeholder="Coupe">
+                        </div>
+                        <div class="form-group col-md-6">
+                        <label for="inputToit4">Toit</label>
+                        <input type="text" class="form-control" id="inputToit4" placeholder="Toit">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputSol">Sol</label>
+                        <input type="text" class="form-control" id="inputSol" placeholder="Sol">
+                    </div>
+                    <div class="form-row">
+                        <label for="inputNom4">Liste des modules</label>
+                    </div>
 
-        <main class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content" role="main">
-            <div class="row">
-                    <h4 class="highlighter-rouge">Clients <button type="button" class="btn btn-success" onclick="document.location.href='/client/add';">Nouveau client</button></h4> 
+                    <button type="submit" class="btn btn-success">Modifier</button>
+                    
+                </form>  
+
+                <form>
+                     <button type="submit" class="btn btn-success mt-2">Génération devis</button> 
+                     <button type="submit" class="btn btn-success mt-2">Validation devis</button>
+                </form> 
+
+                
+                     
+                 
+
+                
             </div>
-        </main>
 
-        <div class="container-fluid">
-            <table class="table">
-                <thead class="thead-dark">
-                    <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Nom</th>
-                    <th scope="col">Prenom</th>
-                    <th scope="col">Projets</th>
-                    <th scope="col">Informations</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td><button type="button" class="btn btn-success" onclick="document.location.href='/projet/liste';">Projets</button></td>
-                    <td><button type="button" class="btn btn-success" onclick="document.location.href='{{ "/client/" ~ '1' ~ '/show'}}';">Informations</button></td>
-                    </tr>
-                    <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td><button type="button" class="btn btn-success" onclick="document.location.href='/projet/liste;">Projets</button></td>
-                    <td><button type="button" class="btn btn-success" onclick="document.location.href='{{ "/infoClient" ~ '2'  ~ '/show'}}';" >Informations</button></td>
-                    </tr>
-                    <tr>
-                    <th scope="row">3</th>  
-                    <td>Larry</td>
-                    <td>the Bird</td>
-                    <td><button type="button" class="btn btn-success" onclick="document.location.href='/projet/liste';">Projets</button></td>
-                    <td><button type="button" class="btn btn-success" onclick="document.location.href='{{ "/infoClient" ~ '3'  ~ '/show'}}';">Informations</button></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+            
 
         {% endblock %}
         {% block javascripts %}{% endblock %}
