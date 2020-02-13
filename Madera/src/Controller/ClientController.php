@@ -33,7 +33,12 @@ class ClientController extends AbstractController
      */
     public function showClient($id)
     {
-        return $this->render('client/showClient.html.twig');
+        return $this->render('client/showClient.html.twig', array(
+            "client" => array(
+                "nom" => "met ce que tu veux",
+                "prenom" => "mes couilles"
+            )
+        ));
     }
 
     /**
@@ -48,6 +53,6 @@ class ClientController extends AbstractController
      * @Route("/{id}/update", name="update_client")
      */
     public function updateClient($id){
-        return $this->render('client/showClient.html.twig');
+        return $this->render('client/addClient.html.twig');
     }
 }
