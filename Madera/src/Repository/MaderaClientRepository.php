@@ -35,7 +35,12 @@ class MaderaClientRepository extends ServiceEntityRepository
         ;
     }
     */
-
+    public function getClients(){
+        return $this->createQueryBuilder('m')
+            ->orderBy('m.nom_client')
+            ->getQuery()
+            ->getResult();
+    }
     /*
     public function findOneBySomeField($value): ?MaderaClient
     {

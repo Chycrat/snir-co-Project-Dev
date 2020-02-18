@@ -2,10 +2,11 @@
 
 namespace App\Controller;
 
+use App\Entity\MaderaClient;
+use http\Client;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-
 
 /**
  * @Route("/client")
@@ -17,7 +18,13 @@ class ClientController extends AbstractController
     */
     public function index()
     {
-        return $this->render('client/listeClient.html.twig');
+        $clients = $this->getDoctrine()
+            ->getRepository(MaderaClient::class)
+            ->findAll();
+
+        return $this->render('client/listeClient.html.twig',array(
+            "clients"=> $clients
+        ));
     }
 
     /**
@@ -33,7 +40,10 @@ class ClientController extends AbstractController
      */
     public function showClient($id)
     {
-        return $this->render('client/showClient.html.twig', array(
+        $client = $this->getDoctrine()
+            ->getRepository(MaderaClient::class)
+            ->find($id);
+        return $this->render('client/showClient.html.twig',array(
             "client" => array(
                 "nom" => "met ce que tu veux",
                 "prenom" => "mes couilles"
@@ -45,7 +55,7 @@ class ClientController extends AbstractController
      * @Route("/{id}/delete", name="delete_client")
      */
     public function deleteClient($id)
-    {
+    { 
         return $this->render('client/listeClient.html.twig');
     }
 
