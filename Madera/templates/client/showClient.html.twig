@@ -33,7 +33,7 @@
                         <li class="nav-item">
                             <a class="nav-link" href="#">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
-                            Orders
+                            Stocks
                             </a>
                         </li>
                     </ul>
@@ -42,49 +42,43 @@
 
        
 
-        <main class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content" role="main">
-            <div class="row">
-                    <h4 class="highlighter-rouge">Clients <button type="button" class="btn btn-success" onclick="document.location.href='/client/add';">Nouveau client</button></h4> 
+        <div class="container mt-5" margin-top="15dp">
+        <h1><span class="label label-default">Client</span></h1>
+        <form>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                <label for="inputNom4">Nom</label>
+                <input type="text" class="form-control" id="inputNom4" placeholder="Nom" value = '{{ client.nom }}'>
+                </div>
+                <div class="form-group col-md-6">
+                <label for="inputPrenom4">Prenom</label>
+                <input type="text" class="form-control" id="inputPrenom4" placeholder="Prenom">
+                </div>
             </div>
-        </main>
-
-        <div class="container-fluid">
-            <table class="table">
-                <thead class="thead-dark">
-                    <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Nom</th>
-                    <th scope="col">Prenom</th>
-                    <th scope="col">Projets</th>
-                    <th scope="col">Informations</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td><button type="button" class="btn btn-success" onclick="document.location.href='/projet/liste';">Projets</button></td>
-                    <td><button type="button" class="btn btn-success" onclick="document.location.href='{{ "/client/" ~ '1' ~ '/show'}}';">Informations</button></td>
-                    </tr>
-                    <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td><button type="button" class="btn btn-success" onclick="document.location.href='/projet/liste;">Projets</button></td>
-                    <td><button type="button" class="btn btn-success" onclick="document.location.href='{{ "/infoClient" ~ '2'  ~ '/show'}}';" >Informations</button></td>
-                    </tr>
-                    <tr>
-                    <th scope="row">3</th>  
-                    <td>Larry</td>
-                    <td>the Bird</td>
-                    <td><button type="button" class="btn btn-success" onclick="document.location.href='/projet/liste';">Projets</button></td>
-                    <td><button type="button" class="btn btn-success" onclick="document.location.href='{{ "/infoClient" ~ '3'  ~ '/show'}}';">Informations</button></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                <label for="inputEmail4">Email</label>
+                <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
+                </div>
+                <div class="form-group col-md-6">
+                <label for="inputPassword4">Password</label>
+                <input type="password" class="form-control" id="inputPassword4" placeholder="Password">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                <label for="inputTelephone4">N° Telephone</label>
+                <input type="text" class="form-control" id="inputTelephone4" placeholder="N° Telephone">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputAddresse">Addresse</label>
+                <input type="text" class="form-control" id="inputAddresse" placeholder="152 avenue des champs Elysée 93000 Paris">
+            </div>
+            <button type="submit" class="btn btn-success">Ajout</button>
+        </form>
+    </div>
+        
         {% endblock %}
         {% block javascripts %}{% endblock %}
     </body>
