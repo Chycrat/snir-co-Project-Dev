@@ -182,4 +182,5 @@ class MaderaClient
 
         return $this;
     }
+
 }
