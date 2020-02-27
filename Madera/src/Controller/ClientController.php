@@ -61,16 +61,13 @@ class ClientController extends AbstractController
     /**
      * @Route("/{id}/show", name="show_client")
      */
-    public function showClient($id, Request $request)
+    public function showClient($id)
     {
         $client = $this->getDoctrine()
             ->getRepository(MaderaClient::class)
             ->find($id);
         return $this->render('client/showClient.html.twig',array(
-            "client" => array(
-                "nom" => "met ce que tu veux",
-                "prenom" => "mes couilles"
-            )
+            "client" => $client
         ));
     }
 
