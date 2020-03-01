@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}MaderaProjet index{% endblock %}
+
+{% block body %}
+    <h1>MaderaProjet index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Id_projet</th>
+                <th>Nom_projet</th>
+                <th>Date_creation_projet</th>
+                <th>Date_modification_projet</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for madera_projet in madera_projets %}
+            <tr>
+                <td>{{ madera_projet.id }}</td>
+                <td>{{ madera_projet.idProjet }}</td>
+                <td>{{ madera_projet.nomProjet }}</td>
+                <td>{{ madera_projet.dateCreationProjet ? madera_projet.dateCreationProjet|date('Y-m-d') : '' }}</td>
+                <td>{{ madera_projet.dateModificationProjet ? madera_projet.dateModificationProjet|date('Y-m-d') : '' }}</td>
+                <td>
+                    <a href="{{ path('madera_projet_show', {'id': madera_projet.id}) }}">show</a>
+                    <a href="{{ path('madera_projet_edit', {'id': madera_projet.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('madera_projet_new') }}">Create new</a>
+{% endblock %}

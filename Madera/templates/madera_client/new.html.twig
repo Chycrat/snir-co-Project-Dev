@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New MaderaClient{% endblock %}
+
+{% block body %}
+    <h1>Create new MaderaClient</h1>
+
+    {{ include('madera_client/_form.html.twig') }}
+
+    <a href="{{ path('madera_client_index') }}">back to list</a>
+{% endblock %}

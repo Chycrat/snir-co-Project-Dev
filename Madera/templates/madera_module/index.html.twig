@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}MaderaModule index{% endblock %}
+
+{% block body %}
+    <h1>MaderaModule index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Id_module</th>
+                <th>Nom_module</th>
+                <th>Prix_ht_module</th>
+                <th>Quantite_restante_module</th>
+                <th>Coordonnee_x_debut_module</th>
+                <th>Coordonnee_x_fin_module</th>
+                <th>Coordonnee_y_debut_module</th>
+                <th>Coordonnee_y_fin_module</th>
+                <th>Largeur_module</th>
+                <th>Longueur_module</th>
+                <th>Nb_composant_module</th>
+                <th>Gamme_module</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for madera_module in madera_modules %}
+            <tr>
+                <td>{{ madera_module.id }}</td>
+                <td>{{ madera_module.idModule }}</td>
+                <td>{{ madera_module.nomModule }}</td>
+                <td>{{ madera_module.prixHtModule }}</td>
+                <td>{{ madera_module.quantiteRestanteModule }}</td>
+                <td>{{ madera_module.coordonneeXDebutModule }}</td>
+                <td>{{ madera_module.coordonneeXFinModule }}</td>
+                <td>{{ madera_module.coordonneeYDebutModule }}</td>
+                <td>{{ madera_module.coordonneeYFinModule }}</td>
+                <td>{{ madera_module.largeurModule }}</td>
+                <td>{{ madera_module.longueurModule }}</td>
+                <td>{{ madera_module.nbComposantModule }}</td>
+                <td>{{ madera_module.gammeModule }}</td>
+                <td>
+                    <a href="{{ path('madera_module_show', {'id': madera_module.id}) }}">show</a>
+                    <a href="{{ path('madera_module_edit', {'id': madera_module.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="14">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('madera_module_new') }}">Create new</a>
+{% endblock %}

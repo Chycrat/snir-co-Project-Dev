@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New MaderaProjet{% endblock %}
+
+{% block body %}
+    <h1>Create new MaderaProjet</h1>
+
+    {{ include('madera_projet/_form.html.twig') }}
+
+    <a href="{{ path('madera_projet_index') }}">back to list</a>
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}MaderaCommercial index{% endblock %}
+
+{% block body %}
+    <h1>MaderaCommercial index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Id_commercial</th>
+                <th>Prenom_commercial</th>
+                <th>Nom_commercial</th>
+                <th>Mot_de_passe_commercial</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for madera_commercial in madera_commercials %}
+            <tr>
+                <td>{{ madera_commercial.id }}</td>
+                <td>{{ madera_commercial.idCommercial }}</td>
+                <td>{{ madera_commercial.prenomCommercial }}</td>
+                <td>{{ madera_commercial.nomCommercial }}</td>
+                <td>{{ madera_commercial.motDePasseCommercial }}</td>
+                <td>
+                    <a href="{{ path('madera_commercial_show', {'id': madera_commercial.id}) }}">show</a>
+                    <a href="{{ path('madera_commercial_edit', {'id': madera_commercial.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('madera_commercial_new') }}">Create new</a>
+{% endblock %}

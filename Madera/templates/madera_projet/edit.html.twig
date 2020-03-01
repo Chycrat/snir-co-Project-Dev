@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit MaderaProjet{% endblock %}
+
+{% block body %}
+    <h1>Edit MaderaProjet</h1>
+
+    {{ include('madera_projet/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('madera_projet_index') }}">back to list</a>
+
+    {{ include('madera_projet/_delete_form.html.twig') }}
+{% endblock %}

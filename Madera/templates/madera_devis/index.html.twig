@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}MaderaDevis index{% endblock %}
+
+{% block body %}
+    <h1>MaderaDevis index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Id_devis</th>
+                <th>Code_devis</th>
+                <th>Date_devis</th>
+                <th>Date_validation</th>
+                <th>Montant_ht_devis</th>
+                <th>Montant_ttc_devis</th>
+                <th>Marge_commerciaux_devis</th>
+                <th>Marge_entreprise_devis</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for madera_devi in madera_devis %}
+            <tr>
+                <td>{{ madera_devi.id }}</td>
+                <td>{{ madera_devi.idDevis }}</td>
+                <td>{{ madera_devi.codeDevis }}</td>
+                <td>{{ madera_devi.dateDevis ? madera_devi.dateDevis|date('Y-m-d') : '' }}</td>
+                <td>{{ madera_devi.dateValidation ? madera_devi.dateValidation|date('Y-m-d') : '' }}</td>
+                <td>{{ madera_devi.montantHtDevis }}</td>
+                <td>{{ madera_devi.montantTtcDevis }}</td>
+                <td>{{ madera_devi.margeCommerciauxDevis }}</td>
+                <td>{{ madera_devi.margeEntrepriseDevis }}</td>
+                <td>
+                    <a href="{{ path('madera_devis_show', {'id': madera_devi.id}) }}">show</a>
+                    <a href="{{ path('madera_devis_edit', {'id': madera_devi.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="10">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('madera_devis_new') }}">Create new</a>
+{% endblock %}

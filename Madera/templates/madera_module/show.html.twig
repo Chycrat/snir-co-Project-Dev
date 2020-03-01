@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}MaderaModule{% endblock %}
+
+{% block body %}
+    <h1>MaderaModule</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ madera_module.id }}</td>
+            </tr>
+            <tr>
+                <th>Id_module</th>
+                <td>{{ madera_module.idModule }}</td>
+            </tr>
+            <tr>
+                <th>Nom_module</th>
+                <td>{{ madera_module.nomModule }}</td>
+            </tr>
+            <tr>
+                <th>Prix_ht_module</th>
+                <td>{{ madera_module.prixHtModule }}</td>
+            </tr>
+            <tr>
+                <th>Quantite_restante_module</th>
+                <td>{{ madera_module.quantiteRestanteModule }}</td>
+            </tr>
+            <tr>
+                <th>Coordonnee_x_debut_module</th>
+                <td>{{ madera_module.coordonneeXDebutModule }}</td>
+            </tr>
+            <tr>
+                <th>Coordonnee_x_fin_module</th>
+                <td>{{ madera_module.coordonneeXFinModule }}</td>
+            </tr>
+            <tr>
+                <th>Coordonnee_y_debut_module</th>
+                <td>{{ madera_module.coordonneeYDebutModule }}</td>
+            </tr>
+            <tr>
+                <th>Coordonnee_y_fin_module</th>
+                <td>{{ madera_module.coordonneeYFinModule }}</td>
+            </tr>
+            <tr>
+                <th>Largeur_module</th>
+                <td>{{ madera_module.largeurModule }}</td>
+            </tr>
+            <tr>
+                <th>Longueur_module</th>
+                <td>{{ madera_module.longueurModule }}</td>
+            </tr>
+            <tr>
+                <th>Nb_composant_module</th>
+                <td>{{ madera_module.nbComposantModule }}</td>
+            </tr>
+            <tr>
+                <th>Gamme_module</th>
+                <td>{{ madera_module.gammeModule }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('madera_module_index') }}">back to list</a>
+
+    <a href="{{ path('madera_module_edit', {'id': madera_module.id}) }}">edit</a>
+
+    {{ include('madera_module/_delete_form.html.twig') }}
+{% endblock %}

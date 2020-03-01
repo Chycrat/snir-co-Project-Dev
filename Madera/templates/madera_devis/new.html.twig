@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New MaderaDevis{% endblock %}
+
+{% block body %}
+    <h1>Create new MaderaDevis</h1>
+
+    {{ include('madera_devis/_form.html.twig') }}
+
+    <a href="{{ path('madera_devis_index') }}">back to list</a>
+{% endblock %}
