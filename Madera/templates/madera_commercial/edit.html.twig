@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit MaderaCommercial{% endblock %}
+
+{% block body %}
+    <h1>Edit MaderaCommercial</h1>
+
+    {{ include('madera_commercial/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('madera_commercial_index') }}">back to list</a>
+
+    {{ include('madera_commercial/_delete_form.html.twig') }}
+{% endblock %}

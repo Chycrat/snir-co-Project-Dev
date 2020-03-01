@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}MaderaPlan{% endblock %}
+
+{% block body %}
+    <h1>MaderaPlan</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ madera_plan.id }}</td>
+            </tr>
+            <tr>
+                <th>Id_plan</th>
+                <td>{{ madera_plan.idPlan }}</td>
+            </tr>
+            <tr>
+                <th>Date_creation</th>
+                <td>{{ madera_plan.dateCreation ? madera_plan.dateCreation|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Date_derniere_modification</th>
+                <td>{{ madera_plan.dateDerniereModification ? madera_plan.dateDerniereModification|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Largeur_plan</th>
+                <td>{{ madera_plan.largeurPlan }}</td>
+            </tr>
+            <tr>
+                <th>Longueur_plan</th>
+                <td>{{ madera_plan.longueurPlan }}</td>
+            </tr>
+            <tr>
+                <th>Prix_total_ht_plan</th>
+                <td>{{ madera_plan.prixTotalHtPlan }}</td>
+            </tr>
+            <tr>
+                <th>Prix_total_ttc_plan</th>
+                <td>{{ madera_plan.prixTotalTtcPlan }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('madera_plan_index') }}">back to list</a>
+
+    <a href="{{ path('madera_plan_edit', {'id': madera_plan.id}) }}">edit</a>
+
+    {{ include('madera_plan/_delete_form.html.twig') }}
+{% endblock %}

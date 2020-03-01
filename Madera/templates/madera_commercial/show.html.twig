@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}MaderaCommercial{% endblock %}
+
+{% block body %}
+    <h1>MaderaCommercial</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ madera_commercial.id }}</td>
+            </tr>
+            <tr>
+                <th>Id_commercial</th>
+                <td>{{ madera_commercial.idCommercial }}</td>
+            </tr>
+            <tr>
+                <th>Prenom_commercial</th>
+                <td>{{ madera_commercial.prenomCommercial }}</td>
+            </tr>
+            <tr>
+                <th>Nom_commercial</th>
+                <td>{{ madera_commercial.nomCommercial }}</td>
+            </tr>
+            <tr>
+                <th>Mot_de_passe_commercial</th>
+                <td>{{ madera_commercial.motDePasseCommercial }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('madera_commercial_index') }}">back to list</a>
+
+    <a href="{{ path('madera_commercial_edit', {'id': madera_commercial.id}) }}">edit</a>
+
+    {{ include('madera_commercial/_delete_form.html.twig') }}
+{% endblock %}

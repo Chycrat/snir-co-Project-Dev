@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}MaderaClient{% endblock %}
+
+{% block body %}
+    <h1>MaderaClient</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ madera_client.id }}</td>
+            </tr>
+            <tr>
+                <th>Id_client</th>
+                <td>{{ madera_client.idClient }}</td>
+            </tr>
+            <tr>
+                <th>Nom_client</th>
+                <td>{{ madera_client.nomClient }}</td>
+            </tr>
+            <tr>
+                <th>Code_client</th>
+                <td>{{ madera_client.codeClient }}</td>
+            </tr>
+            <tr>
+                <th>Mdp_client</th>
+                <td>{{ madera_client.mdpClient }}</td>
+            </tr>
+            <tr>
+                <th>Telephone_client</th>
+                <td>{{ madera_client.telephoneClient }}</td>
+            </tr>
+            <tr>
+                <th>Adresse_client</th>
+                <td>{{ madera_client.adresseClient }}</td>
+            </tr>
+            <tr>
+                <th>Email_client</th>
+                <td>{{ madera_client.emailClient }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('madera_client_index') }}">back to list</a>
+
+    <a href="{{ path('madera_client_edit', {'id': madera_client.id}) }}">edit</a>
+
+    {{ include('madera_client/_delete_form.html.twig') }}
+{% endblock %}
