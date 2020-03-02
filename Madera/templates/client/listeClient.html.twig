@@ -23,7 +23,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
+                {# <tr>
                 <th scope="row">1</th>
                 <td>Mark</td>
                 <td>Otto</td>
@@ -43,9 +43,9 @@
                 <td>the Bird</td>
                 <td><button type="button" class="btn btn-success" onclick="document.location.href='{{ "/projet/liste/" ~ '4' }}';">Projets</button></td>
                 <td><button type="button" class="btn btn-success" onclick="document.location.href='{{ "/client/" ~ '3'  ~ '/show'}}';">Informations</button></td>
-                </tr>
+                </tr> #}
 
-                {# {% for c in listClient %}
+                {% for c in listClient %}
                     <tr>
                     <th scope="row">{{ c.id }}</th>
                     <th>{{ c.nom }}</th>
@@ -53,7 +53,7 @@
                     <td><button type="button" class="btn btn-success" onclick="document.location.href='{{ "/infoClient/show/" ~ c.id }}';">Projets</button></td>
                     <td><button type="button" class="btn btn-success" onclick="document.location.href='{{ "/client/" ~ c.id  ~ '/show'}}';" >Informations</button></td>
                     </tr>
-                {% endfor %} #}
+                {% endfor %}
 
 
             </tbody>
