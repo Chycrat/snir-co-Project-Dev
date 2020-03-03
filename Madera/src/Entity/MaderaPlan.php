@@ -17,11 +17,6 @@ class MaderaPlan
     private $id;
 
     /**
-     * @ORM\Column(type="integer")
-     */
-    private $id_plan;
-
-    /**
      * @ORM\Column(type="date")
      */
     private $date_creation;
@@ -84,18 +79,6 @@ class MaderaPlan
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getIdPlan(): ?int
-    {
-        return $this->id_plan;
-    }
-
-    public function setIdPlan(int $id_plan): self
-    {
-        $this->id_plan = $id_plan;
-
-        return $this;
     }
 
     public function getDateCreation(): ?\DateTimeInterface

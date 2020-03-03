@@ -18,10 +18,6 @@ class MaderaSol
      */
     private $id;
 
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $id_sol;
 
     /**
      * @ORM\Column(type="float")
@@ -41,18 +37,6 @@ class MaderaSol
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getIdSol(): ?int
-    {
-        return $this->id_sol;
-    }
-
-    public function setIdSol(int $id_sol): self
-    {
-        $this->id_sol = $id_sol;
-
-        return $this;
     }
 
     public function getPrixHtSol(): ?float

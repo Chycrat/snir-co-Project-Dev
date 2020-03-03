@@ -19,11 +19,6 @@ class MaderaGamme
     private $id;
 
     /**
-     * @ORM\Column(type="integer")
-     */
-    private $id_gamme;
-
-    /**
      * @ORM\Column(type="string", length=50)
      */
     private $type_isolant;
@@ -51,18 +46,6 @@ class MaderaGamme
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getIdGamme(): ?int
-    {
-        return $this->id_gamme;
-    }
-
-    public function setIdGamme(int $id_gamme): self
-    {
-        $this->id_gamme = $id_gamme;
-
-        return $this;
     }
 
     public function getTypeIsolant(): ?string

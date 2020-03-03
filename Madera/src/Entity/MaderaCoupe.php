@@ -19,11 +19,6 @@ class MaderaCoupe
     private $id;
 
     /**
-     * @ORM\Column(type="integer")
-     */
-    private $id_coupe;
-
-    /**
      * @ORM\Column(type="integer", nullable=true)
      */
     private $longueur_coupe;
@@ -46,18 +41,6 @@ class MaderaCoupe
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getIdCoupe(): ?int
-    {
-        return $this->id_coupe;
-    }
-
-    public function setIdCoupe(int $id_coupe): self
-    {
-        $this->id_coupe = $id_coupe;
-
-        return $this;
     }
 
     public function getLongueurCoupe(): ?int
