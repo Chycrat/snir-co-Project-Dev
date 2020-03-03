@@ -3,45 +3,47 @@
 {% block title %}MaderaClient index{% endblock %}
 
 {% block body %}
-    <h1>MaderaClient index</h1>
+     <main class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content" role="main">
+        <div class="row">
+                <h4 class="highlighter-rouge">Clients <button type="button" class="btn btn-success" onclick="document.location.href='/madera/client/new';">Nouveau client</button></h4> 
+        </div>
+    </main>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Id_client</th>
-                <th>Nom_client</th>
-                <th>Code_client</th>
-                <th>Mdp_client</th>
-                <th>Telephone_client</th>
-                <th>Adresse_client</th>
-                <th>Email_client</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for madera_client in madera_clients %}
-            <tr>
-                <td>{{ madera_client.id }}</td>
-                <td>{{ madera_client.idClient }}</td>
-                <td>{{ madera_client.nomClient }}</td>
-                <td>{{ madera_client.codeClient }}</td>
-                <td>{{ madera_client.mdpClient }}</td>
-                <td>{{ madera_client.telephoneClient }}</td>
-                <td>{{ madera_client.adresseClient }}</td>
-                <td>{{ madera_client.emailClient }}</td>
-                <td>
-                    <a href="{{ path('madera_client_show', {'id': madera_client.id}) }}">show</a>
-                    <a href="{{ path('madera_client_edit', {'id': madera_client.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="9">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('madera_client_new') }}">Create new</a>
+    <div class="container-fluid">
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Id</th>
+                    <th>Nom_client</th>
+                    <th>Code_client</th>
+                    <th>Mdp_client</th>
+                    <th>Telephone_client</th>
+                    <th>Adresse_client</th>
+                    <th>Email_client</th>
+                    <th>actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for madera_client in madera_clients %}
+                <tr>
+                    <td>{{ madera_client.id }}</td>
+                    <td>{{ madera_client.nomClient }}</td>
+                    <td>{{ madera_client.codeClient }}</td>
+                    <td>{{ madera_client.mdpClient }}</td>
+                    <td>{{ madera_client.telephoneClient }}</td>
+                    <td>{{ madera_client.adresseClient }}</td>
+                    <td>{{ madera_client.emailClient }}</td>
+                    <td>
+                        <a class="btn btn-success" href="{{ path('madera_client_show', {'id': madera_client.id}) }}">show</a>
+                        <a class="btn btn-success"href="{{ path('madera_client_edit', {'id': madera_client.id}) }}">edit</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="9">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
 {% endblock %}

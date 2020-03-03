@@ -19,7 +19,6 @@ class MaderaClientType extends AbstractType
             ->add('telephone_client')
             ->add('adresse_client')
             ->add('email_client')
-            ->add('Enregistrer',SubmitType::class)
         ;
     }
 

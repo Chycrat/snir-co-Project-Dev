@@ -1,8 +1,8 @@
+{% extends "base.html.twig" %}
 {% block stylesheets %} 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.0/components/scrollspy/">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">  
 {% endblock %}
-<!-- <link href="page.css" rel="stylesheet"/> -->
 {% block body %} 
 
     <div class="container mt-5" margin-top="15dp">
@@ -11,35 +11,35 @@
         <tbody>
             <tr>
                 <th>Id</th>
-                <td>{{ madera_client.id }}</td>
+                <td>{{ client.id }}</td>
             </tr>
             <tr>
                 <th>Id_client</th>
-                <td>{{ madera_client.idClient }}</td>
+                <td>{{ client.idClient }}</td>
             </tr>
             <tr>
                 <th>Nom_client</th>
-                <td>{{ madera_client.nomClient }}</td>
+                <td>{{ client.nomClient }}</td>
             </tr>
             <tr>
                 <th>Code_client</th>
-                <td>{{ madera_client.codeClient }}</td>
+                <td>{{ client.codeClient }}</td>
             </tr>
             <tr>
                 <th>Mdp_client</th>
-                <td>{{ madera_client.mdpClient }}</td>
+                <td>{{ client.mdpClient }}</td>
             </tr>
             <tr>
                 <th>Telephone_client</th>
-                <td>{{ madera_client.telephoneClient }}</td>
+                <td>{{ client.telephoneClient }}</td>
             </tr>
             <tr>
                 <th>Adresse_client</th>
-                <td>{{ madera_client.adresseClient }}</td>
+                <td>{{ client.adresseClient }}</td>
             </tr>
             <tr>
                 <th>Email_client</th>
-                <td>{{ madera_client.emailClient }}</td>
+                <td>{{ client.emailClient }}</td>
             </tr>
         </tbody>
     </table>

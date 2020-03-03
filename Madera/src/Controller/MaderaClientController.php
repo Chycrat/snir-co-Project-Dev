@@ -20,8 +20,8 @@ class MaderaClientController extends AbstractController
      */
     public function index(MaderaClientRepository $maderaClientRepository): Response
     {
-        return $this->render('client/ListeClient.html.twig', [
-            'clients' => $maderaClientRepository->findAll(),
+        return $this->render('madera_client/index.html.twig', [
+            'madera_clients' => $maderaClientRepository->findAll(),
         ]);
     }
 
@@ -42,8 +42,8 @@ class MaderaClientController extends AbstractController
             return $this->redirectToRoute('madera_client_index');
         }
 
-        return $this->render('client/addClient.html.twig', [
-            'client' => $maderaClient,
+        return $this->render('madera_client/new.html.twig', [
+            'madera_client' => $maderaClient,
             'form' => $form->createView(),
         ]);
     }
@@ -53,8 +53,8 @@ class MaderaClientController extends AbstractController
      */
     public function show(MaderaClient $maderaClient): Response
     {
-        return $this->render('client/show.html.twig', [
-            'client' => $maderaClient,
+        return $this->render('madera_client/show.html.twig', [
+            'madera_client' => $maderaClient,
         ]);
     }
 
@@ -72,14 +72,14 @@ class MaderaClientController extends AbstractController
             return $this->redirectToRoute('madera_client_index');
         }
 
-        return $this->render('client/addClient.html.twig', [
-            'client' => $maderaClient,
+        return $this->render('madera_client/edit.html.twig', [
+            'madera_client' => $maderaClient,
             'form' => $form->createView(),
         ]);
     }
 
     /**
-     * @Route("/{id}", name="madera_client_delete", methods={"DELETE"})
+     * @Route("/delete/{id}", name="madera_client_delete", methods={"DELETE"})
      */
     public function delete(Request $request, MaderaClient $maderaClient): Response
     {

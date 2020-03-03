@@ -1,4 +1,4 @@
-
+{% extends "base.html.twig" %}
 {% block stylesheets %} 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.0/components/scrollspy/">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">  
@@ -7,7 +7,7 @@
 
     <main class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content" role="main">
         <div class="row">
-                <h4 class="highlighter-rouge">Clients <button type="button" class="btn btn-success" onclick="document.location.href='/client/add';">Nouveau client</button></h4> 
+                <h4 class="highlighter-rouge">Clients <button type="button" class="btn btn-success" onclick="document.location.href='/madera/client/new';">Nouveau client</button></h4> 
         </div>
     </main>
 
@@ -17,41 +17,22 @@
                 <tr>
                 <th scope="col">#</th>
                 <th scope="col">Nom</th>
-                <th scope="col">Prenom</th>
+                <th scope="col">Code client</th>
                 <th scope="col">Projets</th>
                 <th scope="col">Informations</th>
+                <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>
-                {# <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td><button type="button" class="btn btn-success" onclick="document.location.href='/projet/liste';">Projets</button></td>
-                <td><button type="button" class="btn btn-success" onclick="document.location.href='{{ "/client/" ~ '1' ~ '/show'}}';">Informations</button></td>
-                </tr>
-                <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td><button type="button" class="btn btn-success" onclick="document.location.href='/projet/liste;">Projets</button></td>
-                <td><button type="button" class="btn btn-success" onclick="document.location.href='{{ "/client/" ~ '2'  ~ '/show'}}';" >Informations</button></td>
-                </tr>
-                <tr>
-                <th scope="row">3</th>  
-                <td>Larry</td>
-                <td>the Bird</td>
-                <td><button type="button" class="btn btn-success" onclick="document.location.href='{{ "/projet/liste/" ~ '4' }}';">Projets</button></td>
-                <td><button type="button" class="btn btn-success" onclick="document.location.href='{{ "/client/" ~ '3'  ~ '/show'}}';">Informations</button></td>
-                </tr> #}
-
-                {% for c in listClient %}
+                
+                {% for c in clients %}
                     <tr>
-                    <th scope="row">{{ c.id }}</th>
-                    <th>{{ c.nom }}</th>
-                    <th>{{ c.prenom }}</th>
-                    <td><button type="button" class="btn btn-success" onclick="document.location.href='{{ "/infoClient/show/" ~ c.id }}';">Projets</button></td>
-                    <td><button type="button" class="btn btn-success" onclick="document.location.href='{{ "/client/" ~ c.id  ~ '/show'}}';" >Informations</button></td>
+                    <th scope="row">{{ c.getId() }}</th>
+                    <th>{{ c.getNomClient() }}</th>
+                    <th>{{ c.getCodeClient() }}</th>
+                    <td><button type="button" class="btn btn-success" onclick="document.location.href='{{ "/madera/projet/"}}';">Projets</button></td>
+                    <td><button type="button" class="btn btn-success" onclick="document.location.href='{{ "/madera/client/" ~ c.id }}';" >Informations</button></td>
+                    <td><a href="{{ path('madera_client_delete', {'id': c.id}) }}">Supprimer</a></td>
                     </tr>
                 {% endfor %}
 
