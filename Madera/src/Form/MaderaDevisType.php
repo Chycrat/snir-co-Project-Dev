@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\MaderaDevis;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -21,6 +22,7 @@ class MaderaDevisType extends AbstractType
             ->add('marge_commerciaux_devis')
             ->add('marge_entreprise_devis')
             ->add('client_devis')
+            ->add('Enregistrer',SubmitType::class)
         ;
     }
 
