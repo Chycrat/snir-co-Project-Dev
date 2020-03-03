@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\MaderaModule;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -25,6 +26,7 @@ class MaderaModuleType extends AbstractType
             ->add('nb_composant_module')
             ->add('gamme_module')
             ->add('composants')
+            ->add('Enregistrer',SubmitType::class)
         ;
     }
 
