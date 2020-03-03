@@ -21,11 +21,6 @@ class MaderaComposant
     /**
      * @ORM\Column(type="integer")
      */
-    private $id_composant;
-
-    /**
-     * @ORM\Column(type="integer")
-     */
     private $code_composant;
 
     /**
@@ -61,18 +56,6 @@ class MaderaComposant
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getIdComposant(): ?int
-    {
-        return $this->id_composant;
-    }
-
-    public function setIdComposant(int $id_composant): self
-    {
-        $this->id_composant = $id_composant;
-
-        return $this;
     }
 
     public function getCodeComposant(): ?int

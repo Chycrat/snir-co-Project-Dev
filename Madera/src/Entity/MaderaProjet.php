@@ -19,11 +19,6 @@ class MaderaProjet
     private $id;
 
     /**
-     * @ORM\Column(type="integer")
-     */
-    private $id_projet;
-
-    /**
      * @ORM\Column(type="string", length=255)
      */
     private $nom_projet;
@@ -56,18 +51,6 @@ class MaderaProjet
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getIdProjet(): ?int
-    {
-        return $this->id_projet;
-    }
-
-    public function setIdProjet(int $id_projet): self
-    {
-        $this->id_projet = $id_projet;
-
-        return $this;
     }
 
     public function getNomProjet(): ?string

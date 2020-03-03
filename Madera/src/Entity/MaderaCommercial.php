@@ -19,11 +19,6 @@ class MaderaCommercial
     private $id;
 
     /**
-     * @ORM\Column(type="integer")
-     */
-    private $id_commercial;
-
-    /**
      * @ORM\Column(type="string", length=50)
      */
     private $prenom_commercial;
@@ -51,18 +46,6 @@ class MaderaCommercial
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getIdCommercial(): ?int
-    {
-        return $this->id_commercial;
-    }
-
-    public function setIdCommercial(int $id_commercial): self
-    {
-        $this->id_commercial = $id_commercial;
-
-        return $this;
     }
 
     public function getPrenomCommercial(): ?string

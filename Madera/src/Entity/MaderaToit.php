@@ -19,11 +19,6 @@ class MaderaToit
     private $id;
 
     /**
-     * @ORM\Column(type="integer")
-     */
-    private $id_toit;
-
-    /**
      * @ORM\Column(type="float")
      */
     private $prix_ht_toit;
@@ -41,11 +36,6 @@ class MaderaToit
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getIdToit(): ?int
-    {
-        return $this->id_toit;
     }
 
     public function setIdToit(int $id_toit): self

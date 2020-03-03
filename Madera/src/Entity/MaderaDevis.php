@@ -17,11 +17,6 @@ class MaderaDevis
     private $id;
 
     /**
-     * @ORM\Column(type="integer")
-     */
-    private $id_devis;
-
-    /**
      * @ORM\Column(type="string", length=255)
      */
     private $code_devis;
@@ -64,18 +59,6 @@ class MaderaDevis
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getIdDevis(): ?int
-    {
-        return $this->id_devis;
-    }
-
-    public function setIdDevis(int $id_devis): self
-    {
-        $this->id_devis = $id_devis;
-
-        return $this;
     }
 
     public function getCodeDevis(): ?string

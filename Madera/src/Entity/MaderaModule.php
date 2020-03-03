@@ -19,11 +19,6 @@ class MaderaModule
     private $id;
 
     /**
-     * @ORM\Column(type="integer")
-     */
-    private $id_module;
-
-    /**
      * @ORM\Column(type="string", length=255)
      */
     private $nom_module;
@@ -91,18 +86,6 @@ class MaderaModule
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getIdModule(): ?int
-    {
-        return $this->id_module;
-    }
-
-    public function setIdModule(int $id_module): self
-    {
-        $this->id_module = $id_module;
-
-        return $this;
     }
 
     public function getNomModule(): ?string
