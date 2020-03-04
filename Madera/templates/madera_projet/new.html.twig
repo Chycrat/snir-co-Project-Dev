@@ -3,9 +3,10 @@
 {% block title %}New MaderaProjet{% endblock %}
 
 {% block body %}
-    <h1>Create new MaderaProjet</h1>
-
-    {{ include('madera_projet/_form.html.twig') }}
-
-    <a href="{{ path('madera_projet_index') }}">back to list</a>
+    
+    <div class="container mt-5" margin-top="15dp">
+        <h1>Nouveau Projet</h1>
+        {{ include('madera_projet/_form.html.twig') }}
+        <a href="{{ path('madera_projet_index') }}">back to list</a>
+    </div>
 {% endblock %}
