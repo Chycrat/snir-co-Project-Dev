@@ -22,7 +22,6 @@ class MaderaDevisType extends AbstractType
             ->add('marge_commerciaux_devis')
             ->add('marge_entreprise_devis')
             ->add('client_devis')
-            ->add('Enregistrer',SubmitType::class)
         ;
     }
 

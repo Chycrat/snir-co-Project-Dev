@@ -26,7 +26,6 @@ class MaderaModuleType extends AbstractType
             ->add('nb_composant_module')
             ->add('gamme_module')
             ->add('composants')
-            ->add('Enregistrer',SubmitType::class)
         ;
     }
 
