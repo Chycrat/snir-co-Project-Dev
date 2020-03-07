@@ -19,6 +19,11 @@ class MaderaGamme
     private $id;
 
     /**
+     * @ORM\Column(type="string", length=250)
+     */
+    private $gamme_nom;
+
+    /**
      * @ORM\Column(type="string", length=50)
      */
     private $type_isolant;
@@ -85,6 +90,22 @@ class MaderaGamme
     }
 
     /**
+     * @return mixed
+     */
+    public function getGammeNom()
+    {
+        return $this->gamme_nom;
+    }
+
+    /**
+     * @param mixed $gamme_nom
+     */
+    public function setGammeNom($gamme_nom): void
+    {
+        $this->gamme_nom = $gamme_nom;
+    }
+
+    /**
      * @return Collection|MaderaPlan[]
      */
     public function getIdPlan(): Collection
@@ -113,5 +134,9 @@ class MaderaGamme
         }
 
         return $this;
+    }
+    public function __toString()
+    {
+        return $this->getGammeNom();
     }
 }

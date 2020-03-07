@@ -18,6 +18,10 @@ class MaderaSol
      */
     private $id;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $nom_sol;
 
     /**
      * @ORM\Column(type="float")
@@ -37,6 +41,22 @@ class MaderaSol
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getNomSol()
+    {
+        return $this->nom_sol;
+    }
+
+    /**
+     * @param mixed $nom_sol
+     */
+    public function setNomSol($nom_sol): void
+    {
+        $this->nom_sol = $nom_sol;
     }
 
     public function getPrixHtSol(): ?float
@@ -80,5 +100,10 @@ class MaderaSol
         }
 
         return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->getNomSol();
     }
 }

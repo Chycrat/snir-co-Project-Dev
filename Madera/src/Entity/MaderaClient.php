@@ -136,14 +136,14 @@ class MaderaClient
     }
 
     /**
-     * @return Collection|MaderaPlan[]
+     * @return Collection|MaderaProjet[]
      */
     public function getIdProjet(): Collection
     {
         return $this->id_projet;
     }
 
-    public function addIdProjet(MaderaPlan $idProjet): self
+    public function addIdProjet(MaderaProjet $idProjet): self
     {
         if (!$this->id_projet->contains($idProjet)) {
             $this->id_projet[] = $idProjet;
@@ -153,7 +153,7 @@ class MaderaClient
         return $this;
     }
 
-    public function removeIdProjet(MaderaPlan $idProjet): self
+    public function removeIdProjet(MaderaProjet $idProjet): self
     {
         if ($this->id_projet->contains($idProjet)) {
             $this->id_projet->removeElement($idProjet);
@@ -164,6 +164,11 @@ class MaderaClient
         }
 
         return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->getNomClient();
     }
 
 }

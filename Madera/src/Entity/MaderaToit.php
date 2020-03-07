@@ -19,6 +19,11 @@ class MaderaToit
     private $id;
 
     /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $nom_toit;
+
+    /**
      * @ORM\Column(type="float")
      */
     private $prix_ht_toit;
@@ -38,6 +43,24 @@ class MaderaToit
         return $this->id;
     }
 
+
+    /**
+     * @return mixed
+     */
+    public function getNomToit()
+    {
+        return $this->nom_toit;
+    }
+
+    /**
+     * @param mixed $nom_toit
+     */
+    public function setNomToit($nom_toit): void
+    {
+        $this->nom_toit = $nom_toit;
+    }
+
+    /**
     public function setIdToit(int $id_toit): self
     {
         $this->id_toit = $id_toit;
@@ -86,5 +109,10 @@ class MaderaToit
         }
 
         return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->getNomToit();
     }
 }

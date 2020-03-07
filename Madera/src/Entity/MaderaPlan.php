@@ -208,4 +208,9 @@ class MaderaPlan
 
         return $this;
     }
+
+    public function __toString()
+    {
+        return $this->getMaderaProjet()->getNomProjet().' '.$this->getId();
+    }
 }

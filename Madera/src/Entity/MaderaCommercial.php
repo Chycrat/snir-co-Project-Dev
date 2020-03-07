@@ -114,4 +114,8 @@ class MaderaCommercial
 
         return $this;
     }
+    public function __toString()
+    {
+        return $this->getNomCommercial();
+    }
 }
