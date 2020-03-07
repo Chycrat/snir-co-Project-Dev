@@ -6,11 +6,11 @@ use App\Entity\MaderaPlan;
 use App\Entity\MaderaProjet;
 use App\Form\MaderaPlanType;
 use App\Repository\MaderaPlanRepository;
+use DateTime;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Validator\Constraints\Date;
 
 /**
  * @Route("/madera/plan")
@@ -44,8 +44,8 @@ class MaderaPlanController extends AbstractController
     {
         $maderaPlan = new MaderaPlan();
         $maderaPlan->setMaderaProjet($maderaProjet);
-        $maderaPlan->setDateCreation(new Date());
-        $maderaPlan->setDateDerniereModification(new Date());
+        $maderaPlan->setDateCreation(new DateTime);
+        $maderaPlan->setDateDerniereModification(new DateTime());
         $form = $this->createForm(MaderaPlanType::class, $maderaPlan);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
@@ -81,7 +81,7 @@ class MaderaPlanController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $maderaPlan->setDateDerniereModification(new Date());
+            $maderaPlan->setDateDerniereModification(new DateTime());
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('madera_plan_index');
