@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\MaderaPlan;
+use App\Entity\MaderaProjet;
 use App\Form\MaderaPlanType;
 use App\Repository\MaderaPlanRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -31,18 +32,19 @@ class MaderaPlanController extends AbstractController
     {
         return $this->render('madera_plan/index.html.twig', [
             'madera_plans' => $maderaPlanRepository->findByProjetId($projetId),
+            'projet_id' => $projetId
         ]);
     }
 
     /**
-     * @Route("/new", name="madera_plan_new", methods={"GET","POST"})
+     * @Route("/new/{id}", name="madera_plan_new", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new(Request $request, MaderaProjet $maderaProjet): Response
     {
         $maderaPlan = new MaderaPlan();
+        $maderaPlan->setMaderaProjet($maderaProjet);
         $form = $this->createForm(MaderaPlanType::class, $maderaPlan);
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($maderaPlan);
