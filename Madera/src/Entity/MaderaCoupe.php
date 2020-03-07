@@ -19,6 +19,10 @@ class MaderaCoupe
     private $id;
 
     /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $nom_coupe;
+    /**
      * @ORM\Column(type="integer", nullable=true)
      */
     private $longueur_coupe;
@@ -68,6 +72,22 @@ class MaderaCoupe
     }
 
     /**
+     * @return mixed
+     */
+    public function getNomCoupe()
+    {
+        return $this->nom_coupe;
+    }
+
+    /**
+     * @param mixed $nom_coupe
+     */
+    public function setNomCoupe($nom_coupe): void
+    {
+        $this->nom_coupe = $nom_coupe;
+    }
+
+    /**
      * @return Collection|MaderaPlan[]
      */
     public function getIdPlan(): Collection
@@ -96,5 +116,10 @@ class MaderaCoupe
         }
 
         return $this;
+    }
+
+    public function __toString()
+    {
+        return 'Sol :'.$this->getNomCoupe();
     }
 }
