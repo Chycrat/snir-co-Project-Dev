@@ -14,8 +14,6 @@ class MaderaProjetType extends AbstractType
     {
         $builder
             ->add('nom_projet')
-            ->add('date_creation_projet')
-            ->add('date_modification_projet')
             ->add('maderaCommercial')
             ->add('maderaClient')
         ;

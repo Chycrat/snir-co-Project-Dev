@@ -6,8 +6,8 @@
     <h1>Edit MaderaPlan</h1>
 
     {{ include('madera_plan/_form.html.twig', {'button_label': 'Update'}) }}
-
-    <a href="{{ path('madera_plan_index') }}">back to list</a>
-
+    <a class="btn btn-success" href="{{ path('madera_plan_index') }}">back to list</a>
     {{ include('madera_plan/_delete_form.html.twig') }}
+
+    
 {% endblock %}
