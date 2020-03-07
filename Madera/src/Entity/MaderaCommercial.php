@@ -116,6 +116,6 @@ class MaderaCommercial
     }
     public function __toString()
     {
-        return $this->getNomCommercial();
+        return $this->getNomCommercial().' '.$this->getPrenomCommercial();
     }
 }
