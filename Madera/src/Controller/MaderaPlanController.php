@@ -24,6 +24,15 @@ class MaderaPlanController extends AbstractController
             'madera_plans' => $maderaPlanRepository->findAll(),
         ]);
     }
+    /**
+     * @Route("/{projetId}/projet", name="madera_plan_projet", methods={"GET"})
+     */
+    public function indexParProjet($projetId, MaderaPlanRepository $maderaPlanRepository): Response
+    {
+        return $this->render('madera_plan/index.html.twig', [
+            'madera_plans' => $maderaPlanRepository->findByProjetId($projetId),
+        ]);
+    }
 
     /**
      * @Route("/new", name="madera_plan_new", methods={"GET","POST"})
