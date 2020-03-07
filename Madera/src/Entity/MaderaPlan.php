@@ -2,7 +2,9 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints\Date;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\MaderaPlanRepository")
@@ -72,29 +74,34 @@ class MaderaPlan
      */
     private $maderaGamme;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\MaderaModule", mappedBy="plans")
+     */
+    private $maderaModules;
+
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getDateCreation(): ?\DateTimeInterface
+    public function getDateCreation(): Date
     {
         return $this->date_creation;
     }
 
-    public function setDateCreation(\DateTimeInterface $date_creation): self
+    public function setDateCreation(Date $date_creation): self
     {
         $this->date_creation = $date_creation;
 
         return $this;
     }
 
-    public function getDateDerniereModification(): ?\DateTimeInterface
+    public function getDateDerniereModification(): Date
     {
         return $this->date_derniere_modification;
     }
 
-    public function setDateDerniereModification(?\DateTimeInterface $date_derniere_modification): self
+    public function setDateDerniereModification(Date $date_derniere_modification): self
     {
         $this->date_derniere_modification = $date_derniere_modification;
 
@@ -207,6 +214,14 @@ class MaderaPlan
         $this->maderaGamme = $maderaGamme;
 
         return $this;
+    }
+
+    /**
+     * @return Collection|MaderaModule[]
+     */
+    public function getModules(): Collection
+    {
+        return $this->maderaModules;
     }
 
     public function __toString()
