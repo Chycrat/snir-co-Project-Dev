@@ -36,36 +36,6 @@ class MaderaModule
     /**
      * @ORM\Column(type="integer")
      */
-    private $coordonnee_x_debut_module;
-
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $coordonnee_x_fin_module;
-
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $coordonnee_y_debut_module;
-
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $coordonnee_y_fin_module;
-
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $largeur_module;
-
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $longueur_module;
-
-    /**
-     * @ORM\Column(type="integer")
-     */
     private $nb_composant_module;
 
     /**
@@ -120,78 +90,6 @@ class MaderaModule
     public function setQuantiteRestanteModule(int $quantite_restante_module): self
     {
         $this->quantite_restante_module = $quantite_restante_module;
-
-        return $this;
-    }
-
-    public function getCoordonneeXDebutModule(): ?int
-    {
-        return $this->coordonnee_x_debut_module;
-    }
-
-    public function setCoordonneeXDebutModule(int $coordonnee_x_debut_module): self
-    {
-        $this->coordonnee_x_debut_module = $coordonnee_x_debut_module;
-
-        return $this;
-    }
-
-    public function getCoordonneeXFinModule(): ?int
-    {
-        return $this->coordonnee_x_fin_module;
-    }
-
-    public function setCoordonneeXFinModule(int $coordonnee_x_fin_module): self
-    {
-        $this->coordonnee_x_fin_module = $coordonnee_x_fin_module;
-
-        return $this;
-    }
-
-    public function getCoordonneeYDebutModule(): ?int
-    {
-        return $this->coordonnee_y_debut_module;
-    }
-
-    public function setCoordonneeYDebutModule(int $coordonnee_y_debut_module): self
-    {
-        $this->coordonnee_y_debut_module = $coordonnee_y_debut_module;
-
-        return $this;
-    }
-
-    public function getCoordonneeYFinModule(): ?int
-    {
-        return $this->coordonnee_y_fin_module;
-    }
-
-    public function setCoordonneeYFinModule(int $coordonnee_y_fin_module): self
-    {
-        $this->coordonnee_y_fin_module = $coordonnee_y_fin_module;
-
-        return $this;
-    }
-
-    public function getLargeurModule(): ?int
-    {
-        return $this->largeur_module;
-    }
-
-    public function setLargeurModule(int $largeur_module): self
-    {
-        $this->largeur_module = $largeur_module;
-
-        return $this;
-    }
-
-    public function getLongueurModule(): ?int
-    {
-        return $this->longueur_module;
-    }
-
-    public function setLongueurModule(int $longueur_module): self
-    {
-        $this->longueur_module = $longueur_module;
 
         return $this;
     }
