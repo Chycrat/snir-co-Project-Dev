@@ -14,12 +14,12 @@
             <thead class="thead-dark">
                 <tr>
                     <th>Id</th>
-                    <th>Date_creation</th>
-                    <th>Date_derniere_modification</th>
-                    <th>Largeur_plan</th>
-                    <th>Longueur_plan</th>
-                    <th>Prix_total_ht_plan</th>
-                    <th>Prix_total_ttc_plan</th>
+                    <th>Date creation</th>
+                    <th>Date derniere modification</th>
+                    <th>Largeur plan</th>
+                    <th>Longueur plan</th>
+                    <th>Prix total ht plan</th>
+                    <th>Prix total ttc plan</th>
                     <th>actions</th>
                 </tr>
             </thead>
@@ -34,8 +34,8 @@
                     <td>{{ madera_plan.prixTotalHtPlan }}</td>
                     <td>{{ madera_plan.prixTotalTtcPlan }}</td>
                     <td>
-                        <a href="{{ path('madera_plan_show', {'id': madera_plan.id}) }}">show</a>
-                        <a href="{{ path('madera_plan_edit', {'id': madera_plan.id}) }}">edit</a>
+                        <a class="btn btn-success" href="{{ path('madera_plan_show', {'id': madera_plan.id}) }}">show</a>
+                        <a class="btn btn-success" href="{{ path('madera_plan_edit', {'id': madera_plan.id}) }}">edit</a>
                     </td>
                 </tr>
             {% else %}

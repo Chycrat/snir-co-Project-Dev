@@ -26,7 +26,7 @@ class MaderaPlanRepository extends ServiceEntityRepository
     public function findByProjetId($value)
     {
         return $this->createQueryBuilder('m')
-            ->andWhere('m.madera_projet_id = :val')
+            ->andWhere('m.maderaProjet = :val')
             ->setParameter('val', $value)
             ->orderBy('m.id', 'ASC')
             ->getQuery()

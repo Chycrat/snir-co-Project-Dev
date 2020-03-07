@@ -12,35 +12,35 @@
                 <td>{{ madera_plan.id }}</td>
             </tr>
             <tr>
-                <th>Date_creation</th>
+                <th>Date creation</th>
                 <td>{{ madera_plan.dateCreation ? madera_plan.dateCreation|date('Y-m-d') : '' }}</td>
             </tr>
             <tr>
-                <th>Date_derniere_modification</th>
+                <th>Date derniere modification</th>
                 <td>{{ madera_plan.dateDerniereModification ? madera_plan.dateDerniereModification|date('Y-m-d') : '' }}</td>
             </tr>
             <tr>
-                <th>Largeur_plan</th>
+                <th>Largeur plan</th>
                 <td>{{ madera_plan.largeurPlan }}</td>
             </tr>
             <tr>
-                <th>Longueur_plan</th>
+                <th>Longueur plan</th>
                 <td>{{ madera_plan.longueurPlan }}</td>
             </tr>
             <tr>
-                <th>Prix_total_ht_plan</th>
+                <th>Prix total ht plan</th>
                 <td>{{ madera_plan.prixTotalHtPlan }}</td>
             </tr>
             <tr>
-                <th>Prix_total_ttc_plan</th>
+                <th>Prix total ttc plan</th>
                 <td>{{ madera_plan.prixTotalTtcPlan }}</td>
             </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('madera_plan_index') }}">back to list</a>
+    <a class="btn btn-success" href="{{ path('madera_plan_index') }}">back to list</a>
 
-    <a href="{{ path('madera_plan_edit', {'id': madera_plan.id}) }}">edit</a>
+    <a class="btn btn-success" href="{{ path('madera_plan_edit', {'id': madera_plan.id}) }}">edit</a>
 
     {{ include('madera_plan/_delete_form.html.twig') }}
 {% endblock %}
