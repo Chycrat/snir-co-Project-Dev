@@ -3,9 +3,11 @@
 {% block title %}New MaderaPlan{% endblock %}
 
 {% block body %}
-    <h1>Create new MaderaPlan</h1>
+    <div class="container mt-5" margin-top="15dp">
+        <h1>Nouveau Plan</h1>
 
-    {{ include('madera_plan/_form.html.twig') }}
+        {{ include('madera_plan/_form.html.twig') }}    
 
-    <a href="{{ path('madera_plan_index') }}">back to list</a>
+        <a href="{{ path('madera_plan_index') }}">back to list</a>
+    </div>
 {% endblock %}
