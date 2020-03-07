@@ -5,7 +5,7 @@
 {% block body %}
     <main class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content" role="main">
         <div class="row">
-                <h4 class="highlighter-rouge">Plans <button type="button" class="btn btn-success" onclick="document.location.href='/madera/plan/new';">Nouveau plan</button></h4> 
+                <h4 class="highlighter-rouge">Plans <a class="btn btn-success" href="{{ path('madera_plan_new', {'id': projet_id}) }}">Nouveau plan</a></h4> 
         </div>
     </main>
 
