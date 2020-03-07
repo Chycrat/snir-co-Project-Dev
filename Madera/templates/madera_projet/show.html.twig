@@ -3,36 +3,36 @@
 {% block title %}MaderaProjet{% endblock %}
 
 {% block body %}
-    <h1>MaderaProjet</h1>
+    
+    
+    <div class="container mt-5" margin-top="15dp">
+        <h1><span class="label label-default">Client</span></h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ madera_projet.id }}</td>
-            </tr>
-            <tr>
-                <th>Id_projet</th>
-                <td>{{ madera_projet.idProjet }}</td>
-            </tr>
-            <tr>
-                <th>Nom_projet</th>
-                <td>{{ madera_projet.nomProjet }}</td>
-            </tr>
-            <tr>
-                <th>Date_creation_projet</th>
-                <td>{{ madera_projet.dateCreationProjet ? madera_projet.dateCreationProjet|date('Y-m-d') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Date_modification_projet</th>
-                <td>{{ madera_projet.dateModificationProjet ? madera_projet.dateModificationProjet|date('Y-m-d') : '' }}</td>
-            </tr>
-        </tbody>
-    </table>
+        <table class="table">
+            <tbody>
+                <tr>
+                    <th>Id</th>
+                    <td>{{ madera_projet.id }}</td>
+                </tr>
+                <tr>
+                    <th>Nom_projet</th>
+                    <td>{{ madera_projet.nomProjet }}</td>
+                </tr>
+                <tr>
+                    <th>Date_creation_projet</th>
+                    <td>{{ madera_projet.dateCreationProjet ? madera_projet.dateCreationProjet|date('Y-m-d') : '' }}</td>
+                </tr>
+                <tr>
+                    <th>Date_modification_projet</th>
+                    <td>{{ madera_projet.dateModificationProjet ? madera_projet.dateModificationProjet|date('Y-m-d') : '' }}</td>
+                </tr>
+            </tbody>
+        </table>
 
-    <a href="{{ path('madera_projet_index') }}">back to list</a>
+        <a class="btn btn-success" href="{{ path('madera_projet_index') }}">back to list</a>
+        <a class="btn btn-success" href="{{ path('madera_projet_edit', {'id': madera_projet.id}) }}">edit</a>
+        {{ include('madera_projet/_delete_form.html.twig') }}
+    </div>
 
-    <a href="{{ path('madera_projet_edit', {'id': madera_projet.id}) }}">edit</a>
-
-    {{ include('madera_projet/_delete_form.html.twig') }}
+    
 {% endblock %}

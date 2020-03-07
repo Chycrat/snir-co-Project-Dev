@@ -3,11 +3,11 @@
 {% block title %}Edit MaderaProjet{% endblock %}
 
 {% block body %}
-    <h1>Edit MaderaProjet</h1>
+    <h1>Projet</h1>
 
-    {{ include('madera_projet/_form.html.twig', {'button_label': 'Update'}) }}
-
-    <a href="{{ path('madera_projet_index') }}">back to list</a>
-
-    {{ include('madera_projet/_delete_form.html.twig') }}
+    <div class="container mt-5" margin-top="15dp">
+        {{ include('madera_projet/_form.html.twig', {'button_label': 'Update'}) }}
+        <a href="{{ path('madera_projet_index') }}">back to list</a>
+        {{ include('madera_projet/_delete_form.html.twig') }}
+    </div>
 {% endblock %}

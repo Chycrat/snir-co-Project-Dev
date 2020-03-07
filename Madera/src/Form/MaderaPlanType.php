@@ -13,7 +13,6 @@ class MaderaPlanType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('id_plan')
             ->add('date_creation')
             ->add('date_derniere_modification')
             ->add('largeur_plan')
@@ -26,7 +25,6 @@ class MaderaPlanType extends AbstractType
             ->add('maderaClient')
             ->add('maderaProjet')
             ->add('maderaGamme')
-            ->add('Enregistrer',SubmitType::class)
         ;
     }
 

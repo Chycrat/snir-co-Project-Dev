@@ -17,7 +17,6 @@ class MaderaCommercialType extends AbstractType
             ->add('prenom_commercial')
             ->add('nom_commercial')
             ->add('mot_de_passe_commercial')
-            ->add('Enregistrer',SubmitType::class)
         ;
     }
 
