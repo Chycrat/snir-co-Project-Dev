@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints\Date;
 
@@ -72,6 +73,11 @@ class MaderaPlan
      * @ORM\ManyToOne(targetEntity="App\Entity\MaderaGamme", inversedBy="id_plan")
      */
     private $maderaGamme;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\MaderaModule", mappedBy="plans")
+     */
+    private $maderaModules;
 
     public function getId(): ?int
     {
@@ -208,6 +214,14 @@ class MaderaPlan
         $this->maderaGamme = $maderaGamme;
 
         return $this;
+    }
+
+    /**
+     * @return Collection|MaderaModule[]
+     */
+    public function getModules(): Collection
+    {
+        return $this->maderaModules;
     }
 
     public function __toString()

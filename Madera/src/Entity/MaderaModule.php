@@ -48,6 +48,11 @@ class MaderaModule
      */
     private $composants;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\MaderaPlan", inversedBy="maderaModules")
+     */
+    private $plans;
+
     public function __construct()
     {
         $this->composants = new ArrayCollection();
