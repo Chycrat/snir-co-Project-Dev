@@ -61,10 +61,6 @@ class MaderaPlan
      */
     private $maderaSol;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\MaderaClient", inversedBy="id_projet")
-     */
-    private $maderaClient;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\MaderaProjet", inversedBy="id_plan")
@@ -185,18 +181,6 @@ class MaderaPlan
     public function setMaderaSol(?MaderaSol $maderaSol): self
     {
         $this->maderaSol = $maderaSol;
-
-        return $this;
-    }
-
-    public function getMaderaClient(): ?MaderaClient
-    {
-        return $this->maderaClient;
-    }
-
-    public function setMaderaClient(?MaderaClient $maderaClient): self
-    {
-        $this->maderaClient = $maderaClient;
 
         return $this;
     }
