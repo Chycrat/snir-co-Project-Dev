@@ -84,24 +84,24 @@ class MaderaPlan
         return $this->id;
     }
 
-    public function getDateCreation(): Date
+    public function getDateCreation(): \DateTime
     {
         return $this->date_creation;
     }
 
-    public function setDateCreation(Date $date_creation): self
+    public function setDateCreation(\DateTime $date_creation): self
     {
         $this->date_creation = $date_creation;
 
         return $this;
     }
 
-    public function getDateDerniereModification(): Date
+    public function getDateDerniereModification(): \DateTime
     {
         return $this->date_derniere_modification;
     }
 
-    public function setDateDerniereModification(Date $date_derniere_modification): self
+    public function setDateDerniereModification(\DateTime $date_derniere_modification): self
     {
         $this->date_derniere_modification = $date_derniere_modification;
 
