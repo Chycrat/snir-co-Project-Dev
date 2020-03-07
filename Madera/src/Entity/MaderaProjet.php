@@ -43,6 +43,11 @@ class MaderaProjet
      */
     private $maderaCommercial;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\MaderaClient", inversedBy="id_projet")
+     */
+    private $maderaClient;
+
     public function __construct()
     {
         $this->id_plan = new ArrayCollection();
@@ -128,6 +133,18 @@ class MaderaProjet
     public function setMaderaCommercial(?MaderaCommercial $maderaCommercial): self
     {
         $this->maderaCommercial = $maderaCommercial;
+
+        return $this;
+    }
+
+    public function getMaderaClient(): ?MaderaClient
+    {
+        return $this->maderaClient;
+    }
+
+    public function setMaderaClient(?MaderaClient $maderaClient): self
+    {
+        $this->maderaClient = $maderaClient;
 
         return $this;
     }
