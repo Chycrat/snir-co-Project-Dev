@@ -53,7 +53,7 @@ class MaderaPlanController extends AbstractController
             $entityManager->persist($maderaPlan);
             $entityManager->flush();
 
-            return $this->redirectToRoute('madera_plan_index');
+            return $this->redirectToRoute('madera_plan_index', array('id'=>$maderaProjet->getId()));
         }
 
         return $this->render('madera_plan/new.html.twig', [
