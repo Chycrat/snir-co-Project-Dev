@@ -13,7 +13,6 @@
         <table class="table">
             <thead class="thead-dark">
                 <tr>
-                    <th>Id</th>
                     <th>Nom_client</th>
                     <th>Code_client</th>
                     <th>Mdp_client</th>
@@ -26,7 +25,6 @@
             <tbody>
             {% for madera_client in madera_clients %}
                 <tr>
-                    <td>{{ madera_client.id }}</td>
                     <td>{{ madera_client.nomClient }}</td>
                     <td>{{ madera_client.codeClient }}</td>
                     <td>{{ madera_client.mdpClient }}</td>

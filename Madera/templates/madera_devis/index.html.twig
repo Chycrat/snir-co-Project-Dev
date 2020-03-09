@@ -8,8 +8,6 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Id_devis</th>
                 <th>Code_devis</th>
                 <th>Date_devis</th>
                 <th>Date_validation</th>
@@ -23,8 +21,6 @@
         <tbody>
         {% for madera_devi in madera_devis %}
             <tr>
-                <td>{{ madera_devi.id }}</td>
-                <td>{{ madera_devi.idDevis }}</td>
                 <td>{{ madera_devi.codeDevis }}</td>
                 <td>{{ madera_devi.dateDevis ? madera_devi.dateDevis|date('Y-m-d') : '' }}</td>
                 <td>{{ madera_devi.dateValidation ? madera_devi.dateValidation|date('Y-m-d') : '' }}</td>

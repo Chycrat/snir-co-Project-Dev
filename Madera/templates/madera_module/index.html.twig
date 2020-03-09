@@ -8,17 +8,8 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Id module</th>
                 <th>Nom module</th>
                 <th>Prix ht module</th>
-                <th>Quantite restante module</th>
-                <th>Coordonnee x debut module</th>
-                <th>Coordonnee x fin module</th>
-                <th>Coordonnee y debut module</th>
-                <th>Coordonnee y fin module</th>
-                <th>Largeur module</th>
-                <th>Longueur module</th>
                 <th>Nb composant module</th>
                 <th>Gamme module</th>
                 <th>actions</th>
@@ -27,17 +18,9 @@
         <tbody>
         {% for madera_module in madera_modules %}
             <tr>
-                <td>{{ madera_module.id }}</td>
-                <td>{{ madera_module.idModule }}</td>
                 <td>{{ madera_module.nomModule }}</td>
                 <td>{{ madera_module.prixHtModule }}</td>
                 <td>{{ madera_module.quantiteRestanteModule }}</td>
-                <td>{{ madera_module.coordonneeXDebutModule }}</td>
-                <td>{{ madera_module.coordonneeXFinModule }}</td>
-                <td>{{ madera_module.coordonneeYDebutModule }}</td>
-                <td>{{ madera_module.coordonneeYFinModule }}</td>
-                <td>{{ madera_module.largeurModule }}</td>
-                <td>{{ madera_module.longueurModule }}</td>
                 <td>{{ madera_module.nbComposantModule }}</td>
                 <td>{{ madera_module.gammeModule }}</td>
                 <td>
