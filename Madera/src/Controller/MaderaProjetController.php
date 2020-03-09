@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use DateTime;
 
 /**
  * @Route("/madera/projet")
@@ -35,6 +36,8 @@ class MaderaProjetController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $maderaProjet->setDateCreationProjet(new DateTime());
+            $maderaProjet->setDateModificationProjet(new DateTime());
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($maderaProjet);
             $entityManager->flush();
@@ -67,6 +70,7 @@ class MaderaProjetController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $maderaProjet->setDateModificationProjet(new DateTime());
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('madera_projet_index');
