@@ -28,8 +28,8 @@
                     <td>{{ madera_plan.prixTotalHtPlan }}</td>
                     <td>{{ madera_plan.prixTotalTtcPlan }}</td>
                     <td>
-                        <a class="btn btn-success" href="{{ path('madera_plan_show', {'id': madera_plan.id}) }}">show</a>
-                        <a class="btn btn-success" href="{{ path('madera_plan_edit', {'id': madera_plan.id}) }}">edit</a>
+                        <a class="btn btn-success" href="{{ path('madera_plan_show', {'id': madera_plan.id, 'idProjet' : projet_id}) }}">show</a>
+                        <a class="btn btn-success" href="{{ path('madera_plan_edit', {'id': madera_plan.id, 'idProjet': projet_id}) }}">edit</a>
                     </td>
                 </tr>
             {% else %}

@@ -6,6 +6,7 @@ use App\Entity\MaderaPlan;
 use App\Entity\MaderaProjet;
 use App\Form\MaderaPlanType;
 use App\Repository\MaderaPlanRepository;
+use App\Repository\MaderaProjetRepository;
 use DateTime;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -31,6 +32,7 @@ class MaderaPlanController extends AbstractController
      */
     public function indexParProjet($id, MaderaPlanRepository $maderaPlanRepository): Response
     {
+        dump($maderaPlanRepository->findByProjetId($id));
         return $this->render('madera_plan/index.html.twig', [
             'madera_plans' => $maderaPlanRepository->findByProjetId($id),
             'projet_id' => $id
@@ -40,10 +42,10 @@ class MaderaPlanController extends AbstractController
     /**
      * @Route("/new/{id}", name="madera_plan_new", methods={"GET","POST"})
      */
-    public function new(Request $request, MaderaProjet $maderaProjet): Response
+    public function new(Request $request, $id): Response
     {
         $maderaPlan = new MaderaPlan();
-        $maderaPlan->setMaderaProjet($maderaProjet);
+        $maderaPlan->setMaderaProjet($id);
         $maderaPlan->setDateCreation(new DateTime);
         $maderaPlan->setDateDerniereModification(new DateTime());
         $form = $this->createForm(MaderaPlanType::class, $maderaPlan);
@@ -53,29 +55,31 @@ class MaderaPlanController extends AbstractController
             $entityManager->persist($maderaPlan);
             $entityManager->flush();
 
-            return $this->redirectToRoute('madera_plan_index', array('id'=>$maderaProjet->getId()));
+            return $this->redirectToRoute('madera_plan_index', array('id'=>$id));
         }
 
         return $this->render('madera_plan/new.html.twig', [
             'madera_plan' => $maderaPlan,
+            'projet_id' => $id,
             'form' => $form->createView(),
         ]);
     }
 
     /**
-     * @Route("/{id}", name="madera_plan_show", methods={"GET"})
+     * @Route("/{id}/{idProjet}", name="madera_plan_show", methods={"GET"})
      */
-    public function show(MaderaPlan $maderaPlan): Response
+    public function show(MaderaPlan $maderaPlan, $idProjet): Response
     {
         return $this->render('madera_plan/show.html.twig', [
             'madera_plan' => $maderaPlan,
+            'projet_id' => $idProjet
         ]);
     }
 
     /**
-     * @Route("/{id}/edit", name="madera_plan_edit", methods={"GET","POST"})
+     * @Route("/{id}/edit/{idProjet}", name="madera_plan_edit", methods={"GET","POST"})
      */
-    public function edit(Request $request, MaderaPlan $maderaPlan): Response
+    public function edit(Request $request, MaderaPlan $maderaPlan, $idProjet): Response
     {
         $form = $this->createForm(MaderaPlanType::class, $maderaPlan);
         $form->handleRequest($request);
@@ -84,11 +88,12 @@ class MaderaPlanController extends AbstractController
             $maderaPlan->setDateDerniereModification(new DateTime());
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('madera_plan_index');
+            return $this->redirectToRoute('madera_plan_index', array('id'=>$idProjet));
         }
 
         return $this->render('madera_plan/edit.html.twig', [
             'madera_plan' => $maderaPlan,
+            'projet_id' => $idProjet,
             'form' => $form->createView(),
         ]);
     }
