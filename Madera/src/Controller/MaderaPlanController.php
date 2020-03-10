@@ -44,8 +44,11 @@ class MaderaPlanController extends AbstractController
      */
     public function new(Request $request, $id): Response
     {
+        $maderaProjet = $this->getDoctrine()
+            ->getRepository(MaderaProjet::class)
+            ->find($id);
         $maderaPlan = new MaderaPlan();
-        $maderaPlan->setMaderaProjet($id);
+        $maderaPlan->setMaderaProjet($maderaProjet);
         $maderaPlan->setDateCreation(new DateTime);
         $maderaPlan->setDateDerniereModification(new DateTime());
         $form = $this->createForm(MaderaPlanType::class, $maderaPlan);
