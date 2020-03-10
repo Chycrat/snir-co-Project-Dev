@@ -13,7 +13,6 @@ class MaderaDevisType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('id_devis')
             ->add('code_devis')
             ->add('date_devis')
             ->add('date_validation')
@@ -21,7 +20,6 @@ class MaderaDevisType extends AbstractType
             ->add('montant_ttc_devis')
             ->add('marge_commerciaux_devis')
             ->add('marge_entreprise_devis')
-            ->add('client_devis')
         ;
     }
 

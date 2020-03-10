@@ -32,7 +32,6 @@ class MaderaPlanController extends AbstractController
      */
     public function indexParProjet($id, MaderaPlanRepository $maderaPlanRepository): Response
     {
-        dump($maderaPlanRepository->findByProjetId($id));
         return $this->render('madera_plan/index.html.twig', [
             'madera_plans' => $maderaPlanRepository->findByProjetId($id),
             'projet_id' => $id

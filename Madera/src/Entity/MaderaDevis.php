@@ -52,9 +52,9 @@ class MaderaDevis
     private $marge_entreprise_devis;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\MaderaClient", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity="App\Entity\MaderaPlan", cascade={"persist", "remove"})
      */
-    private $client_devis;
+    private $plan_devis;
 
     public function getId(): ?int
     {
@@ -145,14 +145,14 @@ class MaderaDevis
         return $this;
     }
 
-    public function getClientDevis(): ?MaderaClient
+    public function getClientDevis(): ?MaderaPlan
     {
-        return $this->client_devis;
+        return $this->plan_devis;
     }
 
-    public function setClientDevis(?MaderaClient $client_devis): self
+    public function setClientDevis(?MaderaPlan $plan_devis): self
     {
-        $this->client_devis = $client_devis;
+        $this->plan_devis = $plan_devis;
 
         return $this;
     }
