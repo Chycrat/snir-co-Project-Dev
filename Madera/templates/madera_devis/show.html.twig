@@ -1,46 +1,46 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}MaderaDevis{% endblock %}
+{% block title %}Devis{% endblock %}
 
 {% block body %}
-    <h1>MaderaDevis</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Code_devis</th>
-                <td>{{ madera_devi.codeDevis }}</td>
-            </tr>
-            <tr>
-                <th>Date_devis</th>
-                <td>{{ madera_devi.dateDevis ? madera_devi.dateDevis|date('Y-m-d') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Date_validation</th>
-                <td>{{ madera_devi.dateValidation ? madera_devi.dateValidation|date('Y-m-d') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Montant_ht_devis</th>
-                <td>{{ madera_devi.montantHtDevis }}</td>
-            </tr>
-            <tr>
-                <th>Montant_ttc_devis</th>
-                <td>{{ madera_devi.montantTtcDevis }}</td>
-            </tr>
-            <tr>
-                <th>Marge_commerciaux_devis</th>
-                <td>{{ madera_devi.margeCommerciauxDevis }}</td>
-            </tr>
-            <tr>
-                <th>Marge_entreprise_devis</th>
-                <td>{{ madera_devi.margeEntrepriseDevis }}</td>
-            </tr>
-        </tbody>
-    </table>
+            
+    <div class="container-fluid">
+        <div class="col w-50 mx-auto border mt-5">
+            <img src = "http://madera-construction.fr/images/site/logo.png" alt="Madera LOGO" width = "50%">
+            </br>
+            <!-- Adresse entreprise a gauche --> 
+            <div> 
+                <p> MADERA
+                    Rue Enzo Ferrari
+                    85000 La Roche sur Yon 
+                </p>
+            </div>
 
-    <a href="{{ path('madera_devis_index') }}">back to list</a>
+            <!-- Info devis a mettre droite  -->
 
-    <a href="{{ path('madera_devis_edit', {'id': madera_devi.id}) }}">edit</a>
+            <!-- Adresse client -->
+            <div> 
+                <h1>Adresse client</h1>
 
-    {{ include('madera_devis/_delete_form.html.twig') }}
+            </div>
+
+            <!-- Nom du projet / plan  -->
+            <h1> </h1>
+
+            <!-- Affichage sol / coupe / toit -->
+
+            <!-- Liste des modules + prix  -->
+                <!-- Sous listes des composants + prix -->
+            
+
+
+            <!-- Sommes + prix  -->
+            
+
+        </div>
+    </div>
+
+
+    <!-- Bouton suppression et validation du devis -->
 {% endblock %}
