@@ -84,6 +84,15 @@ class MaderaPlan
         return $this->id;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getMaderaModules()
+    {
+        return $this->maderaModules;
+    }
+
+
     public function getDateCreation(): \DateTime
     {
         return $this->date_creation;

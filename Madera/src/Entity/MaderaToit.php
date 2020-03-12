@@ -53,6 +53,24 @@ class MaderaToit
     }
 
     /**
+     * @return mixed
+     */
+    public function getPrixHtToit()
+    {
+        return $this->prix_ht_toit;
+    }
+
+    /**
+     * @param mixed $prix_ht_toit
+     */
+    public function setPrixHtToit($prix_ht_toit): void
+    {
+        $this->prix_ht_toit = $prix_ht_toit;
+    }
+
+
+
+    /**
      * @param mixed $nom_toit
      */
     public function setNomToit($nom_toit): void

@@ -39,11 +39,6 @@ class MaderaModule
     private $nb_composant_module;
 
     /**
-     * @ORM\Column(type="string", length=50)
-     */
-    private $gamme_module;
-
-    /**
      * @ORM\ManyToMany(targetEntity="App\Entity\MaderaComposant", inversedBy="maderaModules")
      */
     private $composants;
@@ -107,18 +102,6 @@ class MaderaModule
     public function setNbComposantModule(int $nb_composant_module): self
     {
         $this->nb_composant_module = $nb_composant_module;
-
-        return $this;
-    }
-
-    public function getGammeModule(): ?string
-    {
-        return $this->gamme_module;
-    }
-
-    public function setGammeModule(string $gamme_module): self
-    {
-        $this->gamme_module = $gamme_module;
 
         return $this;
     }

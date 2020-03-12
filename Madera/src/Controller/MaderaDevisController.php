@@ -24,34 +24,42 @@ class MaderaDevisController extends AbstractController
      */
     public function new(Request $request, $id): Response
     {
-        $maderaDevi = new MaderaDevis();
-        $form = $this->createForm(MaderaDevisType::class, $maderaDevi);
-        $form->handleRequest($request);
+        $maderaDevis = new MaderaDevis();
 
         $entityManager = $this->getDoctrine()->getManager();
-        $data = $this->generateDevis($id);
+        $maderaDevis = $this->generateDevis($id);
         //FAIRE LE NOUVEAU DEVIS EN AUTO
 
-        $entityManager->persist($maderaDevi);
+        $entityManager->persist($maderaDevis);
         $entityManager->flush();
 
         return $this->redirectToRoute('madera_devis_show', [
-            'madera_devi' => $maderaDevi,
+            'madera_devi' => $maderaDevis,
             'idPlan' => $id
         ]);
     }
 
     /**
-     * @Route("{idPlan}/plan", name="madera_devis_show", methods={"GET"})
+     * @Route("{id}/plan/{idPlan}", name="madera_devis_show", methods={"GET"})
      */
-    public function show($idPlan): Response
+    public function show(MaderaDevis $maderaDevis,  $idPlan): Response
     {
         $maderaDevi = $this->getDoctrine()
             ->getRepository(MaderaDevis::class)
             ->findBy('plan_devis_id', $idPlan);
 
+        $MaderaPlan = $this->getDoctrine()
+            ->getRepository(MaderaPlan::class)
+            ->find('id',$idPlan);
+
+        $coupe = $MaderaPlan->getMaderaCoupe();
+        $client = $MaderaPlan->getMaderaProjet()->getMaderaClient();
+
         return $this->render('madera_devis/show.html.twig', [
-            'madera_devi' => $maderaDevi,
+            'devis' => $maderaDevi,
+            'client' => $client,
+            'plan' => $MaderaPlan,
+            'coupe' => $coupe,
             'idPlan' => $idPlan
         ]);
     }
@@ -74,6 +82,8 @@ class MaderaDevisController extends AbstractController
     }
 
     public function generateDevis($id){
+        $devis = new MaderaDevis();
+
         $MaderaPlan = $this->getDoctrine()
             ->getRepository(MaderaPlan::class)
             ->find($id);
@@ -84,10 +94,29 @@ class MaderaDevisController extends AbstractController
 
         $gamme = $MaderaPlan->getMaderaGamme();
 
-        $coupe = $MaderaPlan->getMaderaCoupe();
-
         $modules = $MaderaPlan->getModules();
 
+        $prixHt = 0;
 
+        foreach ($modules as $module) {
+            $prixHt += $module->getPrixHtModule();
+        }
+
+        $prixHt = $sol->getPrixHtSol() + $toit->getPrixHtToit();
+        $prixHt *= $gamme->getPourcentagePrix()/100;
+        $margeCommercial = 0.10;
+        $margeEntreprise = 0.10;
+
+        $devis->setCodeDevis($MaderaPlan->getDateCreation().''.$MaderaPlan->getId());
+        $devis->setMargeCommerciauxDevis($margeCommercial);
+        $devis->setMargeEntrepriseDevis($margeEntreprise);
+        $devis->setPlanDevis($MaderaPlan);
+        $devis->setDateDevis(new \DateTime());
+        $devis->setMontantHtDevis($prixHt);
+        $prixTTC = $devis->getMontantHtDevis()*1.20 + ($prixHt*$margeCommercial) + ($prixHt*$margeEntreprise);
+        $devis->setMontantTtcDevis($prixTTC);
+        $devis->setDateValidation(null);
+
+        return $devis;
     }
 }
