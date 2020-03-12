@@ -11,29 +11,74 @@
             </br>
             <!-- Adresse entreprise a gauche --> 
             <div> 
-                <p> MADERA
+                <p> 
+                    MADERA
                     Rue Enzo Ferrari
                     85000 La Roche sur Yon 
                 </p>
             </div>
 
-            <!-- Info devis a mettre droite  -->
 
             <!-- Adresse client -->
-            <div> 
-                <h1>Adresse client</h1>
-
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">Adresse client</h5>
+                    <p class="card-text">{{ madera_client.nom_client }} </p>
+                    <p class="card-text">{{ madera_client.adresse_client }} </p>
+                    <p class="card-text">{{ madera_client.telephone_client }} </p>
+                    <p class="card-text">{{ madera_client.email_client }} </p>
+                </div>
             </div>
 
             <!-- Nom du projet / plan  -->
-            <h1> </h1>
+            <h1> Devis : {{ madera_devi.code_devis }} </h1>
+            <h1> Plan : {{ madera_plan.id }} </h1>
+            <h1> Projet : {{ madera_rojet.nom_projet }} </h1>
 
             <!-- Affichage sol / coupe / toit -->
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Items</th>
+                        <th>Descriptif</th>
+                        <th>PRIX HT</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Coupe : {{ data.coupe.nom_coupe }}</td> 
+                        <td>L {{ data.coupe.longueur_coupe }} * l {{ data.coupe.largeur_coupe }}</td>
+                        <td></td> 
+                    </tr>
+                    <tr>
+                        <td>Sol : {{ data.sol.nom_sol }}</td> 
+                        <td></td>
+                        <td>{{ data.sol.prix_ht_sol }}</td> 
+                    </tr>
+                    <tr>
+                        <td>Toit : {{ data.toit.nom_toit }}</td> 
+                        <td></td>
+                        <td>{{ data.toit.prix_ht_toit }}</td> 
+                    </tr>
+                </tbody>
+            </table>
+
 
             <!-- Liste des modules + prix  -->
                 <!-- Sous listes des composants + prix -->
-            
-
+            <table class="table">
+                {% for madera_module in madera_module %}
+                    <tr>
+                        <td>{{ madera_module.nom_module }}</td>
+                        <td>Gamme : {{ madera_module.gamme }}</td>
+                        <td>{{ madera_module.prix_ht_module }}</td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="9">no records found</td>
+                    </tr>
+                {% endfor %}
+            </table>
 
             <!-- Sommes + prix  -->
             
