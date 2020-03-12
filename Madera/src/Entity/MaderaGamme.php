@@ -39,6 +39,19 @@ class MaderaGamme
     private $qualite_huisserie;
 
     /**
+     * @ORM\Column(type="integer")
+     */
+    private $pourcentage_prix;
+
+    /**
+     * @return mixed
+     */
+    public function getPourcentagePrix()
+    {
+        return $this->pourcentage_prix;
+    }
+
+    /**
      * @ORM\OneToMany(targetEntity="App\Entity\MaderaPlan", mappedBy="maderaGamme")
      */
     private $id_plan;

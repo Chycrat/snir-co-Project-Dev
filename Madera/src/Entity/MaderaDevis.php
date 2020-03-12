@@ -56,6 +56,7 @@ class MaderaDevis
      */
     private $plan_devis;
 
+
     public function getId(): ?int
     {
         return $this->id;
@@ -145,12 +146,12 @@ class MaderaDevis
         return $this;
     }
 
-    public function getClientDevis(): ?MaderaPlan
+    public function getPlanDevis(): ?MaderaPlan
     {
         return $this->plan_devis;
     }
 
-    public function setClientDevis(?MaderaPlan $plan_devis): self
+    public function setPlanDevis(?MaderaPlan $plan_devis): self
     {
         $this->plan_devis = $plan_devis;
 
