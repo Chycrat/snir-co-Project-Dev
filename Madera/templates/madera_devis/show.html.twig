@@ -5,87 +5,126 @@
 {% block body %}
 
             
-    <div class="container-fluid">
-        <div class="col w-50 mx-auto border mt-5">
-            <img src = "http://madera-construction.fr/images/site/logo.png" alt="Madera LOGO" width = "50%">
-            </br>
-            <!-- Adresse entreprise a gauche --> 
-            <div> 
-                <p> 
-                    MADERA
-                    Rue Enzo Ferrari
-                    85000 La Roche sur Yon 
-                </p>
-            </div>
-
-
-            <!-- Adresse client -->
-            <div class="card" style="width: 18rem;">
-                <div class="card-body">
-                    <h5 class="card-title">Adresse client</h5>
-                    <p class="card-text">{{ madera_client.nom_client }} </p>
-                    <p class="card-text">{{ madera_client.adresse_client }} </p>
-                    <p class="card-text">{{ madera_client.telephone_client }} </p>
-                    <p class="card-text">{{ madera_client.email_client }} </p>
-                </div>
-            </div>
-
-            <!-- Nom du projet / plan  -->
-            <h1> Devis : {{ madera_devi.code_devis }} </h1>
-            <h1> Plan : {{ madera_plan.id }} </h1>
-            <h1> Projet : {{ madera_rojet.nom_projet }} </h1>
-
-            <!-- Affichage sol / coupe / toit -->
-            <table class="table">
-                <thead class="thead-dark">
-                    <tr>
-                        <th>Items</th>
-                        <th>Descriptif</th>
-                        <th>PRIX HT</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Coupe : {{ data.coupe.nom_coupe }}</td> 
-                        <td>L {{ data.coupe.longueur_coupe }} * l {{ data.coupe.largeur_coupe }}</td>
-                        <td></td> 
-                    </tr>
-                    <tr>
-                        <td>Sol : {{ data.sol.nom_sol }}</td> 
-                        <td></td>
-                        <td>{{ data.sol.prix_ht_sol }}</td> 
-                    </tr>
-                    <tr>
-                        <td>Toit : {{ data.toit.nom_toit }}</td> 
-                        <td></td>
-                        <td>{{ data.toit.prix_ht_toit }}</td> 
-                    </tr>
-                </tbody>
-            </table>
-
-
-            <!-- Liste des modules + prix  -->
-                <!-- Sous listes des composants + prix -->
-            <table class="table">
-                {% for madera_module in madera_module %}
-                    <tr>
-                        <td>{{ madera_module.nom_module }}</td>
-                        <td>Gamme : {{ madera_module.gamme }}</td>
-                        <td>{{ madera_module.prix_ht_module }}</td>
-                    </tr>
-                {% else %}
-                    <tr>
-                        <td colspan="9">no records found</td>
-                    </tr>
-                {% endfor %}
-            </table>
-
-            <!-- Sommes + prix  -->
-            
-
+    <div class="container text-center mt-3 mb-3">
+            <button onclick="printDiv('devis')">Impression devis</button>
         </div>
-    </div>
+        <div id="devis">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-auto mt-4">
+                        <img src = "http://madera-construction.fr/images/site/logo.png" alt="Madera LOGO" width = "50%">
+                    </div>
+                </div>  
+                
+                <div class="container-fluid">
+                    <div class="row">
+                        <!-- Adresse entreprise a gauche --> 
+                        <div class="col lg-3">
+                            <div class="card" style="width: 22rem;">
+                                <div class="card-body">
+                                    <p class="card-text"> MADERA </p>
+                                    <p class="card-text"> Rue Enzo Ferrari </p>
+                                    <p class="card-text"> 85000 La Roche sur Yon </p>
+                                    <p class="card-text"> 02 51 98 18 32 </p>
+                                    <p class="card-text"> contact@madera-construction.com </p>
+                                </div>
+                            </div>
+                        </div>
+                    
+                    
+                        <div class="col lg-6"></div>
+                        <!-- Adresse client -->
+                        <div class="col lg-3"> 
+                            <div class="card" style="width: 18rem;">
+                                <div class="card-body">
+                                    <h5 class="card-title">Adresse client</h5>
+                                    <p class="card-text">{{ client.nom_client }} </p>
+                                    <p class="card-text">{{ client.adresse_client }} </p>
+                                    <p class="card-text">{{ client.telephone_client }} </p>
+                                    <p class="card-text">{{ client.email_client }} </p>
+                                </div>
+                            </div>
+                        </div>
 
+                    </div>
+                </div>
+            </div>  
 
-    <!-- Bouton suppression et validation du devis -->
+                
+                    <!-- Nom du projet / plan  -->
+                    <div class="container mt-5">
+                        <h3 class="text-center"> Devis : {{ devis.code_devis }} </h3>
+                        <h3 class="text-center"> Plan : {{ plan.id }} </h3>
+                        <h3 class="text-center"> Projet : {{ madera_rojet.nom_projet }} </h3>
+                    </div>
+
+                    <div class="container">
+                    <!-- Affichage sol / coupe / toit -->
+                    <table class="table mt-5 table-sm">
+                        <thead class="" style="background-color: #28a745!important; color: black;">
+                            <tr>
+                                <th>Items</th>
+                                <th>Descriptif</th>
+                                <th>Prix unitaire HT €</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="border border-success"> Coupe : {{ coupe.nom_coupe }}</td> 
+                                <td class="border border-success">L {{ coupe.longueur_coupe }} * l {{ coupe.largeur_coupe }}</td>
+                                <td class="border border-success"></td> 
+                            </tr>
+                            <tr>
+                                <td class="border border-success">Sol : {{ plan.nom_sol }}</td> 
+                                <td class="border border-success"></td>
+                                <td class="border border-success">{{ plan.prix_ht_sol }}</td> 
+                            </tr>
+                            <tr>
+                                <td class="border border-success">Toit : {{ plan.nom_toit }}</td> 
+                                <td class="border border-success"></td>
+                                <td class="border border-success">{{ plan.prix_ht_toit }}</td> 
+                            </tr>
+                            
+                            <tr>
+                                <td class="border border-success">{{ madera_module.nom_module }}</td>
+                                <td class="border border-success">Gamme : {{ madera_module.gamme }}</td>
+                                <td class="border border-success">{{ madera_module.prix_ht_module }}</td>
+                            </tr>
+        
+        
+                            <!-- Liste des modules + prix  -->
+
+                            
+                            
+                        </tbody>
+                    </table>
+                </div>
+                    <!-- Sommes + prix  -->
+                <div class="container">
+                    <div class="row">
+                        <div class="col lg-3"></div>
+                        <div class="col lg-6"></div>
+                        <div class="col lg-3">
+                            <div class="card text-white bg-success" style="width: 18rem;">
+                                <div class="card-body">
+                                    <h5 class="card-title">TOTAL HT</h5>
+                                    <p class="card-text"> XXX € </p>
+
+                                    <h5 class="card-title">TAXES</h5>
+                                    <p class="card-text"> XXX €</p>
+                                    
+                                    <h5 class="card-title">TOTAL TTC</h5>
+                                    <p class="card-text"> XXX € </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="container text-left mt-5 font-italic">
+                    Devis gratuit </br>
+                    Les prix TTC sont établis sur la base de TVA en vigueur a la date de remise de l'offre.</br>
+                    Devis valable durant 30 jours apres sont éditions. </br>
+                </div>
+            </div>  
+        </div>
 {% endblock %}

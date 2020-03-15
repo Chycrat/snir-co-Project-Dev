@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Welcome!</title>
+        <title>Devis</title>
         <link rel="canonical" href="https://getbootstrap.com/docs/4.0/components/scrollspy/">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">  
     </head>
@@ -36,114 +36,143 @@
                 </ul>
             </div>
         </nav>
+        
+        <div class="container text-center mt-3 mb-3">
+            <button onclick="printDiv('devis')">Impression devis</button>
+        </div>
+        <div id="devis">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-auto mt-4">
+                        <img src = "http://madera-construction.fr/images/site/logo.png" alt="Madera LOGO" width = "50%">
+                    </div>
+                </div>  
+                
+                <div class="container-fluid">
+                    <div class="row">
+                        <!-- Adresse entreprise a gauche --> 
+                        <div class="col lg-3">
+                            <div class="card" style="width: 22rem;">
+                                <div class="card-body">
+                                    <p class="card-text"> MADERA </p>
+                                    <p class="card-text"> Rue Enzo Ferrari </p>
+                                    <p class="card-text"> 85000 La Roche sur Yon </p>
+                                    <p class="card-text"> 02 51 98 18 32 </p>
+                                    <p class="card-text"> contact@madera-construction.com </p>
+                                </div>
+                            </div>
+                        </div>
+                    
+                    
+                        <div class="col lg-6"></div>
+                        <!-- Adresse client -->
+                        <div class="col lg-3"> 
+                            <div class="card" style="width: 18rem;">
+                                <div class="card-body">
+                                    <h5 class="card-title">Adresse client</h5>
+                                    <p class="card-text">{{ madera_client.nom_client }} </p>
+                                    <p class="card-text">{{ madera_client.adresse_client }} </p>
+                                    <p class="card-text">{{ madera_client.telephone_client }} </p>
+                                    <p class="card-text">{{ madera_client.email_client }} </p>
+                                </div>
+                            </div>
+                        </div>
 
-
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-auto mt-4">
-                    <img src = "http://madera-construction.fr/images/site/logo.png" alt="Madera LOGO" width = "50%">
+                    </div>
                 </div>
             </div>  
-            
-            <div class="row">
-                <div class="col-md-3">
-                    <!-- Adresse entreprise a gauche --> 
-                    <div class="card" style="width: 22rem;">
-                        <div class="card-body">
-                            <p class="card-text"> MADERA </p>
-                            <p class="card-text"> Rue Enzo Ferrari </p>
-                            <p class="card-text"> 85000 La Roche sur Yon </p>
-                            <p class="card-text"> 02 51 98 18 32 </p>
-                            <p class="card-text"> contact@madera-construction.com </p>
-                        </div>
-                    </div>
-                   
-                </div>
+
                 
-                <div class="col-md-3"></div>
-                    <!-- Adresse client -->
-                    <div class="col-6"> 
-                        <div class="card" style="width: 18rem;">
-                            <div class="card-body">
-                                <h5 class="card-title">Adresse client</h5>
-                                <p class="card-text">{{ madera_client.nom_client }} </p>
-                                <p class="card-text">{{ madera_client.adresse_client }} </p>
-                                <p class="card-text">{{ madera_client.telephone_client }} </p>
-                                <p class="card-text">{{ madera_client.email_client }} </p>
+                    <!-- Nom du projet / plan  -->
+                    <div class="container mt-5">
+                        <h3 class="text-center"> Devis : {{ madera_devi.code_devis }} </h3>
+                        <h3 class="text-center"> Plan : {{ madera_plan.id }} </h3>
+                        <h3 class="text-center"> Projet : {{ madera_rojet.nom_projet }} </h3>
+                    </div>
+
+                    <div class="container">
+                    <!-- Affichage sol / coupe / toit -->
+                    <table class="table mt-5 table-sm">
+                        <thead class="" style="background-color: #28a745!important; color: black;">
+                            <tr>
+                                <th>Items</th>
+                                <th>Descriptif</th>
+                                <th>Prix unitaire HT €</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="border border-success"> Coupe : {{ data.coupe.nom_coupe }}</td> 
+                                <td class="border border-success">L {{ data.coupe.longueur_coupe }} * l {{ data.coupe.largeur_coupe }}</td>
+                                <td class="border border-success"></td> 
+                            </tr>
+                            <tr>
+                                <td class="border border-success">Sol : {{ data.sol.nom_sol }}</td> 
+                                <td class="border border-success"></td>
+                                <td class="border border-success">{{ data.sol.prix_ht_sol }}</td> 
+                            </tr>
+                            <tr>
+                                <td class="border border-success">Toit : {{ data.toit.nom_toit }}</td> 
+                                <td class="border border-success"></td>
+                                <td class="border border-success">{{ data.toit.prix_ht_toit }}</td> 
+                            </tr>
+                            <tr>
+                                <td class="border border-success">{{ madera_module.nom_module }}</td>
+                                <td class="border border-success">Gamme : {{ madera_module.gamme }}</td>
+                                <td class="border border-success">{{ madera_module.prix_ht_module }}</td>
+                            </tr>
+        
+        
+                            <!-- Liste des modules + prix  -->
+
+                            
+                            
+                        </tbody>
+                    </table>
+                </div>
+                    <!-- Sommes + prix  -->
+                <div class="container">
+                    <div class="row">
+                        <div class="col lg-3"></div>
+                        <div class="col lg-6"></div>
+                        <div class="col lg-3">
+                            <div class="card text-white bg-success" style="width: 18rem;">
+                                <div class="card-body">
+                                    <h5 class="card-title">TOTAL HT</h5>
+                                    <p class="card-text"> XXX € </p>
+
+                                    <h5 class="card-title">TAXES</h5>
+                                    <p class="card-text"> XXX €</p>
+                                    
+                                    <h5 class="card-title">TOTAL TTC</h5>
+                                    <p class="card-text"> XXX € </p>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="container-fluid">
-                <!-- Nom du projet / plan  -->
-                <div class="container_fluid mt-5">
-                    <h3 class="text-center"> Devis : {{ madera_devi.code_devis }} </h3>
-                    <h3 class="text-center"> Plan : {{ madera_plan.id }} </h3>
-                    <h3 class="text-center"> Projet : {{ madera_rojet.nom_projet }} </h3>
+                <div class="container text-left mt-5 font-italic">
+                    Devis gratuit </br>
+                    Les prix TTC sont établis sur la base de TVA en vigueur a la date de remise de l'offre.</br>
+                    Devis valable durant 30 jours apres sont éditions. </br>
                 </div>
-                <!-- Affichage sol / coupe / toit -->
-                <table class="table mt-5 table-sm">
-                    <thead class="" style="background-color: #28a745!important; color: white;">
-                        <tr>
-                            <th>Items</th>
-                            <th>Descriptif</th>
-                            <th>Prix unitaire HT €</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="border border-success"> Coupe : {{ data.coupe.nom_coupe }}</td> 
-                            <td class="border border-success">L {{ data.coupe.longueur_coupe }} * l {{ data.coupe.largeur_coupe }}</td>
-                            <td class="border border-success"></td> 
-                        </tr>
-                        <tr>
-                            <td class="border border-success">Sol : {{ data.sol.nom_sol }}</td> 
-                            <td class="border border-success"></td>
-                            <td class="border border-success">{{ data.sol.prix_ht_sol }}</td> 
-                        </tr>
-                        <tr>
-                            <td class="border border-success">Toit : {{ data.toit.nom_toit }}</td> 
-                            <td class="border border-success"></td>
-                            <td class="border border-success">{{ data.toit.prix_ht_toit }}</td> 
-                        </tr>
-                        <tr>
-                            <td class="border border-success">{{ madera_module.nom_module }}</td>
-                            <td class="border border-success">Gamme : {{ madera_module.gamme }}</td>
-                            <td class="border border-success">{{ madera_module.prix_ht_module }}</td>
-                        </tr>
-    
-    
-                        <!-- Liste des modules + prix  -->
-
-                        
-                        
-                    </tbody>
-                </table>
-            </div>
-                <!-- Sommes + prix  -->
-            <div class="container-fluid">
-                <div class="float-right">
-                    <div class="card text-white bg-success" style="width: 18rem;">
-                        <div class="card-body">
-                            <h5 class="card-title">TOTAL HT</h5>
-                            <p class="card-text"> XXX € </p>
-
-                            <h5 class="card-title">TAXES</h5>
-                            <p class="card-text"> XXX €</p>
-                            
-                            <h5 class="card-title">TOTAL TTC</h5>
-                            <p class="card-text"> XXX € </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>   
-    
-        <!-- Bouton suppression et validation du devis -->
-
-
-
+            </div>  
+        </div>
+        
     </body>
 </html>
+
+
+<script>
+    function printDiv(divName){
+        var printContents = document.getElementById(divName).innerHTML;
+        var originalContents = document.body.innerHTML;
+
+        document.body.innerHTML = printContents;
+
+        window.print();
+
+        document.body.innerHTML = originalContents;
+
+    }
+</script>
