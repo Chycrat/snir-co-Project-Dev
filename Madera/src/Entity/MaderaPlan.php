@@ -233,13 +233,6 @@ class MaderaPlan
         return $this->maderaModules;
     }
 
-    public function getDevisOfPlan(){
-
-        return $this->getDoctrine()
-            ->getRepository(MaderaDevis::class)
-            ->findBy('plan_devis_id', $this->getId());
-    }
-
     public function __toString()
     {
         return $this->getMaderaProjet()->getNomProjet().' '.$this->getId();

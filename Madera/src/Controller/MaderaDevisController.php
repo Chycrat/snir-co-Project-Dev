@@ -40,6 +40,26 @@ class MaderaDevisController extends AbstractController
     }
 
     /**
+     * @Route("/edit/{id}/plan", name="madera_devis_edit", methods={"GET","POST"})
+     */
+    public function edit(Request $request, $id): Response
+    {
+        $maderaDevis = new MaderaDevis();
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $maderaDevis = $this->generateDevis($id);
+        //FAIRE LE NOUVEAU DEVIS EN AUTO
+
+        $entityManager->persist($maderaDevis);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('madera_devis_show', [
+            'id' => $maderaDevis,
+            'idPlan' => $id
+        ]);
+    }
+
+    /**
      * @Route("{id}/plan/{idPlan}", name="madera_devis_show", methods={"GET"})
      */
     public function show(MaderaDevis $maderaDevis,  $idPlan): Response

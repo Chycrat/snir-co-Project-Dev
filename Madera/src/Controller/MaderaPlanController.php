@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\MaderaDevis;
 use App\Entity\MaderaPlan;
 use App\Entity\MaderaProjet;
 use App\Form\MaderaPlanType;
@@ -33,8 +34,15 @@ class MaderaPlanController extends AbstractController
     public function indexParProjet($id, MaderaPlanRepository $maderaPlanRepository): Response
     {
         $plans = $maderaPlanRepository->findByProjetId($id);
+        $planArray = array();
+        foreach ($plans as $plan){
+            array_push($planArray, array(
+                'plan' => $plan,
+                'devis' => $this->getDevisOfPlan($plan)
+            ));
+        }
         return $this->render('madera_plan/index.html.twig', [
-            'madera_plans' => $plans,
+            'madera_plans' => $planArray,
             'projet_id' => $id
         ]);
     }
@@ -75,7 +83,8 @@ class MaderaPlanController extends AbstractController
     {
         return $this->render('madera_plan/show.html.twig', [
             'madera_plan' => $maderaPlan,
-            'projet_id' => $idProjet
+            'projet_id' => $idProjet,
+            'plan_devis' => $this->getDevisOfPlan($maderaPlan)
         ]);
     }
 
@@ -114,4 +123,12 @@ class MaderaPlanController extends AbstractController
 
         return $this->redirectToRoute('madera_plan_index');
     }
+
+    public function getDevisOfPlan(MaderaPlan $plan){
+
+        return $this->getDoctrine()
+            ->getRepository(MaderaDevis::class)
+            ->findBy('plan_devis_id', $plan->getId());
+    }
+
 }
