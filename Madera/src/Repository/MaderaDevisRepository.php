@@ -22,19 +22,18 @@ class MaderaDevisRepository extends ServiceEntityRepository
     // /**
     //  * @return MaderaDevis[] Returns an array of MaderaDevis objects
     //  */
-    /*
-    public function findByExampleField($value)
+
+    public function findByPlanId($value)
     {
         return $this->createQueryBuilder('m')
-            ->andWhere('m.exampleField = :val')
+            ->andWhere('m.plan_devis = :val')
             ->setParameter('val', $value)
-            ->orderBy('m.id', 'ASC')
-            ->setMaxResults(10)
+            ->setMaxResults(1)
             ->getQuery()
             ->getResult()
         ;
     }
-    */
+
 
     /*
     public function findOneBySomeField($value): ?MaderaDevis
