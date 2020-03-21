@@ -90,7 +90,7 @@ class MaderaPlanController extends AbstractController
             $maderaPlan->setDateDerniereModification(new DateTime());
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('madera_plan_index', array('id'=>$idProjet));
+            return $this->redirectToRoute('madera_plan_projet', array('id'=>$idProjet));
         }
 
         return $this->render('madera_plan/edit.html.twig', [
