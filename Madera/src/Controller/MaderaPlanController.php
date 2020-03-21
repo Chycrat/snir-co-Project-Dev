@@ -127,7 +127,7 @@ class MaderaPlanController extends AbstractController
     public function getDevisOfPlan(MaderaPlan $plan){
         return $this->getDoctrine()
             ->getRepository(MaderaDevis::class)
-            ->findBy(array('plan_devis_id' => $plan->getId()))[0];
+            ->findByPlanId($plan->getId());
     }
 
 }
