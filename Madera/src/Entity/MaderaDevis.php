@@ -27,7 +27,7 @@ class MaderaDevis
     private $date_devis;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="date", nullable=true)
      */
     private $date_validation;
 
@@ -91,7 +91,7 @@ class MaderaDevis
         return $this->date_validation;
     }
 
-    public function setDateValidation(\DateTimeInterface $date_validation): self
+    public function setDateValidation($date_validation): self
     {
         $this->date_validation = $date_validation;
 
