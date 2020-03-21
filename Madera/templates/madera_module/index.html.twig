@@ -3,38 +3,39 @@
 {% block title %}MaderaModule index{% endblock %}
 
 {% block body %}
-    <h1>MaderaModule index</h1>
+    <main class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content" role="main">
+        <div class="row">
+                <h4 class="highlighter-rouge">Modules <button type="button" class="btn btn-success" onclick="document.location.href='/madera/module/new';">Nouveau module</button></h4> 
+        </div>
+    </main>
 
-    <table class="table">
-        <thead>
+    <div class="container-fluid">
+        <table class="table">
+            <thead class="thead-dark">
             <tr>
                 <th>Nom module</th>
                 <th>Prix ht module</th>
                 <th>Nb composant module</th>
-                <th>Gamme module</th>
                 <th>actions</th>
             </tr>
-        </thead>
-        <tbody>
-        {% for madera_module in madera_modules %}
-            <tr>
-                <td>{{ madera_module.nomModule }}</td>
-                <td>{{ madera_module.prixHtModule }}</td>
-                <td>{{ madera_module.quantiteRestanteModule }}</td>
-                <td>{{ madera_module.nbComposantModule }}</td>
-                <td>{{ madera_module.gammeModule }}</td>
-                <td>
-                    <a href="{{ path('madera_module_show', {'id': madera_module.id}) }}">show</a>
-                    <a href="{{ path('madera_module_edit', {'id': madera_module.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="14">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('madera_module_new') }}">Create new</a>
+            </thead>
+            <tbody>
+            {% for madera_module in madera_modules %}
+                <tr>
+                    <td>{{ madera_module.nomModule }}</td>
+                    <td>{{ madera_module.prixHtModule }}</td>
+                    <td>{{ madera_module.quantiteRestanteModule }}</td>
+                    <td>
+                        <a class="btn btn-success" href="{{ path('madera_module_show', {'id': madera_module.id}) }}">show</a>
+                        <a class="btn btn-success" href="{{ path('madera_module_edit', {'id': madera_module.id}) }}">edit</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="14">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
 {% endblock %}

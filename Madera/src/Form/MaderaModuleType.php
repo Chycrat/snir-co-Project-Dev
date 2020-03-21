@@ -13,11 +13,8 @@ class MaderaModuleType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('id_module')
             ->add('nom_module')
             ->add('prix_ht_module')
-            ->add('nb_composant_module')
-            ->add('gamme_module')
             ->add('composants')
         ;
     }
