@@ -34,7 +34,7 @@ class MaderaDevisController extends AbstractController
         $entityManager->flush();
 
         return $this->redirectToRoute('madera_devis_show', [
-            'madera_devi' => $maderaDevis,
+            'id' => $maderaDevis,
             'idPlan' => $id
         ]);
     }
@@ -107,7 +107,7 @@ class MaderaDevisController extends AbstractController
         $margeCommercial = 0.10;
         $margeEntreprise = 0.10;
 
-        $devis->setCodeDevis($MaderaPlan->getDateCreation().''.$MaderaPlan->getId());
+        $devis->setCodeDevis($MaderaPlan->getDateCreation()->format('dmY').''.$MaderaPlan->getId());
         $devis->setMargeCommerciauxDevis($margeCommercial);
         $devis->setMargeEntrepriseDevis($margeEntreprise);
         $devis->setPlanDevis($MaderaPlan);
