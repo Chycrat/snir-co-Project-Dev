@@ -102,7 +102,7 @@ class MaderaDevisController extends AbstractController
             $prixHt += $module->getPrixHtModule();
         }
 
-        $prixHt = $sol->getPrixHtSol() + $toit->getPrixHtToit();
+        $prixHt += $sol->getPrixHtSol() + $toit->getPrixHtToit();
         $prixHt *= $gamme->getPourcentagePrix()/100;
         $margeCommercial = 0.10;
         $margeEntreprise = 0.10;
