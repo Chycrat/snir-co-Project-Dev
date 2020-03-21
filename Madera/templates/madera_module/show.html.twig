@@ -3,36 +3,31 @@
 {% block title %}MaderaModule{% endblock %}
 
 {% block body %}
-    <h1>MaderaModule</h1>
+    <div class="container mt-5" margin-top="15dp">
+        <h1><span class="label label-default">Client</span></h1>
+        <table class="table">
+            <tbody>
+                <tr>
+                    <th>Nom module</th>
+                    <td>{{ madera_module.nomModule }}</td>
+                </tr>
+                <tr>
+                    <th>Prix ht module</th>
+                    <td>{{ madera_module.prixHtModule }}</td>
+                </tr>
+                <tr>
+                    <th>Quantite restante module</th>
+                    <td>{{ madera_module.quantiteRestanteModule }}</td>
+                </tr>
+            </tbody>
+        </table>
+        <a class="btn btn-success" href="{{ path('madera_module_index') }}">back to list</a>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Nom module</th>
-                <td>{{ madera_module.nomModule }}</td>
-            </tr>
-            <tr>
-                <th>Prix ht module</th>
-                <td>{{ madera_module.prixHtModule }}</td>
-            </tr>
-            <tr>
-                <th>Quantite restante module</th>
-                <td>{{ madera_module.quantiteRestanteModule }}</td>
-            </tr>
-            <tr>
-                <th>Nb composant module</th>
-                <td>{{ madera_module.nbComposantModule }}</td>
-            </tr>
-            <tr>
-                <th>Gamme module</th>
-                <td>{{ madera_module.gammeModule }}</td>
-            </tr>
-        </tbody>
-    </table>
+        <a class="btn btn-success" href="{{ path('madera_module_edit', {'id': madera_module.id}) }}">edit</a> 
+        {{ include('madera_module/_delete_form.html.twig') }} 
+    </div>
 
-    <a href="{{ path('madera_module_index') }}">back to list</a>
+    
 
-    <a href="{{ path('madera_module_edit', {'id': madera_module.id}) }}">edit</a>
-
-    {{ include('madera_module/_delete_form.html.twig') }}
+    
 {% endblock %}
