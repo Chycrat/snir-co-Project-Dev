@@ -20,6 +20,7 @@ class MaderaPlanType extends AbstractType
             ->add('maderaSol')
             ->add('maderaProjet')
             ->add('maderaGamme')
+            ->add('maderaModules')
         ;
     }
 
