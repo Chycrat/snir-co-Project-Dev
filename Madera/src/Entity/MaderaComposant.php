@@ -147,6 +147,6 @@ class MaderaComposant
     }
     public function __toString()
     {
-        return $this->getNatureComposant();
+        return $this->getNomComposant();
     }
 }
