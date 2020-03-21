@@ -17,6 +17,7 @@
                     <th>Longueur plan</th>
                     <th>Prix total ht plan</th>
                     <th>Prix total ttc plan</th>
+                    <th>etat devis</th>
                     <th>actions</th>
                 </tr>
             </thead>
@@ -27,6 +28,17 @@
                     <td>{{ madera_plan.longueurPlan }}</td>
                     <td>{{ madera_plan.prixTotalHtPlan }}</td>
                     <td>{{ madera_plan.prixTotalTtcPlan }}</td>
+                    <td>
+                        {% if (madera_plan.getDevisOfPlan()) %}
+                            {% if(madera_plan.getDevisOfPlan().getDateValidation() != null) %}
+                                VALIDE
+                            {% else %}
+                                EN ATTENTE VALIDATION
+                            {% endif %}
+                        {% else %}
+                            PAS DE DEVIS
+                        {% endif %}
+                        
                     <td>
                         <a class="btn btn-success" href="{{ path('madera_devis_new', {'id': madera_plan.id}) }}">devis</a>
                         <a class="btn btn-success" href="{{ path('madera_plan_show', {'id': madera_plan.id, 'idProjet' : projet_id}) }}">show</a>
