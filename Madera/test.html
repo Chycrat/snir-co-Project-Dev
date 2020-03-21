@@ -1,11 +1,43 @@
-{% extends 'base.html.twig' %}
-
-{% block title %}Devis{% endblock %}
-
-{% block body %}
-
-            
-    <div class="container text-center mt-3 mb-3">
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Devis</title>
+        <link rel="canonical" href="https://getbootstrap.com/docs/4.0/components/scrollspy/">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">  
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <img src = "http://madera-construction.fr/images/site/logo.png" alt="Madera LOGO" width = "10%">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="/madera/client">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                        Clients
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link" href="/madera/projet">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                        Projets 
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+                        Stocks
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        
+        <div class="container text-center mt-3 mb-3">
             <button onclick="printDiv('devis')">Impression devis</button>
         </div>
         <div id="devis">
@@ -38,10 +70,10 @@
                             <div class="card" style="width: 18rem;">
                                 <div class="card-body">
                                     <h5 class="card-title">Adresse client</h5>
-                                    <p class="card-text">{{ client.nom_client }} </p>
-                                    <p class="card-text">{{ client.adresse_client }} </p>
-                                    <p class="card-text">{{ client.telephone_client }} </p>
-                                    <p class="card-text">{{ client.email_client }} </p>
+                                    <p class="card-text">{{ madera_client.nom_client }} </p>
+                                    <p class="card-text">{{ madera_client.adresse_client }} </p>
+                                    <p class="card-text">{{ madera_client.telephone_client }} </p>
+                                    <p class="card-text">{{ madera_client.email_client }} </p>
                                 </div>
                             </div>
                         </div>
@@ -53,8 +85,8 @@
                 
                     <!-- Nom du projet / plan  -->
                     <div class="container mt-5">
-                        <h3 class="text-center"> Devis : {{ devis.code_devis }} </h3>
-                        <h3 class="text-center"> Plan : {{ plan.id }} </h3>
+                        <h3 class="text-center"> Devis : {{ madera_devi.code_devis }} </h3>
+                        <h3 class="text-center"> Plan : {{ madera_plan.id }} </h3>
                         <h3 class="text-center"> Projet : {{ madera_rojet.nom_projet }} </h3>
                     </div>
 
@@ -70,21 +102,20 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td class="border border-success"> Coupe : {{ coupe.nom_coupe }}</td> 
-                                <td class="border border-success">L {{ coupe.longueur_coupe }} * l {{ coupe.largeur_coupe }}</td>
+                                <td class="border border-success"> Coupe : {{ data.coupe.nom_coupe }}</td> 
+                                <td class="border border-success">L {{ data.coupe.longueur_coupe }} * l {{ data.coupe.largeur_coupe }}</td>
                                 <td class="border border-success"></td> 
                             </tr>
                             <tr>
-                                <td class="border border-success">Sol : {{ plan.nom_sol }}</td> 
+                                <td class="border border-success">Sol : {{ data.sol.nom_sol }}</td> 
                                 <td class="border border-success"></td>
-                                <td class="border border-success">{{ plan.prix_ht_sol }}</td> 
+                                <td class="border border-success">{{ data.sol.prix_ht_sol }}</td> 
                             </tr>
                             <tr>
-                                <td class="border border-success">Toit : {{ plan.nom_toit }}</td> 
+                                <td class="border border-success">Toit : {{ data.toit.nom_toit }}</td> 
                                 <td class="border border-success"></td>
-                                <td class="border border-success">{{ plan.prix_ht_toit }}</td> 
+                                <td class="border border-success">{{ data.toit.prix_ht_toit }}</td> 
                             </tr>
-                            
                             <tr>
                                 <td class="border border-success">{{ madera_module.nom_module }}</td>
                                 <td class="border border-success">Gamme : {{ madera_module.gamme }}</td>
@@ -127,4 +158,21 @@
                 </div>
             </div>  
         </div>
-{% endblock %}
+        
+    </body>
+</html>
+
+
+<script>
+    function printDiv(divName){
+        var printContents = document.getElementById(divName).innerHTML;
+        var originalContents = document.body.innerHTML;
+
+        document.body.innerHTML = printContents;
+
+        window.print();
+
+        document.body.innerHTML = originalContents;
+
+    }
+</script>
