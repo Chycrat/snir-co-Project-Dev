@@ -33,11 +33,11 @@
                             {% if(devis.getDateValidation() != null) %}
                                 Accepté
                             {% else %}
-                                En attente
+                                <a class="btn btn-success" href="{{ path('madera_devis_show', {'id': devis.getId(), 'idPlan' : madera_plan.plan.id}) }}">En attente</a>
                             {% endif %}
                             {{ devis.getDateValidation() }}
                         {% else %}
-                            <a class="btn btn-success" href="{{ path('madera_devis_new', {'id': madera_plan.plan.id}) }}">généré le devis</a>
+                            <a class="btn btn-success" href="{{ path('madera_devis_new', {'id': madera_plan.plan.id, 'idProjet' : projet_id}) }}">généré le devis</a>
                         {% endfor %}
                     <td>
                         <a class="btn btn-success" href="{{ path('madera_plan_show', {'id': madera_plan.plan.id, 'idProjet' : projet_id}) }}">show</a>

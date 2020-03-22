@@ -41,7 +41,6 @@ class MaderaPlanController extends AbstractController
                 'devis' => $this->getDevisOfPlan($plan)
             ));
         }
-        dump($planArray);
         return $this->render('madera_plan/index.html.twig', [
             'madera_plans' => $planArray,
             'projet_id' => $id

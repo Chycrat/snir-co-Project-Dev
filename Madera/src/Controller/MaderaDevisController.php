@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Entity\MaderaClient;
+use App\Entity\MaderaCoupe;
 use App\Entity\MaderaDevis;
 use App\Entity\MaderaPlan;
 use App\Entity\MaderaSol;
@@ -20,9 +22,9 @@ class MaderaDevisController extends AbstractController
 {
 
     /**
-     * @Route("/new/{id}/plan", name="madera_devis_new", methods={"GET","POST"})
+     * @Route("/new/{id}/plan/{idProjet}/projet", name="madera_devis_new", methods={"GET","POST"})
      */
-    public function new(Request $request, $id): Response
+    public function new(Request $request, $id, $idProjet): Response
     {
         $maderaDevis = new MaderaDevis();
 
@@ -33,9 +35,8 @@ class MaderaDevisController extends AbstractController
         $entityManager->persist($maderaDevis);
         $entityManager->flush();
 
-        return $this->redirectToRoute('madera_devis_show', [
-            'id' => $maderaDevis,
-            'idPlan' => $id
+        return $this->redirectToRoute('madera_plan_projet', [
+            'id' => $idProjet
         ]);
     }
 
@@ -62,15 +63,22 @@ class MaderaDevisController extends AbstractController
     /**
      * @Route("{id}/plan/{idPlan}", name="madera_devis_show", methods={"GET"})
      */
-    public function show(MaderaDevis $maderaDevis,  $idPlan): Response
+    public function show($id,  $idPlan): Response
     {
+        $maderaDevis = $this->getDoctrine()
+            ->getRepository(MaderaDevis::class)
+            ->find($id);
         $MaderaPlan = $this->getDoctrine()
             ->getRepository(MaderaPlan::class)
-            ->find('id',$idPlan);
-
-        $coupe = $MaderaPlan->getMaderaCoupe();
-        $client = $MaderaPlan->getMaderaProjet()->getMaderaClient();
-
+            ->find($idPlan);
+        $client = $this->getDoctrine()
+            ->getRepository(MaderaClient::class)
+            ->find( $MaderaPlan->getMaderaProjet()->getMaderaClient()->getId());
+        $coupe = $this->getDoctrine()
+            ->getRepository(MaderaCoupe::class)
+            ->find( $MaderaPlan->getMaderaCoupe()->getId());
+        dump($client);
+        dump($coupe);
         return $this->render('madera_devis/show.html.twig', [
             'devis' => $maderaDevis,
             'client' => $client,
