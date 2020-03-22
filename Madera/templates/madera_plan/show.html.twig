@@ -23,6 +23,18 @@
                 <th>Prix total ttc plan</th>
                 <td>{{ madera_plan.prixTotalTtcPlan }}</td>
             </tr>
+            <tr>
+                <th>Prix total ttc plan</th>
+                {% if (plan_devis) %}
+                    {% if(plan_devis.date_validation != null) %}
+                        VALIDE
+                    {% else %}
+                        EN ATTENTE VALIDATION
+                    {% endif %}
+                {% else %}
+                    PAS DE DEVIS
+                {% endif %}
+            </tr>
         </tbody>
     </table>
 
