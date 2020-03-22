@@ -41,6 +41,7 @@ class MaderaPlanController extends AbstractController
                 'devis' => $this->getDevisOfPlan($plan)
             ));
         }
+        dump($planArray);
         return $this->render('madera_plan/index.html.twig', [
             'madera_plans' => $planArray,
             'projet_id' => $id
@@ -68,7 +69,6 @@ class MaderaPlanController extends AbstractController
 
             return $this->redirectToRoute('madera_plan_projet', array('id'=>$id));
         }
-        dump($id);
         return $this->render('madera_plan/new.html.twig', [
             'madera_plan' => $maderaPlan,
             'projet_id' => $id,

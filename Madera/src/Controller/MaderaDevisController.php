@@ -64,10 +64,6 @@ class MaderaDevisController extends AbstractController
      */
     public function show(MaderaDevis $maderaDevis,  $idPlan): Response
     {
-        $maderaDevi = $this->getDoctrine()
-            ->getRepository(MaderaDevis::class)
-            ->findBy('plan_devis_id', $idPlan);
-
         $MaderaPlan = $this->getDoctrine()
             ->getRepository(MaderaPlan::class)
             ->find('id',$idPlan);
@@ -76,7 +72,7 @@ class MaderaDevisController extends AbstractController
         $client = $MaderaPlan->getMaderaProjet()->getMaderaClient();
 
         return $this->render('madera_devis/show.html.twig', [
-            'devis' => $maderaDevi,
+            'devis' => $maderaDevis,
             'client' => $client,
             'plan' => $MaderaPlan,
             'coupe' => $coupe,
