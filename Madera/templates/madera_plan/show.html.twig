@@ -3,44 +3,47 @@
 {% block title %}MaderaPlan{% endblock %}
 
 {% block body %}
-    <h1>Plan</h1>
+    <div class="container mt-5" margin-top="15dp">
+        <h1><span class="label label-default">Plan</span></h1>
+        <table class="table">
+            <tbody>
+                <tr>
+                    <th>Largeur plan</th>
+                    <td>{{ madera_plan.largeurPlan }}</td>
+                </tr>
+                <tr>
+                    <th>Longueur plan</th>
+                    <td>{{ madera_plan.longueurPlan }}</td>
+                </tr>
+                <tr>
+                    <th>Prix total ht plan</th>
+                    <td>{{ madera_plan.prixTotalHtPlan }}</td>
+                </tr>
+                <tr>
+                    <th>Prix total ttc plan</th>
+                    <td>{{ madera_plan.prixTotalTtcPlan }}</td>
+                </tr>
+                <tr>
+                    <th>Etat devis</th>
+                    <td>
+                        {% for devis in plan_devis %}
+                            {% if(devis.getDateValidation() != null) %}
+                                Accepté
+                            {% else %}
+                                En attente
+                            {% endif %}
+                            {{ devis.getDateValidation() }}
+                        {% else %}
+                                    <a class="btn btn-success" href="{{ path('madera_devis_new', {'id': madera_plan.plan.id}) }}">généré le devis</a>
+                        {% endfor %}
+                    <td>
+                </tr>
+            </tbody>
+        </table>
 
-    <table class="table">
-        <tbody>
-           <tr>
-                <th>Largeur plan</th>
-                <td>{{ madera_plan.largeurPlan }}</td>
-            </tr>
-            <tr>
-                <th>Longueur plan</th>
-                <td>{{ madera_plan.longueurPlan }}</td>
-            </tr>
-            <tr>
-                <th>Prix total ht plan</th>
-                <td>{{ madera_plan.prixTotalHtPlan }}</td>
-            </tr>
-            <tr>
-                <th>Prix total ttc plan</th>
-                <td>{{ madera_plan.prixTotalTtcPlan }}</td>
-            </tr>
-            <tr>
-                <th>Prix total ttc plan</th>
-                {% if (plan_devis) %}
-                    {% if(plan_devis.date_validation != null) %}
-                        VALIDE
-                    {% else %}
-                        EN ATTENTE VALIDATION
-                    {% endif %}
-                {% else %}
-                    PAS DE DEVIS
-                {% endif %}
-            </tr>
-        </tbody>
-    </table>
+        <a class="btn btn-success" href="{{ path('madera_plan_projet', {'id': projet_id}) }}">back to list</a>
+        <a class="btn btn-success" href="{{ path('madera_plan_edit', {'id': madera_plan.id,'idProjet': projet_id}) }}">edit</a>
+        {{ include('madera_plan/_delete_form.html.twig') }}
 
-    <a class="btn btn-success" href="{{ path('madera_plan_projet', {'id': projet_id}) }}">back to list</a>
-
-    <a class="btn btn-success" href="{{ path('madera_plan_edit', {'id': madera_plan.id,'idProjet': projet_id}) }}">edit</a>
-
-    {{ include('madera_plan/_delete_form.html.twig') }}
+    </div>
 {% endblock %}
