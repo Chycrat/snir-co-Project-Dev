@@ -79,6 +79,14 @@ class MaderaPlan
      */
     private $maderaModules;
 
+    /**
+     * @param mixed $maderaModules
+     */
+    public function setMaderaModules($maderaModules): void
+    {
+        $this->maderaModules = $maderaModules;
+    }
+
     public function getId(): ?int
     {
         return $this->id;
