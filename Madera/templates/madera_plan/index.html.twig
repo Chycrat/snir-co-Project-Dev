@@ -28,7 +28,7 @@
                     <td>{{ madera_plan.plan.longueurPlan }}</td>
                     <td>{{ madera_plan.plan.prixTotalHtPlan }}</td>
                     <td>{{ madera_plan.plan.prixTotalTtcPlan }}</td>
-                    <td class="text-center">
+                    <td>
                         {% for devis in madera_plan.devis %}
                             {% if(devis.getDateValidation() != null) %}
                                 Accepté
