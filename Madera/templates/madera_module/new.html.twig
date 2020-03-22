@@ -3,9 +3,11 @@
 {% block title %}New MaderaModule{% endblock %}
 
 {% block body %}
-    <h1>Create new MaderaModule</h1>
+    <div class="container mt-5" margin-top="15dp">
+        <h1>Nouveau Module</h1>
 
-    {{ include('madera_module/_form.html.twig') }}
+        {{ include('madera_module/_form.html.twig') }}
 
-    <a href="{{ path('madera_module_index') }}">back to list</a>
+        <a class="btn btn-success" href="{{ path('madera_module_index') }}">back to list</a>
+    </div>
 {% endblock %}

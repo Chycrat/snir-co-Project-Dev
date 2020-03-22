@@ -24,25 +24,26 @@
             <tbody>
             {% for madera_plan in madera_plans %}
                 <tr>
-                    <td>{{ madera_plan.largeurPlan }}</td>
-                    <td>{{ madera_plan.longueurPlan }}</td>
-                    <td>{{ madera_plan.prixTotalHtPlan }}</td>
-                    <td>{{ madera_plan.prixTotalTtcPlan }}</td>
+                    <td>{{ madera_plan.plan.largeurPlan }}</td>
+                    <td>{{ madera_plan.plan.longueurPlan }}</td>
+                    <td>{{ madera_plan.plan.prixTotalHtPlan }}</td>
+                    <td>{{ madera_plan.plan.prixTotalTtcPlan }}</td>
                     <td>
-                        {% if (madera_plan.getDevisOfPlan()) %}
-                            {% if(madera_plan.getDevisOfPlan().getDateValidation() != null) %}
-                                VALIDE
+                        {# {% if (madera_plan.devis != null ) %}
+                            {% if(madera_plan.devis.date_validation != null) %}
+                                Accepté
                             {% else %}
-                                EN ATTENTE VALIDATION
+                                En attente
                             {% endif %}
                         {% else %}
-                            PAS DE DEVIS
-                        {% endif %}
+                            Brouillon
+                        {% endif %}  #}
                         
+                        {{ madera_plan.devis.date_validation }}
                     <td>
-                        <a class="btn btn-success" href="{{ path('madera_devis_new', {'id': madera_plan.id}) }}">devis</a>
-                        <a class="btn btn-success" href="{{ path('madera_plan_show', {'id': madera_plan.id, 'idProjet' : projet_id}) }}">show</a>
-                        <a class="btn btn-success" href="{{ path('madera_plan_edit', {'id': madera_plan.id, 'idProjet': projet_id}) }}">edit</a>
+                        <a class="btn btn-success" href="{{ path('madera_devis_new', {'id': madera_plan.plan.id}) }}">devis</a>
+                        <a class="btn btn-success" href="{{ path('madera_plan_show', {'id': madera_plan.plan.id, 'idProjet' : projet_id}) }}">show</a>
+                        <a class="btn btn-success" href="{{ path('madera_plan_edit', {'id': madera_plan.plan.id, 'idProjet': projet_id}) }}">edit</a>
                     </td>
                 </tr>
             {% else %}
