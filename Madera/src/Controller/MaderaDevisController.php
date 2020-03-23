@@ -6,10 +6,6 @@ use App\Entity\MaderaClient;
 use App\Entity\MaderaCoupe;
 use App\Entity\MaderaDevis;
 use App\Entity\MaderaPlan;
-use App\Entity\MaderaSol;
-use App\Entity\MaderaToit;
-use App\Form\MaderaDevisType;
-use App\Repository\MaderaDevisRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -61,7 +57,7 @@ class MaderaDevisController extends AbstractController
     }
 
     /**
-     * @Route("{id}/plan/{idPlan}", name="madera_devis_show", methods={"GET"})
+     * @Route("/{id}/plan/{idPlan}", name="madera_devis_show", methods={"GET"})
      */
     public function show($id,  $idPlan): Response
     {
@@ -71,20 +67,19 @@ class MaderaDevisController extends AbstractController
         $MaderaPlan = $this->getDoctrine()
             ->getRepository(MaderaPlan::class)
             ->find($idPlan);
-        $client = $this->getDoctrine()
-            ->getRepository(MaderaClient::class)
-            ->find( $MaderaPlan->getMaderaProjet()->getMaderaClient()->getId());
-        $coupe = $this->getDoctrine()
-            ->getRepository(MaderaCoupe::class)
-            ->find( $MaderaPlan->getMaderaCoupe()->getId());
+        $client = $MaderaPlan->getMaderaProjet()->getMaderaClient();
+        $coupe = $MaderaPlan->getMaderaCoupe();
+        $projet = $MaderaPlan->getMaderaProjet();
         dump($client);
         dump($coupe);
+        dump($projet);
         return $this->render('madera_devis/show.html.twig', [
             'devis' => $maderaDevis,
             'client' => $client,
             'plan' => $MaderaPlan,
             'coupe' => $coupe,
-            'idPlan' => $idPlan
+            'idPlan' => $idPlan,
+            'projet' => $projet
         ]);
     }
 
