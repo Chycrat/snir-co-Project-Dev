@@ -120,6 +120,6 @@ class MaderaCoupe
 
     public function __toString()
     {
-        return 'Sol :'.$this->getNomCoupe();
+        return $this->getNomCoupe();
     }
 }
