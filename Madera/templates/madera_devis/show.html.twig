@@ -38,10 +38,10 @@
                             <div class="card" style="width: 18rem;">
                                 <div class="card-body">
                                     <h5 class="card-title">Adresse client</h5>
-                                    <p class="card-text">{{ client.nom_client }} </p>
-                                    <p class="card-text">{{ client.adresse_client }} </p>
-                                    <p class="card-text">{{ client.telephone_client }} </p>
-                                    <p class="card-text">{{ client.email_client }} </p>
+                                    <p class="card-text">{{ client.getNomClient() }} </p>
+                                    <p class="card-text">{{ client.getAdresseClient() }} </p>
+                                    <p class="card-text">{{ client.getTelephoneClient() }} </p>
+                                    <p class="card-text">{{ client.getEmailClient() }} </p>
                                 </div>
                             </div>
                         </div>
@@ -53,9 +53,9 @@
                 
                     <!-- Nom du projet / plan  -->
                     <div class="container mt-5">
-                        <h3 class="text-center"> Devis : {{ devis.code_devis }} </h3>
-                        <h3 class="text-center"> Plan : {{ plan.id }} </h3>
-                        <h3 class="text-center"> Projet : {{ projet.nom_projet }} </h3>
+                        <h3 class="text-center"> Devis : {{ devis.getCodeDevis() }} </h3>
+                        <h3 class="text-center"> Plan : {{ plan.getId() }} </h3>
+                        <h3 class="text-center"> Projet : {{ projet.getNomProjet() }} </h3>
                     </div>
 
                     <div class="container">
@@ -70,27 +70,27 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td class="border border-success"> Coupe : {{ coupe.nom_coupe }}</td> 
-                                <td class="border border-success">L {{ coupe.longueur_coupe }} * l {{ coupe.largeur_coupe }}</td>
+                                <td class="border border-success"> Coupe : {{ coupe.getNomCoupe() }}</td>
+                                <td class="border border-success">L {{ coupe.getLongueurCoupe() }} * l {{ coupe.getLargeurCoupe() }}</td>
                                 <td class="border border-success"></td> 
                             </tr>
                             <tr>
-                                <td class="border border-success">Sol : {{ plan.nom_sol }}</td> 
+                                <td class="border border-success">Sol : {{ plan.getMaderaSol().getNomSol() }}</td>
                                 <td class="border border-success"></td>
-                                <td class="border border-success">{{ plan.prix_ht_sol }}</td> 
+                                <td class="border border-success">{{ plan.getMaderaSol().getPrixHtSol() }}</td>
                             </tr>
                             <tr>
-                                <td class="border border-success">Toit : {{ plan.nom_toit }}</td> 
+                                <td class="border border-success">Toit : {{ plan.getMaderaToit().getNomToit() }}</td>
                                 <td class="border border-success"></td>
-                                <td class="border border-success">{{ plan.prix_ht_toit }}</td> 
+                                <td class="border border-success">{{ plan.getMaderaToit().getPrixHtToit() }}</td>
                             </tr>
-
-                            <tr>
-                                <td class="border border-success">{{ madera_module.nom_module }}</td>
-                                <td class="border border-success">Gamme : {{ madera_module.gamme }}</td>
-                                <td class="border border-success">{{ madera_module.prix_ht_module }}</td>
-                            </tr>
-        
+                            {% for madera_module in modules %}
+                                <tr>
+                                    <td class="border border-success">{{ madera_module.nom_module }}</td>
+                                    <td class="border border-success">Gamme : {{ madera_module.gamme }}</td>
+                                    <td class="border border-success">{{ madera_module.prix_ht_module }}</td>
+                                </tr>
+                            {% endfor %}
         
                             <!-- Liste des modules + prix  -->
 
