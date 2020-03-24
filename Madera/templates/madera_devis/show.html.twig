@@ -70,6 +70,13 @@
                         </thead>
                         <tbody>
                             <tr>
+                                <td class="border border-success"> Gamme : {{ plan.getMaderaGamme.getGammeNom() }}</td>
+                                <td class="border border-success">Isolant {{ plan.getMaderaGamme.getTypeIsolant() }} 
+                                                                  Couverture {{ plan.getMaderaGamme.getTypeCouverture() }} 
+                                                                  Huisserie {{ plan.getMaderaGamme.getQualiteHuisserie() }}</td>
+                                <td class="border border-success"></td> 
+                            </tr>
+                            <tr>
                                 <td class="border border-success"> Coupe : {{ coupe.getNomCoupe() }}</td>
                                 <td class="border border-success">L {{ coupe.getLongueurCoupe() }} * l {{ coupe.getLargeurCoupe() }}</td>
                                 <td class="border border-success"></td> 
@@ -86,9 +93,9 @@
                             </tr>
                             {% for madera_module in modules %}
                                 <tr>
-                                    <td class="border border-success">{{ madera_module.nom_module }}</td>
-                                    <td class="border border-success">Gamme : {{ madera_module.gamme }}</td>
-                                    <td class="border border-success">{{ madera_module.prix_ht_module }}</td>
+                                    <td class="border border-success">{{ madera_module.getNomModule() }}</td>
+                                    <td class="border border-success"></td>
+                                    <td class="border border-success">{{ madera_module.getPrixHtModule() }}</td>
                                 </tr>
                             {% endfor %}
         
