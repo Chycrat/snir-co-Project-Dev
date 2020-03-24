@@ -84,13 +84,13 @@
                                 <td class="border border-success"></td>
                                 <td class="border border-success">{{ plan.getMaderaToit().getPrixHtToit() }}</td>
                             </tr>
-
-                            <tr>
-                                <td class="border border-success">{{ madera_module.nom_module }}</td>
-                                <td class="border border-success">Gamme : {{ madera_module.gamme }}</td>
-                                <td class="border border-success">{{ madera_module.prix_ht_module }}</td>
-                            </tr>
-        
+                            {% for madera_module in modules %}
+                                <tr>
+                                    <td class="border border-success">{{ madera_module.nom_module }}</td>
+                                    <td class="border border-success">Gamme : {{ madera_module.gamme }}</td>
+                                    <td class="border border-success">{{ madera_module.prix_ht_module }}</td>
+                                </tr>
+                            {% endfor %}
         
                             <!-- Liste des modules + prix  -->
 

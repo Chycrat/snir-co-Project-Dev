@@ -70,16 +70,17 @@ class MaderaDevisController extends AbstractController
         $client = $MaderaPlan->getMaderaProjet()->getMaderaClient();
         $coupe = $MaderaPlan->getMaderaCoupe();
         $projet = $MaderaPlan->getMaderaProjet();
-        dump($client);
-        dump($coupe);
-        dump($projet);
+
+        $modules = $MaderaPlan->getModules();
+
         return $this->render('madera_devis/show.html.twig', [
             'devis' => $maderaDevis,
             'client' => $client,
             'plan' => $MaderaPlan,
             'coupe' => $coupe,
             'idPlan' => $idPlan,
-            'projet' => $projet
+            'projet' => $projet,
+            'modules' => $modules
         ]);
     }
 
