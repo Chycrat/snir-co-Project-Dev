@@ -24,6 +24,11 @@ class MaderaModule
     private $nom_module;
 
     /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $description_module;
+
+    /**
      * @ORM\Column(type="integer")
      */
     private $prix_ht_module;
@@ -44,7 +49,7 @@ class MaderaModule
     private $composants;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\MaderaPlan", inversedBy="maderaModules")
+     * @ORM\ManyToMany(targetEntity="App\Entity\MaderaPlan", mappedBy="maderaModules")
      */
     private $plans;
 
@@ -104,6 +109,16 @@ class MaderaModule
         $this->nb_composant_module = $nb_composant_module;
 
         return $this;
+    }
+
+    public function getDescriptionModule()
+    {
+        return $this->description_module;
+    }
+
+    public function setDescriptionModule($description_module): void
+    {
+        $this->description_module = $description_module;
     }
 
     /**

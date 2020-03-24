@@ -75,7 +75,7 @@ class MaderaPlan
     private $maderaGamme;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\MaderaModule", mappedBy="plans")
+     * @ORM\ManyToMany(targetEntity="App\Entity\MaderaModule", inversedBy="plans")
      */
     private $maderaModules;
 
