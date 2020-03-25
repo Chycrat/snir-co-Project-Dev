@@ -70,32 +70,35 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td class="border border-success"> Gamme : {{ plan.getMaderaGamme.getGammeNom() }}</td>
-                                <td class="border border-success">Isolant {{ plan.getMaderaGamme.getTypeIsolant() }} 
-                                                                  Couverture {{ plan.getMaderaGamme.getTypeCouverture() }} 
-                                                                  Huisserie {{ plan.getMaderaGamme.getQualiteHuisserie() }}</td>
+                                <td class="border border-success"><b>Gamme</b></td>
+                                <td class="border border-success"><b>{{ plan.getMaderaGamme.getGammeNom() }}</b></td>
                                 <td class="border border-success"></td> 
                             </tr>
                             <tr>
-                                <td class="border border-success"> Coupe : {{ coupe.getNomCoupe() }}</td>
-                                <td class="border border-success">L {{ coupe.getLongueurCoupe() }} * l {{ coupe.getLargeurCoupe() }}</td>
+                                <td class="border border-success"><b>Coupe</b> </td>
+                                <td class="border border-success"><b>{{ coupe.getNomCoupe() }} | L {{ coupe.getLongueurCoupe() }} * l{{ coupe.getLargeurCoupe() }}</b></td>
                                 <td class="border border-success"></td> 
                             </tr>
                             <tr>
-                                <td class="border border-success">Sol : {{ plan.getMaderaSol().getNomSol() }}</td>
-                                <td class="border border-success"></td>
-                                <td class="border border-success">{{ plan.getMaderaSol().getPrixHtSol() }}</td>
+                                <td class="border border-success"><b>Sol</b </td>
+                                <td class="border border-success"><b>{{ plan.getMaderaSol().getNomSol() }}</b></td>
+                                <td class="border border-success"><b>{{ plan.getMaderaSol().getPrixHtSol() }}</b></td>
                             </tr>
                             <tr>
-                                <td class="border border-success">Toit : {{ plan.getMaderaToit().getNomToit() }}</td>
+                                <td class="border border-success"><b>Toit</b></td>
+                                <td class="border border-success"><b>{{ plan.getMaderaToit().getNomToit() }}<b></td>
+                                <td class="border border-success"><b>{{ plan.getMaderaToit().getPrixHtToit() }}</b></td>
+                            </tr>
+                            <tr>
+                                <td class="border border-success"><b>Modules</b></td>
                                 <td class="border border-success"></td>
-                                <td class="border border-success">{{ plan.getMaderaToit().getPrixHtToit() }}</td>
+                                <td class="border border-success"></td>
                             </tr>
                             {% for madera_module in modules %}
                                 <tr>
-                                    <td class="border border-success">{{ madera_module.getNomModule() }}</td>
-                                    <td class="border border-success"></td>
-                                    <td class="border border-success">{{ madera_module.getPrixHtModule() }}</td>
+                                    <td class="border border-success"><b>{{ madera_module.getNomModule() }}</b></td>
+                                    <td class="border border-success"><b>{{ madera_module.getDescriptionModule() }}</b></td>
+                                    <td class="border border-success"><b>{{ madera_module.getPrixHtModule() }}</b></td>
                                 </tr>
                             {% endfor %}
         
@@ -115,13 +118,13 @@
                             <div class="card text-white bg-success" style="width: 18rem;">
                                 <div class="card-body">
                                     <h5 class="card-title">TOTAL HT</h5>
-                                    <p class="card-text"> XXX € </p>
+                                    <p class="card-text"> {{ devis.MontantHtDevis() }} € </p>
 
                                     <h5 class="card-title">TAXES</h5>
-                                    <p class="card-text"> XXX €</p>
+                                    <p class="card-text"> {{  devis.getMontantTtcDevis() - devis.MontantHtDevis() }} €</p>
                                     
                                     <h5 class="card-title">TOTAL TTC</h5>
-                                    <p class="card-text"> XXX € </p>
+                                    <p class="card-text"> {{ devis.getMontantTtcDevis() }}€ </p>
                                 </div>
                             </div>
                         </div>
