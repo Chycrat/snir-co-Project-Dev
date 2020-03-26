@@ -122,10 +122,13 @@ class MaderaDevisController extends AbstractController
             $prixHt += $module->getPrixHtModule();
         }
 
+        dump($prixHt);
+
         $prixHt += $sol->getPrixHtSol() + $toit->getPrixHtToit();
         $prixHt *= $gamme->getPourcentagePrix()/100;
-        $margeCommercial = 0.10;
-        $margeEntreprise = 0.10;
+
+        $margeCommercial = 10;
+        $margeEntreprise = 10;
 
         $devis->setCodeDevis($MaderaPlan->getDateCreation()->format('dmY').''.$MaderaPlan->getId());
         $devis->setMargeCommerciauxDevis($margeCommercial);
@@ -133,7 +136,7 @@ class MaderaDevisController extends AbstractController
         $devis->setPlanDevis($MaderaPlan);
         $devis->setDateDevis(new \DateTime());
         $devis->setMontantHtDevis($prixHt);
-        $prixTTC = $devis->getMontantHtDevis()*1.20 + ($prixHt*$margeCommercial) + ($prixHt*$margeEntreprise);
+        $prixTTC = $devis->getMontantHtDevis()*1.20 + ($prixHt*$margeCommercial/100) + ($prixHt*$margeEntreprise/100);
         $devis->setMontantTtcDevis($prixTTC);
         $devis->setDateValidation(null);
 
