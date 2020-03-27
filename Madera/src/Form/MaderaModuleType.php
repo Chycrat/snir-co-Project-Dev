@@ -16,7 +16,9 @@ class MaderaModuleType extends AbstractType
             ->add('nom_module')
             ->add('description_module')
             ->add('prix_ht_module')
+            ->add('quantite_restante_module')
             ->add('composants')
+            ->add('nb_composant_module')
         ;
     }
 
