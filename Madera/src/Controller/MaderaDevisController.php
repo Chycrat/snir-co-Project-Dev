@@ -37,24 +37,20 @@ class MaderaDevisController extends AbstractController
     }
 
     /**
-     * @Route("/edit/{id}/plan", name="madera_devis_edit", methods={"GET","POST"})
+     * @Route("/edit/{id}/projet/{idProjet}", name="madera_devis_edit", methods={"GET","POST"})
      */
-    public function edit(Request $request, $id): Response
+    public function edit(Request $request, MaderaDevis $maderaDevis, $idProjet): Response
     {
-        $maderaDevis = new MaderaDevis();
-
         $entityManager = $this->getDoctrine()->getManager();
-        $maderaDevis = $this->generateDevis($id);
-        //FAIRE LE NOUVEAU DEVIS EN AUTO
-
+        $maderaDevis->setDateValidation(new \DateTime());
         $entityManager->persist($maderaDevis);
         $entityManager->flush();
 
-        return $this->redirectToRoute('madera_devis_show', [
-            'id' => $maderaDevis,
-            'idPlan' => $id
+        return $this->redirectToRoute('madera_plan_projet', [
+            'id' => $idProjet
         ]);
     }
+
 
     /**
      * @Route("/{id}/plan/{idPlan}", name="madera_devis_show", methods={"GET"})
@@ -98,7 +94,9 @@ class MaderaDevisController extends AbstractController
             ->getRepository(MaderaPlan::class)
             ->find($idPlan);
 
-        return $this->redirectToRoute('madera_plan_show', array('MaderPlan'=>$MaderaPlan));
+        $MaderaProjet = $MaderaPlan->getMaderaProjet();
+
+        return $this->redirectToRoute('madera_plan_projet', array('id'=>$MaderaProjet->getId()));
     }
 
     public function generateDevis($id){
