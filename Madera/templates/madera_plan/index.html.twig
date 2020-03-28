@@ -31,11 +31,12 @@
                         <td>{{ devis.montantTtcDevis }} €</td>
                         <td>
                             {% if(devis.getDateValidation() != null) %}
-                                Accepté
+                                <a class="btn btn-success" href="{{ path('madera_devis_show', {'id': devis.getId(), 'idPlan' : madera_plan.plan.id}) }}">Accepté</a>
+                                {{ devis.getDateValidation()|date("m/d/Y") }}
                             {% else %}
                                 <a class="btn btn-success" href="{{ path('madera_devis_show', {'id': devis.getId(), 'idPlan' : madera_plan.plan.id}) }}">En attente</a>
                             {% endif %}
-                            {{ devis.getDateValidation() }}
+                            
                         </td>
                     {% else %}
                         <td>{{ madera_plan.plan.prixTotalHtPlan }}</td>

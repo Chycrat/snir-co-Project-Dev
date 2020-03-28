@@ -1,4 +1,4 @@
-<form method="post" action="{{ path('madera_plan_delete', {'id': madera_plan.id, 'idProjet' : projet_id}) }}" onsubmit="return confirm('Voulez vous vraiment supprimer ce plan?');">
+<form method="post" action="{{ path('madera_plan_delete', {'id': madera_plan.id, 'devis':devis.id ,'idProjet' : projet_id}) }}" onsubmit="return confirm('Voulez vous vraiment supprimer ce plan?');">
     <input type="hidden" name="_method" value="DELETE">
     <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ madera_plan.id) }}">
     <button class="btn btn-danger">Suppression plan</button>

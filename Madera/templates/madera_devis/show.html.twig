@@ -7,7 +7,12 @@
             
     <div class="container text-center mt-3 mb-3">
             <button class="btn btn-success" onclick="printDiv('devis')">Impression devis</button>
-            {{ include('madera_devis/_delete_form.html.twig') }}
+            
+            {% if(devis.getDateValidation() == null) %}
+                <a class="btn btn-success" href="{{ path('madera_devis_edit', {'id': devis.getId(), 'idProjet': projet.getId() }) }}">Valider le devis</a>
+                {{ include('madera_devis/_delete_form.html.twig') }}
+            {% endif %}
+
         </div>
         <div id="devis">
             <div class="container">
