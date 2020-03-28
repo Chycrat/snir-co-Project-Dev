@@ -81,20 +81,17 @@ class MaderaDevisController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/{idPlan}", name="madera_devis_delete", methods={"DELETE"})
+     * @Route("/{id}/{plan}", name="madera_devis_delete", methods={"DELETE"})
      */
-    public function delete(Request $request, MaderaDevis $maderaDevi, $idPlan): Response
+    public function delete(Request $request, MaderaDevis $maderaDevi, MaderaPlan $plan): Response
     {
         if ($this->isCsrfTokenValid('delete'.$maderaDevi->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($maderaDevi);
             $entityManager->flush();
         }
-        $MaderaPlan = $this->getDoctrine()
-            ->getRepository(MaderaPlan::class)
-            ->find($idPlan);
 
-        $MaderaProjet = $MaderaPlan->getMaderaProjet();
+        $MaderaProjet = $plan->getMaderaProjet();
 
         return $this->redirectToRoute('madera_plan_projet', array('id'=>$MaderaProjet->getId()));
     }
