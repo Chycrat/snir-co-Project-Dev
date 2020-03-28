@@ -85,7 +85,7 @@ class MaderaDevisController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/{idProjet}", name="madera_devis_delete", methods={"POST"})
+     * @Route("/{id}/{idProjet}", name="madera_devis_delete", methods={"DELETE"})
      */
     public function delete(Request $request, MaderaDevis $maderaDevi, $idProjet): Response
     {

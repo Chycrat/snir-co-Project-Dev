@@ -52,7 +52,7 @@ class MaderaDevis
     private $marge_entreprise_devis;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\MaderaPlan", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity="App\Entity\MaderaPlan")
      */
     private $plan_devis;
 
