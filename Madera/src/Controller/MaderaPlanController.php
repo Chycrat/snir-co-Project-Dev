@@ -116,7 +116,9 @@ class MaderaPlanController extends AbstractController
     {
         if ($this->isCsrfTokenValid('delete'.$maderaPlan->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
-            $devis = $this->getDevisOfPlan($maderaPlan);
+            $devis = $this->getDoctrine()
+                ->getRepository(MaderaDevis::class)
+                ->findByPlanId($maderaPlan->getId());
             $entityManager->remove($devis);
             $entityManager->remove($maderaPlan);
             $entityManager->flush();

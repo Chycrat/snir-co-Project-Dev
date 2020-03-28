@@ -37,18 +37,17 @@ class MaderaDevisController extends AbstractController
     }
 
     /**
-     * @Route("/edit/{id}/plan/{idPlan}", name="madera_devis_edit", methods={"GET","POST"})
+     * @Route("/edit/{id}/projet/{idProjet}", name="madera_devis_edit", methods={"GET","POST"})
      */
-    public function edit(Request $request, MaderaDevis $maderaDevis, $idPlan): Response
+    public function edit(Request $request, MaderaDevis $maderaDevis, $idProjet): Response
     {
         $entityManager = $this->getDoctrine()->getManager();
         $maderaDevis->setDateValidation(new \DateTime());
         $entityManager->persist($maderaDevis);
         $entityManager->flush();
 
-        return $this->redirectToRoute('madera_devis_show', [
-            'id' => $maderaDevis->getId(),
-            'idPlan' => $idPlan
+        return $this->redirectToRoute('madera_plan_projet', [
+            'id' => $idProjet
         ]);
     }
 
