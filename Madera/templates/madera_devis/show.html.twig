@@ -6,7 +6,8 @@
 
             
     <div class="container text-center mt-3 mb-3">
-            <button onclick="printDiv('devis')">Impression devis</button>
+            <button class="btn btn-success" onclick="printDiv('devis')">Impression devis</button>
+            {{ include('madera_devis/_delete_form.html.twig') }}
         </div>
         <div id="devis">
             <div class="container">
