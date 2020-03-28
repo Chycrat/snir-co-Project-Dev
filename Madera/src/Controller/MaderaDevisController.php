@@ -41,10 +41,8 @@ class MaderaDevisController extends AbstractController
      */
     public function edit(Request $request, MaderaDevis $maderaDevis, $idProjet): Response
     {
-        $entityManager = $this->getDoctrine()->getManager();
         $maderaDevis->setDateValidation(new \DateTime());
-        $entityManager->persist($maderaDevis);
-        $entityManager->flush();
+        $this->getDoctrine()->getManager()->flush();
 
         return $this->redirectToRoute('madera_plan_projet', [
             'id' => $idProjet
@@ -81,9 +79,9 @@ class MaderaDevisController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/{plan}", name="madera_devis_delete", methods={"DELETE"})
+     * @Route("/{id}/{idProjet}", name="madera_devis_delete", methods={"DELETE"})
      */
-    public function delete(Request $request, MaderaDevis $maderaDevi, MaderaPlan $plan): Response
+    public function delete(Request $request, MaderaDevis $maderaDevi, $idProjet): Response
     {
         if ($this->isCsrfTokenValid('delete'.$maderaDevi->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
@@ -91,9 +89,7 @@ class MaderaDevisController extends AbstractController
             $entityManager->flush();
         }
 
-        $MaderaProjet = $plan->getMaderaProjet();
-
-        return $this->redirectToRoute('madera_plan_projet', array('id'=>$MaderaProjet->getId()));
+        return $this->redirectToRoute('madera_plan_projet', array('id'=>$idProjet));
     }
 
     public function generateDevis($id){
@@ -116,8 +112,6 @@ class MaderaDevisController extends AbstractController
         foreach ($modules as $module) {
             $prixHt += $module->getPrixHtModule();
         }
-
-        dump($prixHt);
 
         $prixHt += $sol->getPrixHtSol() + $toit->getPrixHtToit();
         $prixHt *= $gamme->getPourcentagePrix()/100;
