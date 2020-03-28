@@ -16,7 +16,13 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class MaderaDevisController extends AbstractController
 {
-
+    /**
+     * @Route("/{idProjet}", name="madera_devis_index", methods={"GET"})
+     */
+    public function index($idProjet): Response
+    {
+        return $this->redirectToRoute('madera_plan_projet', array('id'=>$idProjet));
+    }
     /**
      * @Route("/new/{id}/plan/{idProjet}/projet", name="madera_devis_new", methods={"GET","POST"})
      */
@@ -89,7 +95,7 @@ class MaderaDevisController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('madera_plan_projet', array('id'=>$idProjet));
+        return $this->redirectToRoute('madera_devis_index', array('idProjet'=>$idProjet));
     }
 
     public function generateDevis($id){
