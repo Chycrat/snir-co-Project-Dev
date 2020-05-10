@@ -35,6 +35,13 @@
                     </li>
                 </ul>
             </div>
+            <div class="">
+                {% if app.user.username %}
+                    <a type="button" href="/logout">Déconnexion</a>
+                {% else %}
+                    <a type="button" href="/login">Connexion</a>
+                {% endif %}
+            </div>
         </nav> 
 
         <div class="row">

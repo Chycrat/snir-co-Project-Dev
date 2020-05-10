@@ -94,7 +94,6 @@ class LoginFromAuthentAuthenticator extends AbstractFormLoginAuthenticator imple
             return new RedirectResponse($targetPath);
         }
 
-
         return new RedirectResponse($this->urlGenerator->generate('madera_client_index'));
     }
 
