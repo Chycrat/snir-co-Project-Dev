@@ -1,0 +1,41 @@
+{% include 'sources.html.twig' %}
+
+<head>
+    <meta charset="UTF-8">
+    <title>Discode - Inscription</title>
+</head>
+
+
+<body class="hold-transition register-page">
+    <div class="register-box">
+        <div class="register-logo">
+            <b>Dis</b>code
+        </div>
+
+        <div class="card">
+            <div class="card-body register-card-body">
+                <p class="login-box-msg">Inscription</p>
+
+                    {{ include('user/_form.html.twig') }}
+                <a href="{{ path('app_login') }}" class="text-center">J'ai déjà un compte</a>
+            </div>
+            <!-- /.form-box -->
+        </div><!-- /.card -->
+    </div>
+    <!-- /.register-box -->    
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

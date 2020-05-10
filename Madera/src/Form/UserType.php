@@ -23,12 +23,6 @@ class UserType extends AbstractType
                 'first_options' => array('label' => 'Nouveau mot de passe *'),
                 'second_options' => array('label' => 'Confirmer mot de passe *'),
             ))
-            ->add('avatar_img', FileType::class,[
-                'mapped' => false,
-                'required' => false,
-                'label' => 'Avatar',
-            ])
-            //->add('rooms')
         ;
     }
 
