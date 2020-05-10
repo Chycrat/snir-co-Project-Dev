@@ -32,6 +32,10 @@ class User implements UserInterface
      * @ORM\Column(type="string")
      */
     private $password;
+    /**
+    * @ORM\Column(type="string", unique=true, nullable=true)
+    */
+    private $apiToken;
 
     public function getId(): ?int
     {
