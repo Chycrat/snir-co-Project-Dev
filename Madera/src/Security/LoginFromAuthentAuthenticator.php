@@ -93,7 +93,7 @@ class LoginFromAuthentAuthenticator extends AbstractFormLoginAuthenticator imple
         if ($targetPath = $this->getTargetPath($request->getSession(), $providerKey)) {
             return new RedirectResponse($targetPath);
         }
-
+        $_SESSION['connect'] = true;
         return new RedirectResponse($this->urlGenerator->generate('madera_client_index'));
     }
 
