@@ -38,40 +38,6 @@ class UserController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            //START Image Manager
-            /** @var UploadedFile $uploadedFile */
-            $uploadedFile = $form['avatar_img']->getData();
-
-            //allowed extensions
-            $allowedExtensions = array("png", "gif", "jpg", "jpeg");
-
-            //if UploadedFile exist
-            if($uploadedFile){
-                $extension = $uploadedFile->guessExtension();
-
-                //only png and jpg
-                if(in_array($extension, $allowedExtensions)){
-                    //destination folder
-                    $destination = $this->getParameter('kernel.project_dir').'/public/avatar';
-
-                    //get sent file
-                    $originalFileName = pathinfo($uploadedFile->getClientOriginalName(), PATHINFO_FILENAME);
-
-                    //new file name
-                    $newFileName = Urlizer::urlize($originalFileName).'-'.uniqid().'.'.$uploadedFile->guessExtension();
-
-                    //move file to directory
-                    $uploadedFile->move($destination, $newFileName);
-
-                    //set image in data
-                    $user->setAvatarImg($newFileName);
-
-                } else {
-                    $this->addFlash('danger', 'Le fichier doit être au format png ou jpg.');
-                    return $this->redirectToRoute('user_new');
-                }
-            }
-            //END Image Manager
             //Start password encoding
             $user->setPassword(
                 $passwordEncoder->encodePassword(
@@ -80,10 +46,6 @@ class UserController extends AbstractController
                 )
             );
             //End password encoding
-
-
-
-
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);

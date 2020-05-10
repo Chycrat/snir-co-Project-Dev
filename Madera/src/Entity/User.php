@@ -35,20 +35,6 @@ class User implements UserInterface
      */
     private $password;
 
-    /**
-     * @ORM\Column(type="text", nullable=true)
-     */
-    private $avatar_img;
-
-    /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Room", inversedBy="users")
-     */
-    private $rooms;
-
-    /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Message", mappedBy="user", orphanRemoval=true)
-     */
-    private $messages;
 
     public function __construct()
     {
@@ -129,17 +115,6 @@ class User implements UserInterface
         // $this->plainPassword = null;
     }
 
-    public function getAvatarImg(): ?string
-    {
-        return $this->avatar_img;
-    }
-
-    public function setAvatarImg(?string $avatar_img): self
-    {
-        $this->avatar_img = $avatar_img;
-
-        return $this;
-    }
 
     public function __toString()
     {
