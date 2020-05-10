@@ -1,9 +1,9 @@
 <?php
 
 namespace App\Security;
+
 use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
-
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
@@ -20,11 +20,9 @@ use Symfony\Component\Security\Guard\Authenticator\AbstractFormLoginAuthenticato
 use Symfony\Component\Security\Guard\PasswordAuthenticatedInterface;
 use Symfony\Component\Security\Http\Util\TargetPathTrait;
 
-class LoginFromAuthentAuthenticator extends AbstractFormLoginAuthenticator implements PasswordAuthenticatedInterface
+class LoginFormAuthenticator extends AbstractFormLoginAuthenticator implements PasswordAuthenticatedInterface
 {
     use TargetPathTrait;
-
-    private const LOGIN_ROUTE = 'app_login';
 
     private $entityManager;
     private $urlGenerator;
@@ -41,7 +39,7 @@ class LoginFromAuthentAuthenticator extends AbstractFormLoginAuthenticator imple
 
     public function supports(Request $request)
     {
-        return self::LOGIN_ROUTE === $request->attributes->get('_route')
+        return 'app_login' === $request->attributes->get('_route')
             && $request->isMethod('POST');
     }
 
@@ -71,7 +69,7 @@ class LoginFromAuthentAuthenticator extends AbstractFormLoginAuthenticator imple
 
         if (!$user) {
             // fail authentication with a custom error
-            throw new CustomUserMessageAuthenticationException('username could not be found.');
+            throw new CustomUserMessageAuthenticationException('Username could not be found.');
         }
 
         return $user;
@@ -82,26 +80,26 @@ class LoginFromAuthentAuthenticator extends AbstractFormLoginAuthenticator imple
         return $this->passwordEncoder->isPasswordValid($user, $credentials['password']);
     }
 
+    /**
+     * Used to upgrade (rehash) the user's password automatically over time.
+     */
+    public function getPassword($credentials): ?string
+    {
+        return $credentials['password'];
+    }
+
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey)
     {
         if ($targetPath = $this->getTargetPath($request->getSession(), $providerKey)) {
             return new RedirectResponse($targetPath);
         }
 
-        // For example : return new RedirectResponse($this->urlGenerator->generate('some_route'));
-        return new RedirectResponse($this->urlGenerator->generate('madera_client_index'));
+
+        return new RedirectResponse($this->urlGenerator->generate('room_index'));
     }
 
     protected function getLoginUrl()
     {
-        return $this->urlGenerator->generate(self::LOGIN_ROUTE);
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function getPassword($credentials): ?string
-    {
-        // TODO: Implement getPassword() method.
+        return $this->urlGenerator->generate('app_login');
     }
 }

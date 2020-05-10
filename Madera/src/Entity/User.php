@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -32,10 +34,27 @@ class User implements UserInterface
      * @ORM\Column(type="string")
      */
     private $password;
+
     /**
-    * @ORM\Column(type="string", unique=true, nullable=true)
-    */
-    private $apiToken;
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $avatar_img;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Room", inversedBy="users")
+     */
+    private $rooms;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Message", mappedBy="user", orphanRemoval=true)
+     */
+    private $messages;
+
+    public function __construct()
+    {
+        $this->rooms = new ArrayCollection();
+        $this->messages = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -108,5 +127,22 @@ class User implements UserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    public function getAvatarImg(): ?string
+    {
+        return $this->avatar_img;
+    }
+
+    public function setAvatarImg(?string $avatar_img): self
+    {
+        $this->avatar_img = $avatar_img;
+
+        return $this;
+    }
+
+    public function __toString()
+    {
+        return 'user : '.$this->getUsername();
     }
 }
