@@ -20,9 +20,14 @@ class MaderaClientController extends AbstractController
      */
     public function index(MaderaClientRepository $maderaClientRepository): Response
     {
-        return $this->render('madera_client/index.html.twig', [
-            'madera_clients' => $maderaClientRepository->findAll(),
-        ]);
+        $user = $this->getUser();
+        if($user == null){
+            return $this->redirectToRoute('app_login');
+        }else {
+            return $this->render('madera_client/index.html.twig', [
+                'madera_clients' => $maderaClientRepository->findAll(),
+            ]);
+        }
     }
 
     /**
@@ -30,22 +35,27 @@ class MaderaClientController extends AbstractController
      */
     public function new(Request $request): Response
     {
-        $maderaClient = new MaderaClient();
-        $form = $this->createForm(MaderaClientType::class, $maderaClient);
-        $form->handleRequest($request);
+        $user = $this->getUser();
+        if($user == null){
+            return $this->redirectToRoute('app_login');
+        }else {
+            $maderaClient = new MaderaClient();
+            $form = $this->createForm(MaderaClientType::class, $maderaClient);
+            $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($maderaClient);
-            $entityManager->flush();
+            if ($form->isSubmitted() && $form->isValid()) {
+                $entityManager = $this->getDoctrine()->getManager();
+                $entityManager->persist($maderaClient);
+                $entityManager->flush();
 
-            return $this->redirectToRoute('madera_client_index');
+                return $this->redirectToRoute('madera_client_index');
+            }
+
+            return $this->render('madera_client/new.html.twig', [
+                'madera_client' => $maderaClient,
+                'form' => $form->createView(),
+            ]);
         }
-
-        return $this->render('madera_client/new.html.twig', [
-            'madera_client' => $maderaClient,
-            'form' => $form->createView(),
-        ]);
     }
 
     /**
@@ -63,19 +73,24 @@ class MaderaClientController extends AbstractController
      */
     public function edit(Request $request, MaderaClient $maderaClient): Response
     {
-        $form = $this->createForm(MaderaClientType::class, $maderaClient);
-        $form->handleRequest($request);
+        $user = $this->getUser();
+        if($user == null){
+            return $this->redirectToRoute('app_login');
+        }else {
+            $form = $this->createForm(MaderaClientType::class, $maderaClient);
+            $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+            if ($form->isSubmitted() && $form->isValid()) {
+                $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('madera_client_index');
+                return $this->redirectToRoute('madera_client_index');
+            }
+
+            return $this->render('madera_client/edit.html.twig', [
+                'madera_client' => $maderaClient,
+                'form' => $form->createView(),
+            ]);
         }
-
-        return $this->render('madera_client/edit.html.twig', [
-            'madera_client' => $maderaClient,
-            'form' => $form->createView(),
-        ]);
     }
 
     /**
@@ -83,12 +98,17 @@ class MaderaClientController extends AbstractController
      */
     public function delete(Request $request, MaderaClient $maderaClient): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$maderaClient->getId(), $request->request->get('_token'))) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->remove($maderaClient);
-            $entityManager->flush();
-        }
+        $user = $this->getUser();
+        if($user == null){
+            return $this->redirectToRoute('app_login');
+        }else {
+            if ($this->isCsrfTokenValid('delete' . $maderaClient->getId(), $request->request->get('_token'))) {
+                $entityManager = $this->getDoctrine()->getManager();
+                $entityManager->remove($maderaClient);
+                $entityManager->flush();
+            }
 
-        return $this->redirectToRoute('madera_client_index');
+            return $this->redirectToRoute('madera_client_index');
+        }
     }
 }

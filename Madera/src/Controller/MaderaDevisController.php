@@ -21,25 +21,35 @@ class MaderaDevisController extends AbstractController
      */
     public function index($idProjet): Response
     {
-        return $this->redirectToRoute('madera_plan_projet', array('id'=>$idProjet));
+        $user = $this->getUser();
+        if($user == null){
+            return $this->redirectToRoute('app_login');
+        }else {
+            return $this->redirectToRoute('madera_plan_projet', array('id' => $idProjet));
+        }
     }
     /**
      * @Route("/new/{id}/plan/{idProjet}/projet", name="madera_devis_new", methods={"GET","POST"})
      */
     public function new(Request $request, $id, $idProjet): Response
     {
-        $maderaDevis = new MaderaDevis();
+        $user = $this->getUser();
+        if($user == null){
+            return $this->redirectToRoute('app_login');
+        }else {
+            $maderaDevis = new MaderaDevis();
 
-        $entityManager = $this->getDoctrine()->getManager();
-        $maderaDevis = $this->generateDevis($id);
-        //FAIRE LE NOUVEAU DEVIS EN AUTO
+            $entityManager = $this->getDoctrine()->getManager();
+            $maderaDevis = $this->generateDevis($id);
+            //FAIRE LE NOUVEAU DEVIS EN AUTO
 
-        $entityManager->persist($maderaDevis);
-        $entityManager->flush();
+            $entityManager->persist($maderaDevis);
+            $entityManager->flush();
 
-        return $this->redirectToRoute('madera_plan_projet', [
-            'id' => $idProjet
-        ]);
+            return $this->redirectToRoute('madera_plan_projet', [
+                'id' => $idProjet
+            ]);
+        }
     }
 
     /**
@@ -47,12 +57,17 @@ class MaderaDevisController extends AbstractController
      */
     public function edit(Request $request, MaderaDevis $maderaDevis, $idProjet): Response
     {
-        $maderaDevis->setDateValidation(new \DateTime());
-        $this->getDoctrine()->getManager()->flush();
+        $user = $this->getUser();
+        if($user == null){
+            return $this->redirectToRoute('app_login');
+        }else {
+            $maderaDevis->setDateValidation(new \DateTime());
+            $this->getDoctrine()->getManager()->flush();
 
-        return $this->redirectToRoute('madera_plan_projet', [
-            'id' => $idProjet
-        ]);
+            return $this->redirectToRoute('madera_plan_projet', [
+                'id' => $idProjet
+            ]);
+        }
     }
 
 
@@ -61,27 +76,32 @@ class MaderaDevisController extends AbstractController
      */
     public function show($id,  $idPlan): Response
     {
-        $maderaDevis = $this->getDoctrine()
-            ->getRepository(MaderaDevis::class)
-            ->find($id);
-        $MaderaPlan = $this->getDoctrine()
-            ->getRepository(MaderaPlan::class)
-            ->find($idPlan);
-        $client = $MaderaPlan->getMaderaProjet()->getMaderaClient();
-        $coupe = $MaderaPlan->getMaderaCoupe();
-        $projet = $MaderaPlan->getMaderaProjet();
+        $user = $this->getUser();
+        if($user == null){
+            return $this->redirectToRoute('app_login');
+        }else {
+            $maderaDevis = $this->getDoctrine()
+                ->getRepository(MaderaDevis::class)
+                ->find($id);
+            $MaderaPlan = $this->getDoctrine()
+                ->getRepository(MaderaPlan::class)
+                ->find($idPlan);
+            $client = $MaderaPlan->getMaderaProjet()->getMaderaClient();
+            $coupe = $MaderaPlan->getMaderaCoupe();
+            $projet = $MaderaPlan->getMaderaProjet();
 
-        $modules = $MaderaPlan->getModules();
+            $modules = $MaderaPlan->getModules();
 
-        return $this->render('madera_devis/show.html.twig', [
-            'devis' => $maderaDevis,
-            'client' => $client,
-            'plan' => $MaderaPlan,
-            'coupe' => $coupe,
-            'idPlan' => $idPlan,
-            'projet' => $projet,
-            'modules' => $modules
-        ]);
+            return $this->render('madera_devis/show.html.twig', [
+                'devis' => $maderaDevis,
+                'client' => $client,
+                'plan' => $MaderaPlan,
+                'coupe' => $coupe,
+                'idPlan' => $idPlan,
+                'projet' => $projet,
+                'modules' => $modules
+            ]);
+        }
     }
 
     /**
@@ -89,52 +109,62 @@ class MaderaDevisController extends AbstractController
      */
     public function delete(Request $request, MaderaDevis $maderaDevi, $idProjet): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$maderaDevi->getId(), $request->request->get('_token'))) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->remove($maderaDevi);
-            $entityManager->flush();
-        }
+        $user = $this->getUser();
+        if($user == null){
+            return $this->redirectToRoute('app_login');
+        }else {
+            if ($this->isCsrfTokenValid('delete' . $maderaDevi->getId(), $request->request->get('_token'))) {
+                $entityManager = $this->getDoctrine()->getManager();
+                $entityManager->remove($maderaDevi);
+                $entityManager->flush();
+            }
 
-        return $this->redirectToRoute('madera_devis_index', array('idProjet'=>$idProjet));
+            return $this->redirectToRoute('madera_devis_index', array('idProjet' => $idProjet));
+        }
     }
 
     public function generateDevis($id){
-        $devis = new MaderaDevis();
+        $user = $this->getUser();
+        if($user == null){
+            return $this->redirectToRoute('app_login');
+        }else {
+            $devis = new MaderaDevis();
 
-        $MaderaPlan = $this->getDoctrine()
-            ->getRepository(MaderaPlan::class)
-            ->find($id);
+            $MaderaPlan = $this->getDoctrine()
+                ->getRepository(MaderaPlan::class)
+                ->find($id);
 
-        $toit = $MaderaPlan->getMaderaToit();
+            $toit = $MaderaPlan->getMaderaToit();
 
-        $sol = $MaderaPlan->getMaderaSol();
+            $sol = $MaderaPlan->getMaderaSol();
 
-        $gamme = $MaderaPlan->getMaderaGamme();
+            $gamme = $MaderaPlan->getMaderaGamme();
 
-        $modules = $MaderaPlan->getModules();
+            $modules = $MaderaPlan->getModules();
 
-        $prixHt = 0;
+            $prixHt = 0;
 
-        foreach ($modules as $module) {
-            $prixHt += $module->getPrixHtModule();
+            foreach ($modules as $module) {
+                $prixHt += $module->getPrixHtModule();
+            }
+
+            $prixHt += $sol->getPrixHtSol() + $toit->getPrixHtToit();
+            $prixHt *= $gamme->getPourcentagePrix() / 100;
+
+            $margeCommercial = 10;
+            $margeEntreprise = 10;
+
+            $devis->setCodeDevis($MaderaPlan->getDateCreation()->format('dmY') . '' . $MaderaPlan->getId());
+            $devis->setMargeCommerciauxDevis($margeCommercial);
+            $devis->setMargeEntrepriseDevis($margeEntreprise);
+            $devis->setPlanDevis($MaderaPlan);
+            $devis->setDateDevis(new \DateTime());
+            $devis->setMontantHtDevis($prixHt);
+            $prixTTC = $devis->getMontantHtDevis() * 1.20 + ($prixHt * $margeCommercial / 100) + ($prixHt * $margeEntreprise / 100);
+            $devis->setMontantTtcDevis($prixTTC);
+            $devis->setDateValidation(null);
+
+            return $devis;
         }
-
-        $prixHt += $sol->getPrixHtSol() + $toit->getPrixHtToit();
-        $prixHt *= $gamme->getPourcentagePrix()/100;
-
-        $margeCommercial = 10;
-        $margeEntreprise = 10;
-
-        $devis->setCodeDevis($MaderaPlan->getDateCreation()->format('dmY').''.$MaderaPlan->getId());
-        $devis->setMargeCommerciauxDevis($margeCommercial);
-        $devis->setMargeEntrepriseDevis($margeEntreprise);
-        $devis->setPlanDevis($MaderaPlan);
-        $devis->setDateDevis(new \DateTime());
-        $devis->setMontantHtDevis($prixHt);
-        $prixTTC = $devis->getMontantHtDevis()*1.20 + ($prixHt*$margeCommercial/100) + ($prixHt*$margeEntreprise/100);
-        $devis->setMontantTtcDevis($prixTTC);
-        $devis->setDateValidation(null);
-
-        return $devis;
     }
 }
