@@ -57,13 +57,14 @@ class UserController extends AbstractController
                 $entityManager = $this->getDoctrine()->getManager();
                 $entityManager->persist($user);
                 $entityManager->flush();
+                $this->addFlash('success', 'Création du compte réussi!');
 
             }catch ( \Exception $e){
                 // fail authentication with a custom error
+                $this->addFlash('error', 'L\'utilisateur existe déjà');
                 throw new CustomUserMessageAuthenticationException("L'utilisateur existe déjà");
             }
 
-            $this->addFlash('success', 'Création du compte réussi!');
             return $this->redirectToRoute('app_login');
         }
 
