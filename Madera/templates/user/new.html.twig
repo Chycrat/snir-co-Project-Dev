@@ -1,22 +1,24 @@
 {% include 'sources.html.twig' %}
 
 {% block body %}
+<div class="container mt-5" margin-top="15dp">
     <div class="register-box">
         <div class="register-logo">
-            <b>Madera account</b>
+            <b>Inscription Madera</b>  
         </div>
-
+        
+<img src = "http://madera-construction.fr/images/site/logo.png" alt="Madera LOGO" width = "50%">
         <div class="card">
             <div class="card-body register-card-body">
                 <p class="login-box-msg">Inscription</p>
-
                     {{ include('user/_form.html.twig') }}
                 <a href="{{ path('app_login') }}" class="text-center">J'ai déjà un compte</a>
             </div>
             <!-- /.form-box -->
         </div><!-- /.card -->
     </div>
-    <!-- /.register-box -->    
+    <!-- /.register-box -->  
+</div>  
 {% endblock %}
 
 
