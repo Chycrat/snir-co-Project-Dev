@@ -37,6 +37,7 @@
             </div>
             <div class="">
                 {% if app.user.username %}
+                    <span>Bonjour {{ app.usert.username }} </span>
                     <a type="button" href="/logout">Déconnexion</a>
                 {% else %}
                     <a type="button" href="/login">Connexion</a>
