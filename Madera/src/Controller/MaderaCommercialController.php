@@ -20,9 +20,14 @@ class MaderaCommercialController extends AbstractController
      */
     public function index(MaderaCommercialRepository $maderaCommercialRepository): Response
     {
-        return $this->render('madera_commercial/index.html.twig', [
-            'madera_commercials' => $maderaCommercialRepository->findAll(),
-        ]);
+        $user = $this->getUser();
+        if($user == null){
+            return $this->redirectToRoute('app_login');
+        }else {
+            return $this->render('madera_commercial/index.html.twig', [
+                'madera_commercials' => $maderaCommercialRepository->findAll(),
+            ]);
+        }
     }
 
     /**
@@ -30,22 +35,27 @@ class MaderaCommercialController extends AbstractController
      */
     public function new(Request $request): Response
     {
-        $maderaCommercial = new MaderaCommercial();
-        $form = $this->createForm(MaderaCommercialType::class, $maderaCommercial);
-        $form->handleRequest($request);
+        $user = $this->getUser();
+        if($user == null){
+            return $this->redirectToRoute('app_login');
+        }else {
+            $maderaCommercial = new MaderaCommercial();
+            $form = $this->createForm(MaderaCommercialType::class, $maderaCommercial);
+            $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($maderaCommercial);
-            $entityManager->flush();
+            if ($form->isSubmitted() && $form->isValid()) {
+                $entityManager = $this->getDoctrine()->getManager();
+                $entityManager->persist($maderaCommercial);
+                $entityManager->flush();
 
-            return $this->redirectToRoute('madera_commercial_index');
+                return $this->redirectToRoute('madera_commercial_index');
+            }
+
+            return $this->render('madera_commercial/new.html.twig', [
+                'madera_commercial' => $maderaCommercial,
+                'form' => $form->createView(),
+            ]);
         }
-
-        return $this->render('madera_commercial/new.html.twig', [
-            'madera_commercial' => $maderaCommercial,
-            'form' => $form->createView(),
-        ]);
     }
 
     /**
@@ -53,9 +63,14 @@ class MaderaCommercialController extends AbstractController
      */
     public function show(MaderaCommercial $maderaCommercial): Response
     {
-        return $this->render('madera_commercial/show.html.twig', [
-            'madera_commercial' => $maderaCommercial,
-        ]);
+        $user = $this->getUser();
+        if($user == null){
+            return $this->redirectToRoute('app_login');
+        }else {
+            return $this->render('madera_commercial/show.html.twig', [
+                'madera_commercial' => $maderaCommercial,
+            ]);
+        }
     }
 
     /**
@@ -63,19 +78,24 @@ class MaderaCommercialController extends AbstractController
      */
     public function edit(Request $request, MaderaCommercial $maderaCommercial): Response
     {
-        $form = $this->createForm(MaderaCommercialType::class, $maderaCommercial);
-        $form->handleRequest($request);
+        $user = $this->getUser();
+        if($user == null){
+            return $this->redirectToRoute('app_login');
+        }else {
+            $form = $this->createForm(MaderaCommercialType::class, $maderaCommercial);
+            $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+            if ($form->isSubmitted() && $form->isValid()) {
+                $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('madera_commercial_index');
+                return $this->redirectToRoute('madera_commercial_index');
+            }
+
+            return $this->render('madera_commercial/edit.html.twig', [
+                'madera_commercial' => $maderaCommercial,
+                'form' => $form->createView(),
+            ]);
         }
-
-        return $this->render('madera_commercial/edit.html.twig', [
-            'madera_commercial' => $maderaCommercial,
-            'form' => $form->createView(),
-        ]);
     }
 
     /**
@@ -83,12 +103,17 @@ class MaderaCommercialController extends AbstractController
      */
     public function delete(Request $request, MaderaCommercial $maderaCommercial): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$maderaCommercial->getId(), $request->request->get('_token'))) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->remove($maderaCommercial);
-            $entityManager->flush();
-        }
+        $user = $this->getUser();
+        if($user == null){
+            return $this->redirectToRoute('app_login');
+        }else {
+            if ($this->isCsrfTokenValid('delete' . $maderaCommercial->getId(), $request->request->get('_token'))) {
+                $entityManager = $this->getDoctrine()->getManager();
+                $entityManager->remove($maderaCommercial);
+                $entityManager->flush();
+            }
 
-        return $this->redirectToRoute('madera_commercial_index');
+            return $this->redirectToRoute('madera_commercial_index');
+        }
     }
 }

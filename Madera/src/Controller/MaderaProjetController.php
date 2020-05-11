@@ -21,9 +21,14 @@ class MaderaProjetController extends AbstractController
      */
     public function index(MaderaProjetRepository $maderaProjetRepository): Response
     {
-        return $this->render('madera_projet/index.html.twig', [
-            'madera_projets' => $maderaProjetRepository->findAll(),
-        ]);
+        $user = $this->getUser();
+        if($user == null){
+            return $this->redirectToRoute('app_login');
+        }else {
+            return $this->render('madera_projet/index.html.twig', [
+                'madera_projets' => $maderaProjetRepository->findAll(),
+            ]);
+        }
     }
 
     /**
@@ -31,24 +36,29 @@ class MaderaProjetController extends AbstractController
      */
     public function new(Request $request): Response
     {
-        $maderaProjet = new MaderaProjet();
-        $form = $this->createForm(MaderaProjetType::class, $maderaProjet);
-        $form->handleRequest($request);
+        $user = $this->getUser();
+        if($user == null){
+            return $this->redirectToRoute('app_login');
+        }else {
+            $maderaProjet = new MaderaProjet();
+            $form = $this->createForm(MaderaProjetType::class, $maderaProjet);
+            $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $maderaProjet->setDateCreationProjet(new DateTime());
-            $maderaProjet->setDateModificationProjet(new DateTime());
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($maderaProjet);
-            $entityManager->flush();
+            if ($form->isSubmitted() && $form->isValid()) {
+                $maderaProjet->setDateCreationProjet(new DateTime());
+                $maderaProjet->setDateModificationProjet(new DateTime());
+                $entityManager = $this->getDoctrine()->getManager();
+                $entityManager->persist($maderaProjet);
+                $entityManager->flush();
 
-            return $this->redirectToRoute('madera_projet_index');
+                return $this->redirectToRoute('madera_projet_index');
+            }
+
+            return $this->render('madera_projet/new.html.twig', [
+                'madera_projet' => $maderaProjet,
+                'form' => $form->createView(),
+            ]);
         }
-
-        return $this->render('madera_projet/new.html.twig', [
-            'madera_projet' => $maderaProjet,
-            'form' => $form->createView(),
-        ]);
     }
 
     /**
@@ -56,9 +66,14 @@ class MaderaProjetController extends AbstractController
      */
     public function show(MaderaProjet $maderaProjet): Response
     {
-        return $this->render('madera_projet/show.html.twig', [
-            'madera_projet' => $maderaProjet,
-        ]);
+        $user = $this->getUser();
+        if($user == null){
+            return $this->redirectToRoute('app_login');
+        }else {
+            return $this->render('madera_projet/show.html.twig', [
+                'madera_projet' => $maderaProjet,
+            ]);
+        }
     }
 
     /**
@@ -66,20 +81,25 @@ class MaderaProjetController extends AbstractController
      */
     public function edit(Request $request, MaderaProjet $maderaProjet): Response
     {
-        $form = $this->createForm(MaderaProjetType::class, $maderaProjet);
-        $form->handleRequest($request);
+        $user = $this->getUser();
+        if($user == null){
+            return $this->redirectToRoute('app_login');
+        }else {
+            $form = $this->createForm(MaderaProjetType::class, $maderaProjet);
+            $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $maderaProjet->setDateModificationProjet(new DateTime());
-            $this->getDoctrine()->getManager()->flush();
+            if ($form->isSubmitted() && $form->isValid()) {
+                $maderaProjet->setDateModificationProjet(new DateTime());
+                $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('madera_projet_index');
+                return $this->redirectToRoute('madera_projet_index');
+            }
+
+            return $this->render('madera_projet/edit.html.twig', [
+                'madera_projet' => $maderaProjet,
+                'form' => $form->createView(),
+            ]);
         }
-
-        return $this->render('madera_projet/edit.html.twig', [
-            'madera_projet' => $maderaProjet,
-            'form' => $form->createView(),
-        ]);
     }
 
     /**
@@ -87,12 +107,17 @@ class MaderaProjetController extends AbstractController
      */
     public function delete(Request $request, MaderaProjet $maderaProjet): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$maderaProjet->getId(), $request->request->get('_token'))) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->remove($maderaProjet);
-            $entityManager->flush();
-        }
+        $user = $this->getUser();
+        if($user == null){
+            return $this->redirectToRoute('app_login');
+        }else {
+            if ($this->isCsrfTokenValid('delete' . $maderaProjet->getId(), $request->request->get('_token'))) {
+                $entityManager = $this->getDoctrine()->getManager();
+                $entityManager->remove($maderaProjet);
+                $entityManager->flush();
+            }
 
-        return $this->redirectToRoute('madera_projet_index');
+            return $this->redirectToRoute('madera_projet_index');
+        }
     }
 }
