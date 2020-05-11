@@ -5,12 +5,14 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Form\UserType;
 use App\Repository\UserRepository;
+use mysql_xdevapi\Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Gedmo\Sluggable\Util\Urlizer;
+use Symfony\Component\Security\Core\Exception\CustomUserMessageAuthenticationException;
 
 /**
  * @Route("/user")
@@ -51,10 +53,15 @@ class UserController extends AbstractController
                 )
             );
             //End password encoding
+            try {
+                $entityManager = $this->getDoctrine()->getManager();
+                $entityManager->persist($user);
+                $entityManager->flush();
 
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($user);
-            $entityManager->flush();
+            }catch ( \Exception $e){
+                // fail authentication with a custom error
+                throw new CustomUserMessageAuthenticationException("L'utilisateur existe déjà");
+            }
 
             $this->addFlash('success', 'Création du compte réussi!');
             return $this->redirectToRoute('app_login');
