@@ -37,8 +37,8 @@
             </div>
             <div class="">
                 {% if app.user.username %}
-                    <span>Bonjour {{ app.user.username }} - </span>
-                    <a type="button" href="/logout">Déconnexion</a>
+                    <img src = "https://cdn4.iconfinder.com/data/icons/green-green/32/expand-color-web2-11-512.png" alt="user LOGO" width = "5%">
+                    <a class="btn btn-outline-success my-2 my-sm-0 "  style="color:green" href="/logout">Déconnexion</a>
                 {% else %}
                     <a type="button" href="/login">Connexion</a>
                 {% endif %}
