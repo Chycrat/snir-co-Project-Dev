@@ -69,7 +69,7 @@ class LoginFromAuthentAuthenticator extends AbstractFormLoginAuthenticator imple
 
         if (!$user) {
             // fail authentication with a custom error
-            throw new CustomUserMessageAuthenticationException('Username could not be found.');
+            throw new CustomUserMessageAuthenticationException("L'utilisateur n'est pas reconnu");
         }
 
         return $user;

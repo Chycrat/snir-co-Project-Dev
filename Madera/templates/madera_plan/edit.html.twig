@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit MaderaPlan{% endblock %}
+{% block title %}Plan{% endblock %}
 
 {% block body %}
-    <h1>Edit MaderaPlan</h1>
+    <h1>Plan</h1>
 
     {{ include('madera_plan/_form.html.twig', {'button_label': 'Update'}) }}
     <a class="btn btn-success" href="{{ path('madera_plan_projet', {'id': projet_id}) }}">back to list</a>
