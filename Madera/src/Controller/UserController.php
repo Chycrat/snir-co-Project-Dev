@@ -53,18 +53,11 @@ class UserController extends AbstractController
                 )
             );
             //End password encoding
-            try {
-                $entityManager = $this->getDoctrine()->getManager();
-                $entityManager->persist($user);
-                $entityManager->flush();
-                $this->addFlash('success', 'Création du compte réussi!');
-
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
             try {
                 $entityManager->flush();
             }catch(\Exception $e){
-
                 $this->addFlash('error', 'Le nom d\'utilisateur existe déjà');
                 return $this->render('user/new.html.twig', [
                     'user' => $user,
