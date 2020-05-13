@@ -54,7 +54,16 @@ class UserController extends AbstractController
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
-            $entityManager->flush();
+            try {
+                $entityManager->flush();
+            }catch(\Exception $e){
+
+                $this->addFlash('error', 'Le nom d\'utilisateur existe déjà');
+                return $this->render('user/new.html.twig', [
+                    'user' => $user,
+                    'form' => $form->createView(),
+                ]);
+            }
 
             $this->addFlash('success', 'Création du compte réussi!');
             return $this->redirectToRoute('app_login');

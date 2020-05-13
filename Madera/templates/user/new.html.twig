@@ -9,7 +9,9 @@
         <div class="card">
             <div class="card-body register-card-body">
                 <p class="login-box-msg">Inscription</p>
-
+                    {% for message in app.flashes('error') %}
+                        <div class="alert alert-danger">{{ message }}</div>
+                    {% endfor %}
                     {{ include('user/_form.html.twig') }}
                 <a href="{{ path('app_login') }}" class="text-center">J'ai déjà un compte</a>
             </div>
