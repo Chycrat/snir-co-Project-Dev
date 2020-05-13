@@ -53,18 +53,19 @@ class UserController extends AbstractController
                 )
             );
             //End password encoding
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($user);
             try {
-                $entityManager = $this->getDoctrine()->getManager();
-                $entityManager->persist($user);
                 $entityManager->flush();
-                $this->addFlash('success', 'Création du compte réussi!');
-
-            }catch ( \Exception $e){
-                // fail authentication with a custom error
-                $this->addFlash('error', 'L\'utilisateur existe déjà');
-                throw new CustomUserMessageAuthenticationException("L'utilisateur existe déjà");
+            }catch(\Exception $e){
+                $this->addFlash('error', 'Le nom d\'utilisateur existe déjà');
+                return $this->render('user/new.html.twig', [
+                    'user' => $user,
+                    'form' => $form->createView(),
+                ]);
             }
 
+            $this->addFlash('success', 'Création du compte réussi!');
             return $this->redirectToRoute('app_login');
         }
 
